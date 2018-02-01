@@ -27,4 +27,27 @@ Route::group(['prefix' => 'api'], function(){
         'uses' => 'StudentController@show',
         'as' => 'students.all'
     ]);
+
+    // Exam routes START
+    Route::get('/exams', [
+        'uses' => 'ExamController@getExams',
+        'as' => 'exams.all'
+    ]);
+
+    Route::get('/exams/{id}', [
+        'uses' => 'ExamController@getExamById',
+        'as' => 'exams.byId'
+    ]);
+
+    Route::get('/exams/{id}/periods', [
+        'uses' => 'ExamController@getPeriodsByExamId',
+        'as' => 'exams.periodsById'
+    ]);
+
+    // There was an issue with having ? after passed ID as a param. TODO -> Research how to escape it
+    Route::get('/exams/{id}/students_periodId={pid}', [
+        'uses' => 'ExamController@getStudentsByExamAndPeriod',
+        'as' => 'exams.studentsByEandP'
+    ]);
+    // Exam routes END
 });
