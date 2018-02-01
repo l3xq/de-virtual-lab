@@ -61,17 +61,17 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'ExamController@deleteExamById',
         'as' => 'exams.deleteExamById'
     ]);
-    
+
     // TODO: When creating exam, you are creating it based on which params?
-    Route::put('/exams', [
+    Route::post('/exams', [
         'uses' => 'ExamController@createNewExam',
         'as' => 'exams.createNewExam'
     ]);
 
-
-
-
-
+    Route::put('/exams/{id}', [
+        'uses' => 'ExamController@updateExamById',
+        'as' => 'exams.updateExamById'
+    ]);
 
     // Exam routes END
 });

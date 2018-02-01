@@ -13,5 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
+        // TODO: Remove API when finished developing, and add aditional protection on it
+        'api/*',
     ];
 }
