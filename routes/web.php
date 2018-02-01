@@ -1,9 +1,6 @@
 <?php
 
 use App\Exam;
-use App\Student;
-use Illuminate\Http\Response;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +19,7 @@ use Illuminate\Http\Response;
         'as' => 'students.all'
 ]);*/
 
-Route::group(['prefix' => 'api'], function(){
+Route::group(['prefix' => 'api'], function () {
     Route::get('/', [
         'uses' => 'StudentController@show',
         'as' => 'students.all'
@@ -49,5 +46,32 @@ Route::group(['prefix' => 'api'], function(){
         'uses' => 'ExamController@getStudentsByExamAndPeriod',
         'as' => 'exams.studentsByEandP'
     ]);
+
+    Route::get('/exams/{id}/students_periodId={pid}', [
+        'uses' => 'ExamController@getStudentsByExamAndPeriod',
+        'as' => 'exams.studentsByEandP'
+    ]);
+
+    Route::get('/exams/{id}/lessons', [
+        'uses' => 'ExamController@getLessonsByExamId',
+        'as' => 'exams.getLessonsByExamId'
+    ]);
+
+    Route::delete('/exams/{id}', [
+        'uses' => 'ExamController@deleteExamById',
+        'as' => 'exams.deleteExamById'
+    ]);
+    
+    // TODO: When creating exam, you are creating it based on which params?
+    Route::put('/exams', [
+        'uses' => 'ExamController@createNewExam',
+        'as' => 'exams.createNewExam'
+    ]);
+
+
+
+
+
+
     // Exam routes END
 });
