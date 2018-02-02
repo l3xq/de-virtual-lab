@@ -73,5 +73,35 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'exams.updateExamById'
     ]);
 
+    Route::delete('/lessons/{id}', [
+        'uses' => 'ExamController@deleteLessonsByExamAndId',
+        'as' => 'exams.deleteLessons'
+    ]);
+
+    Route::delete('/periods/{id}', [
+        'uses' => 'ExamController@deletePeriodById',
+        'as' => 'exams.deletePeriod'
+    ]);
+
+    Route::get('/lessons/{id}', [
+        'uses' => 'ExamController@getLessonById',
+        'as' => 'exams.getLesson'
+    ]);
+
+    Route::get('/periods/{id}', [
+        'uses' => 'ExamController@getPeriodById',
+        'as' => 'exams.getPeriod'
+    ]);
+
+    Route::get('/students/{id}', [
+        'uses' => 'ExamController@getStudentById',
+        'as' => 'exams.getStudent'
+    ]);
+
+    Route::put('/lessons/{id}', [
+        'uses' => 'ExamController@updateLessonById',
+        'as' => 'exams.updateLesson'
+    ]);
+
     // Exam routes END
 });
