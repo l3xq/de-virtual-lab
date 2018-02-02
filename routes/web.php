@@ -73,5 +73,65 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'exams.updateExamById'
     ]);
 
+    Route::delete('/lessons/{id}', [
+        'uses' => 'ExamController@deleteLessonsByExamAndId',
+        'as' => 'exams.deleteLessons'
+    ]);
+
+    Route::delete('/periods/{id}', [
+        'uses' => 'ExamController@deletePeriodById',
+        'as' => 'exams.deletePeriod'
+    ]);
+
+    Route::get('/lessons/{id}', [
+        'uses' => 'ExamController@getLessonById',
+        'as' => 'exams.getLesson'
+    ]);
+
+    Route::get('/periods/{id}', [
+        'uses' => 'ExamController@getPeriodById',
+        'as' => 'exams.getPeriod'
+    ]);
+
+    Route::get('/students/{id}', [
+        'uses' => 'ExamController@getStudentById',
+        'as' => 'exams.getStudent'
+    ]);
+
+    Route::put('/lessons/{id}', [
+        'uses' => 'ExamController@updateLessonById',
+        'as' => 'exams.updateLesson'
+    ]);
+
+    Route::post('/lessons', [
+        'uses' => 'ExamController@createNewLesson',
+        'as' => 'exams.createNewLesson'
+    ]);
+
+    Route::put('/students/{id}', [
+        'uses' => 'ExamController@updateStudentById',
+        'as' => 'exams.updateStudent'
+    ]);
+
+    Route::post('/students', [
+        'uses' => 'ExamController@createNewStudent',
+        'as' => 'exams.createNewStudent'
+    ]);
+
+    Route::put('/periods/{id}', [
+        'uses' => 'ExamController@updatePeriodById',
+        'as' => 'exams.updatePeriod'
+    ]);
+
+    Route::post('/periods', [
+        'uses' => 'ExamController@createNewPeriod',
+        'as' => 'exams.createNewPeriod'
+    ]);
+
+    Route::delete('/students/{id}', [
+        'uses' => 'ExamController@deleteStudentById',
+        'as' => 'exams.deleteStudentById'
+    ]);
+
     // Exam routes END
 });
