@@ -54,9 +54,14 @@ class ExamController extends Controller
         return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
     }
 
-    public function createNewExam(Request $request)
+    public function createNewExam(Request $request, Exam $examObject)
     {
+        // TODO: Marko -> same issue on all cals that pass Object of any type
         $exam = new Exam;
+        var_dump($_POST);
+        dd($examObject);
+        $exam->title = $examObject['title'];
+
         $exam->save();
 
         return response()->json(['status' => 200, 'data' => 'New exam has been created.']);
@@ -132,5 +137,103 @@ class ExamController extends Controller
 
         $lesson->save();
         return response()->json(['status' => 200, 'data' => 'Lesson title&path have been updated.']);
+    }
+
+    public function createNewLesson(Request $request, Lesson $lessonObject)
+    {
+        // TODO: fix object issue
+        $lesson = new Lesson;
+
+        echo 'POST METHOD =>';
+        var_dump($_POST);
+
+        echo 'LESSON OBJECT FOUND BY ID =>';
+        dd($lesson);
+
+        $lessonObjectDecoded = json_decode($lessonObject);
+
+        $lesson->title = $lessonObjectDecoded['title'];
+        $lesson->path = $lessonObjectDecoded['path'];
+
+        $lesson->save();
+        return response()->json(['status' => 200, 'data' => 'New Lesson has been created!']);
+    }
+
+    public function updateStudentById(Request $request, $id, Student $studentObject)
+    {
+        // TODO: Marko -> same issue as updateExamById
+        $student = Student::find($id);
+
+        echo 'POST METHOD =>';
+        var_dump($_POST);
+
+        echo 'STUDENT OBJECT FOUND BY ID =>';
+        dd($student);
+
+        $studentObjectDecoded = json_decode($studentObject);
+
+        //$student->firstName = $studentObjectDecoded['firstName'];
+        // same for lastName, index, mark and unit
+
+        $student->save();
+        return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been updated.']);
+    }
+
+    public function createNewStudent(Request $request, Student $studentObject)
+    {
+        // TODO: Marko -> same issue as updateExamById
+        $student = new Student;
+
+        echo 'POST METHOD =>';
+        var_dump($_POST);
+
+        $studentObjectDecoded = json_decode($studentObject);
+
+        //$student->firstName = $studentObjectDecoded['firstName'];
+        // same for lastName, index, mark and unit
+
+        $student->save();
+        return response()->json(['status' => 200, 'data' => 'Student has been created.']);
+    }
+
+    public function updatePeriodById(Request $request, $id, Period $periodObject)
+    {
+        // TODO: Marko -> same issue as updateExamById
+        $period = Period::find($id);
+
+        echo 'POST METHOD =>';
+        var_dump($_POST);
+
+        echo 'PERIOD OBJECT FOUND BY ID =>';
+        dd($period);
+
+        $periodObjectDecoded = json_decode($periodObject);
+
+        $period->name = $periodObjectDecoded['name'];
+
+        $period->save();
+        return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been updated.']);
+    }
+
+    public function createNewPeriod(Request $request, Period $periodObject)
+    {
+        // TODO: Marko -> same issue as updateExamById
+        $period = new Period;
+
+        echo 'POST METHOD =>';
+        var_dump($_POST);
+
+        $periodObjectDecoded = json_decode($periodObject);
+
+        $period->name = $periodObjectDecoded['name'];
+
+        $period->save();
+        return response()->json(['status' => 200, 'data' => 'Period has been created.']);
+    }
+
+    public function deleteStudentById(Request $request, $id)
+    {
+        $deleteStudentById = Student::where('id', $id)->delete();
+        return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been deleted!']);
     }
 }
