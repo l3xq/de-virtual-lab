@@ -15,19 +15,10 @@ export class ExamComponent implements OnInit {
 
   ngOnInit() {
     this.fetchExams();
-    this.updateExam(1, {title: "asidhiasjjdsksj"});
   }
 
   fetchExams() {
     this.examService.getExams().subscribe((exams: any) => {
-      this.exams = exams.data;
-      console.log(this.exams);
-    });
-  }
-
-  // delete after debug
-  updateExam(id, object) {
-    this.examService.updateExamById(id, object).subscribe((exams: any) => {
       this.exams = exams.data;
       console.log(this.exams);
     });
