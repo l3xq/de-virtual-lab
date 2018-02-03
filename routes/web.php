@@ -25,6 +25,7 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'students.all'
     ]);
 
+    /************************************************************************/
     // Exam routes START
     Route::get('/exams', [
         'uses' => 'ExamController@getExams',
@@ -41,7 +42,6 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'exams.periodsById'
     ]);
 
-    // There was an issue with having ? after passed ID as a param. TODO -> Research how to escape it
     Route::get('/exams/{id}/students_periodId={pid}', [
         'uses' => 'ExamController@getStudentsByExamAndPeriod',
         'as' => 'exams.studentsByEandP'
@@ -133,7 +133,7 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     // Exam routes END
-
+    /************************************************************************/
     // Lab routes START
 
     Route::get('/labs', [
@@ -142,7 +142,7 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     // Lab routes END
-
+    /************************************************************************/
     // Notifications routes START
 
     Route::get('/notifications', [
@@ -171,4 +171,23 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     // Notifications routes END
+    /************************************************************************/
+    // Credentials & Authorization routes START
+
+    Route::put('/authorization/{id}', [
+        'uses' => 'AuthorizationController@updateToken',
+        'as' => 'exams.updateToken'
+    ]);
+
+    Route::get('/authorization', [
+        'uses' => 'AuthorizationController@getToken',
+        'as' => 'exams.getToken'
+    ]);
+
+    Route::get('/credentials', [
+        'uses' => 'CredentialsController@getCredentials',
+        'as' => 'exams.getCredentials'
+    ]);
+
+    // Credentials & Authorization routes END
 });
