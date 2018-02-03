@@ -1,0 +1,19 @@
+<div style="padding: 16px;">
+  <h5 class="col-md-12 titleHeader">{{"LAB_TITLE" | translate}}</h5>
+  <div *ngIf="labs && !labs.length" class="alert alert-danger" role="alert" style="text-align: center;">
+    {{"NO_LABS" | translate}}
+  </div>
+  <div class="row">
+    <div *ngFor="let item of labs" class="col-md-4" style="padding-bottom: 16px;">
+      <div class="card text-center">
+        <div class="card-header">
+          {{item.title}}
+        </div>
+        <div class="card-block">
+          <h5 class="card-title"></h5>
+          <a [href]="item.link" class="btn btn-outline-primary" style="cursor: pointer; margin-bottom: 16px;">{{"GO_TO_LINK" | translate}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

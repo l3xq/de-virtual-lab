@@ -1,0 +1,21 @@
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.activeItem {
+    z-index: 2;
+    color: #fff;
+    background-color: #ffb5b5;
+    border-color: #f98686;
+}
+
+.listItem {
+    cursor: pointer;
+}
+
+.titleHeader {
+    padding: 16px;
+    text-align: center;
+}

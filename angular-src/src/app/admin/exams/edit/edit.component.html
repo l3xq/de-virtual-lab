@@ -1,0 +1,23 @@
+<div style="padding: 16px;" *ngIf="showContent">
+  <h5 class="col-md-12 titleHeader" *ngIf="examId != 'new'">{{"EDIT_EXAM" | translate}} {{exam ? exam.title : ""}}</h5>
+  <h5 class="col-md-12 titleHeader" *ngIf="examId == 'new'">{{"CREATE_EXAM" | translate}}</h5>
+  <form [formGroup]="form">
+    <div class="form-group row">
+      <label for="example-text-input" class="col-2 col-form-label">{{"EXAM_NAME_LABEL" | translate}}</label>
+      <div class="col-10">
+        <input class="form-control" type="text" value="{{exam ? exam.title : ''}}" formControlName="name" id="example-text-input">
+      </div>
+    </div>
+  </form>
+
+  <div class="form-group row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <button type="submit" (click)="submit()" class="btn btn-outline-warning" *ngIf="examId != 'new'">{{'UPDATE' | translate}}</button>
+      <button type="submit" (click)="submit()" class="btn btn-outline-success" *ngIf="examId == 'new'">{{'CREATE' | translate}}</button>
+    </div>
+  </div>
+</div>
+<div class="spinLoader">
+    <i *ngIf="!showContent" class="fa fa-spinner fa-spin" style="font-size: 136px"></i>
+</div>

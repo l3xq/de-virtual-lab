@@ -1,0 +1,52 @@
+<div *ngIf="showContent" style="padding-top: 16px;">
+    <h5 class="col-md-12 titleHeader">{{"LAB_APP_TITLE" | translate}}</h5>
+
+  <div class="row">
+    <div class="col-md-4" style="padding-bottom: 16px;">
+      <div class="card text-center">
+        <div class="card-header">
+            {{"EXAMS" | translate}}
+        </div>
+        <div class="card-block">
+          <h5 class="card-title"></h5>
+          <p [routerLink]="['/backoffice/exams/', tokenId]" class="btn btn-outline-danger" style="cursor: pointer;">{{"OPEN" | translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" style="padding-bottom: 16px;">
+      <div class="card text-center">
+        <div class="card-header">
+            {{"NOTIFICATIONS" | translate}}
+        </div>
+        <div class="card-block">
+          <h5 class="card-title"></h5>
+          <p [routerLink]="['/backoffice/notifications/', tokenId]" class="btn btn-outline-danger" style="cursor: pointer;">{{"OPEN" | translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" style="padding-bottom: 16px;">
+      <div class="card text-center">
+        <div class="card-header">
+            {{"LAB" | translate}}
+        </div>
+        <div class="card-block">
+          <h5 class="card-title"></h5>
+          <p [routerLink]="['/backoffice/labs/', tokenId]" class="btn btn-outline-danger" style="cursor: pointer;">{{"OPEN" | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <button type="button" class="btn btn-outline-danger" (click)="logout()">{{"LOGOUT" | translate}}</button>
+</div>

@@ -1,0 +1,49 @@
+<div style="padding: 16px;" *ngIf="showContent">
+  <h5 class="col-md-12 titleHeader">{{exam ? exam.title : ""}}{{"RESULTS_TITLE" | translate}}</h5>
+  <div *ngIf="periods && !periods.length" class="alert alert-danger" role="alert" style="text-align: center;">
+    {{"NO_RESULTS" | translate}}
+  </div>
+  <div class="col-md-12" style="margin-bottom: 25px;">
+    <button class="btn btn-outline-success" style="cursor: pointer;" (click)="navigateToEditPeriod()">{{"ADD" | translate}}</button>
+    <strong style="padding-left: 16px;">{{"ADD_NEW_PERIOD" | translate}}</strong>
+  </div>
+  <accordion class="col-md-12" [closeOthers]="true">
+    <div *ngFor="let item of periods" class="row">
+      <accordion-group class="col-11" #group>
+        <div style="cursor: pointer;" accordion-heading>
+          {{item.name}}
+          <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down iconCorrection': group.isOpen, 'fa-chevron-right iconCorrection': !group.isOpen}"></i>
+        </div>
+        <div>
+          <table class="table" style="margin: 0;">
+            <tbody>
+              <tr *ngFor="let student of item.students" [ngClass]="{'passed': student.mark > 5, 'unpassed': student.mark < 6}">
+                <td>{{student.firstName}}</td>
+                <td>{{student.lastName}}</td>
+                <td>{{student.index}}</td>
+                <td>{{student.mark}}</td>
+                <td class="pull-right">
+                  <i class="fa fa-times" aria-hidden="true" (click)="deleteStudent(student.id)" style="cursor: pointer;"></i>
+                  <i class="fa fa-pencil" aria-hidden="true" (click)="navigateToEditStudent(item.id, student.id)" style="cursor: pointer;"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+              <button class="btn btn-outline-success" style="cursor: pointer; margin-top: 16px;" (click)="navigateToEditStudent(item.id, 'new')">{{"ADD" | translate}}</button> 
+              <strong style="padding-left: 16px; margin-top: 28px;">{{"ADD_NEW_STUDENT" | translate}}</strong>
+          </div>
+          
+        </div>
+      </accordion-group>
+      <div class="col-1">
+        <i class="fa fa-times deleteIcon" aria-hidden="true" (click)="deletePeriod(item.id)"></i>
+        <i class="fa fa-pencil updateIcon" aria-hidden="true" (click)="navigateToEditPeriod(item.id)"></i>
+      </div>
+    </div>
+
+  </accordion>
+</div>
+<div class="spinLoader">
+    <i *ngIf="!showContent" class="fa fa-spinner fa-spin" style="font-size: 136px"></i>
+</div>

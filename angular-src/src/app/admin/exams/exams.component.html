@@ -1,0 +1,40 @@
+<div style="padding: 16px;" *ngIf="showContent">
+  <h5 class="col-md-12 titleHeader">{{'MANAGE_EXAMS' | translate}}</h5>
+  <div *ngIf="exams && !exams.length" class="alert alert-danger" role="alert" style="text-align: center;">
+    {{"NO_EXAMS_MESSAGE" | translate}}
+  </div>
+  <div class="row">
+    <div class="col-md-4" style="padding-bottom: 16px;">
+      <div class="card text-center">
+        <div class="card-header" style="min-height: 63px;">
+          <strong>{{"ADD_EXAM" | translate}}</strong>
+        </div>
+        <div class="card-block">
+          <h5 class="card-title"></h5>
+          <p (click)="navigateToEdit()" class="btn btn-outline-success" style="cursor: pointer;">{{"ADD" | translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let item of exams" class="col-md-4" style="padding-bottom: 16px;">
+      <div class="card text-center">
+        <div class="card-header">
+          <button (click)="navigateToEdit(item.id)" type="button" class="btn btn-link" style="cursor: pointer;">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            {{item.title}}
+          </button>
+          <button type="button" class="close" aria-label="Close" style="cursor: pointer; color: red;" (click)="deleteExam(item.id)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="card-block">
+          <h5 class="card-title"></h5>
+          <p class="btn btn-outline-danger" style="cursor: pointer;" (click)="navigateToEditLessons(item.id)">{{"EDIT_LESSONS" | translate}}</p>
+          <p class="btn btn-outline-secondary" style="cursor: pointer;" (click)="navigateToEditResults(item.id)">{{"EDIT_RESULTS" | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="spinLoader">
+    <i *ngIf="!showContent" class="fa fa-spinner fa-spin" style="font-size: 136px"></i>
+</div>

@@ -1,0 +1,47 @@
+<div style="padding: 16px;" *ngIf="showContent">
+    <h5 class="col-md-12 titleHeader" *ngIf="studentId != 'new'">{{"EDIT_STUDENT" | translate}} - {{student ? student.firstName + " " + student.lastName : ""}}</h5>
+    <h5 class="col-md-12 titleHeader" *ngIf="studentId == 'new'">{{"CREATE_STUDENT" | translate}}</h5>
+    <form [formGroup]="form">
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">{{"STUDENT_FNAME_LABEL" | translate}}</label>
+        <div class="col-10">
+          <input class="form-control" type="text" value="{{student ? student.firstName : ''}}" formControlName="firstName" id="example-text-input">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">{{"STUDENT_LNAME_LABEL" | translate}}</label>
+        <div class="col-10">
+          <input class="form-control" type="text" value="{{student ? student.lastName : ''}}" formControlName="lastName" id="example-text-input">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">{{"INDEX_NUMBER" | translate}}</label>
+        <div class="col-10">
+          <input class="form-control" type="text" value="{{student ? student.index : ''}}" formControlName="index" id="example-text-input">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">{{"MARK" | translate}}</label>
+        <div class="col-10">
+          <input class="form-control" type="number" value="{{student ? student.mark : ''}}" formControlName="mark" id="example-text-input">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-text-input" class="col-2 col-form-label">{{"UNIT" | translate}}</label>
+        <div class="col-10">
+          <input class="form-control" type="text" value="{{student ? student.unit : ''}}" formControlName="unit" id="example-text-input">
+        </div>
+      </div>
+    </form>
+  
+    <div class="form-group row">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <button type="submit" (click)="submit()" class="btn btn-outline-warning" *ngIf="studentId != 'new'">{{'UPDATE' | translate}}</button>
+        <button type="submit" (click)="submit()" class="btn btn-outline-success" *ngIf="studentId == 'new'">{{'CREATE' | translate}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="spinLoader">
+      <i *ngIf="!showContent" class="fa fa-spinner fa-spin" style="font-size: 136px"></i>
+  </div>
