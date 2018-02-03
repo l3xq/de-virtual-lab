@@ -58,7 +58,7 @@ class ExamController extends Controller
     {
         $exam = new Exam;
 
-        $exam->title = $_POST['title'];
+        $exam->title = $request['title'];
 
         $exam->save();
 
