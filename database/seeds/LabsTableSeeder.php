@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Lab as Lab;
 
-class DatabaseSeeder extends Seeder
+class LabsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,12 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-
         $faker = Faker::create();
-        for ($i=1; $i < 15; $i++) { 
+        for ($i = 1; $i < 15; $i++) {
             $lab = new Lab;
-            $lab->title = $faker->sentence;
+            $lab->title = $faker->sentence(2, true);
             $lab->link = 'http://ftn.kg.ac.rs/' . $faker->word;
 
             $lab->save();
