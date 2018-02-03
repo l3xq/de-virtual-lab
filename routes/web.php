@@ -25,6 +25,7 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'students.all'
     ]);
 
+    /************************************************************************/
     // Exam routes START
     Route::get('/exams', [
         'uses' => 'ExamController@getExams',
@@ -41,7 +42,6 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'exams.periodsById'
     ]);
 
-    // There was an issue with having ? after passed ID as a param. TODO -> Research how to escape it
     Route::get('/exams/{id}/students_periodId={pid}', [
         'uses' => 'ExamController@getStudentsByExamAndPeriod',
         'as' => 'exams.studentsByEandP'
@@ -62,7 +62,6 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'exams.deleteExamById'
     ]);
 
-    // TODO: When creating exam, you are creating it based on which params?
     Route::post('/exams', [
         'uses' => 'ExamController@createNewExam',
         'as' => 'exams.createNewExam'
@@ -134,4 +133,61 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     // Exam routes END
+    /************************************************************************/
+    // Lab routes START
+
+    Route::get('/labs', [
+        'uses' => 'LabController@getLabs',
+        'as' => 'exams.getLabs'
+    ]);
+
+    // Lab routes END
+    /************************************************************************/
+    // Notifications routes START
+
+    Route::get('/notifications', [
+        'uses' => 'NotificationController@getNotifications',
+        'as' => 'exams.getNotifications'
+    ]);
+
+    Route::get('/notifications/{id}', [
+        'uses' => 'NotificationController@getNotificationById',
+        'as' => 'exams.getNotification'
+    ]);
+
+    Route::put('/notifications/{id}', [
+        'uses' => 'NotificationController@updateNotificationById',
+        'as' => 'exams.updateNotification'
+    ]);
+
+    Route::post('/notifications', [
+        'uses' => 'NotificationController@createNewNotification',
+        'as' => 'exams.createNotification'
+    ]);
+
+    Route::delete('/notifications/{id}', [
+        'uses' => 'NotificationController@deleteNotificationById',
+        'as' => 'exams.deleteNotification'
+    ]);
+
+    // Notifications routes END
+    /************************************************************************/
+    // Credentials & Authorization routes START
+
+    Route::put('/authorization/{id}', [
+        'uses' => 'AuthorizationController@updateToken',
+        'as' => 'exams.updateToken'
+    ]);
+
+    Route::get('/authorization', [
+        'uses' => 'AuthorizationController@getToken',
+        'as' => 'exams.getToken'
+    ]);
+
+    Route::get('/credentials', [
+        'uses' => 'CredentialsController@getCredentials',
+        'as' => 'exams.getCredentials'
+    ]);
+
+    // Credentials & Authorization routes END
 });
