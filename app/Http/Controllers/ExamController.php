@@ -13,8 +13,6 @@ class ExamController extends Controller
 {
     public function getExams(Request $request)
     {
-        //$exams = json_encode(Exam::all()->toArray());
-
         $exams = Exam::all()->toArray();
         return response()->json(['status' => 200, 'data' => $exams]);
     }
@@ -65,25 +63,14 @@ class ExamController extends Controller
         return response()->json(['status' => 200, 'data' => 'New exam has been created.']);
     }
 
-    public function updateExamById(Request $request, $id, Exam $examObject)
+    public function updateExamById(Request $request, $id)
     {
-        // TODO: Marko should debug his side
-        // Exam can be found, but there is nothing in POST being passed as an object.
         $exam = Exam::find($id);
-        //$examObjectDecoded = json_decode($examObject);
-        //$obj = $_POST['data'];
 
-        // To check the outcome of this, got to updateExamById in Postman, chose Preview and check the outcome
-        echo 'POST METHOD =>';
-        var_dump($_POST);
-
-        echo 'EXAM OBJECT FOUND BY ID =>';
-        dd($exam);
-
-        $exam->title = $examObjectDecoded['title'];
+        $exam->title = $request['title'];
 
         $exam->save();
-        return response()->json(['status' => 200, 'data' => 'Exam title has been updated.']);
+        return response()->json(['status' => 200, 'data' => 'Exam has been updated.']);
     }
 
     public function deleteLessonsByExamAndId(Request $request, $id)
@@ -117,113 +104,76 @@ class ExamController extends Controller
         return response()->json(['status' => 200, 'data' => $getStudent]);
     }
 
-    public function updateLessonById(Request $request, $id, Lesson $lessonObject)
+    public function updateLessonById(Request $request, $id)
     {
-        // TODO: Marko -> same issue as updateExamById
         $lesson = Lesson::find($id);
 
-        echo 'POST METHOD =>';
-        var_dump($_POST);
-
-        echo 'LESSON OBJECT FOUND BY ID =>';
-        dd($lesson);
-
-        $lessonObjectDecoded = json_decode($lessonObject);
-
-        $lesson->title = $lessonObjectDecoded['title'];
-        $lesson->path = $lessonObjectDecoded['path'];
+        $lesson->title = $request['title'];
+        $lesson->path = $request['path'];
 
         $lesson->save();
-        return response()->json(['status' => 200, 'data' => 'Lesson title&path have been updated.']);
+        return response()->json(['status' => 200, 'data' => 'Lesson has been updated.']);
     }
 
-    public function createNewLesson(Request $request, Lesson $lessonObject)
+    public function createNewLesson(Request $request)
     {
-        // TODO: fix object issue
         $lesson = new Lesson;
 
-        echo 'POST METHOD =>';
-        var_dump($_POST);
-
-        echo 'LESSON OBJECT FOUND BY ID =>';
-        dd($lesson);
-
-        $lessonObjectDecoded = json_decode($lessonObject);
-
-        $lesson->title = $lessonObjectDecoded['title'];
-        $lesson->path = $lessonObjectDecoded['path'];
+        $lesson->title = $request['title'];
+        $lesson->path = $request['path'];
+        $lesson->exam_id = $request['exam_id'];
 
         $lesson->save();
-        return response()->json(['status' => 200, 'data' => 'New Lesson has been created!']);
+        return response()->json(['status' => 200, 'data' => 'New Lesson has been created.']);
     }
 
-    public function updateStudentById(Request $request, $id, Student $studentObject)
+    public function updateStudentById(Request $request, $id)
     {
-        // TODO: Marko -> same issue as updateExamById
         $student = Student::find($id);
 
-        echo 'POST METHOD =>';
-        var_dump($_POST);
-
-        echo 'STUDENT OBJECT FOUND BY ID =>';
-        dd($student);
-
-        $studentObjectDecoded = json_decode($studentObject);
-
-        //$student->firstName = $studentObjectDecoded['firstName'];
-        // same for lastName, index, mark and unit
+        $student->firstName = $request['firstName'];
+        $student->lastName = $request['lastName'];
+        $student->index = $request['index'];
+        $student->mark = $request['mark'];
+        $student->unit = $request['unit'];
 
         $student->save();
         return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been updated.']);
     }
 
-    public function createNewStudent(Request $request, Student $studentObject)
+    public function createNewStudent(Request $request)
     {
-        // TODO: Marko -> same issue as updateExamById
         $student = new Student;
 
-        echo 'POST METHOD =>';
-        var_dump($_POST);
+        $student->firstName = $request['firstName'];
+        $student->lastName = $request['lastName'];
+        $student->index = $request['index'];
+        $student->mark = $request['mark'];
+        $student->unit = $request['unit'];
 
-        $studentObjectDecoded = json_decode($studentObject);
-
-        //$student->firstName = $studentObjectDecoded['firstName'];
-        // same for lastName, index, mark and unit
+        $student->exam_id = $request['exam_id'];
+        $student->period_id = $request['period_id'];
 
         $student->save();
         return response()->json(['status' => 200, 'data' => 'Student has been created.']);
     }
 
-    public function updatePeriodById(Request $request, $id, Period $periodObject)
+    public function updatePeriodById(Request $request, $id)
     {
-        // TODO: Marko -> same issue as updateExamById
         $period = Period::find($id);
 
-        echo 'POST METHOD =>';
-        var_dump($_POST);
-
-        echo 'PERIOD OBJECT FOUND BY ID =>';
-        dd($period);
-
-        $periodObjectDecoded = json_decode($periodObject);
-
-        $period->name = $periodObjectDecoded['name'];
+        $period->name = $request['name'];
 
         $period->save();
         return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been updated.']);
     }
 
-    public function createNewPeriod(Request $request, Period $periodObject)
+    public function createNewPeriod(Request $request)
     {
-        // TODO: Marko -> same issue as updateExamById
         $period = new Period;
 
-        echo 'POST METHOD =>';
-        var_dump($_POST);
-
-        $periodObjectDecoded = json_decode($periodObject);
-
-        $period->name = $periodObjectDecoded['name'];
+        $period->name = $request['name'];
+        $period->exam_id = $request['exam_id'];
 
         $period->save();
         return response()->json(['status' => 200, 'data' => 'Period has been created.']);
