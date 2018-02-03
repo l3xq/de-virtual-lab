@@ -154,8 +154,16 @@
 					"name": "createNewExam",
 					"request": {
 						"method": "POST",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"title\": \"NOVI EXAM\"\n}"
+						},
 						"url": {
 							"raw": "http://localhost:8000/api/exams",
 							"protocol": "http",
@@ -184,10 +192,13 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded"
+								"value": "application/json"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\": \"UPDATE EXAM 1\"}"
+						},
 						"url": {
 							"raw": "http://localhost:8000/api/exams/1",
 							"protocol": "http",
@@ -324,10 +335,18 @@
 					"name": "updateLessonById",
 					"request": {
 						"method": "PUT",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\": \"RANDOM TITLE\", \"path\": \"ftn.kg.ac.rs\"}"
+						},
 						"url": {
-							"raw": "http://localhost:8000/api/lessons/35",
+							"raw": "http://localhost:8000/api/lessons/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -336,7 +355,7 @@
 							"path": [
 								"api",
 								"lessons",
-								"35"
+								"2"
 							]
 						},
 						"description": ""
@@ -347,8 +366,35 @@
 					"name": "createNewLesson",
 					"request": {
 						"method": "POST",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "LESSON_CREATED",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "path",
+									"value": "PATH_FOR_NEW_LESSON",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "exam_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "http://localhost:8000/api/lessons",
 							"protocol": "http",
@@ -369,8 +415,16 @@
 					"name": "updateStudentById",
 					"request": {
 						"method": "PUT",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Alex\",\n\t\"lastName\": \"Nesh\",\n\t\"index\": \"21/2121\",\n\t\"mark\": 10.99,\n\t\"unit\": \"Envoy\"\n\t\n}"
+						},
 						"url": {
 							"raw": "http://localhost:8000/api/students/2",
 							"protocol": "http",
@@ -392,8 +446,16 @@
 					"name": "createNewStudent",
 					"request": {
 						"method": "POST",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Alex\",\n\t\"lastName\": \"Nesh\",\n\t\"index\": \"21/2121\",\n\t\"mark\": 10.99,\n\t\"unit\": \"Envoy\",\n\t\"exam_id\": 2,\n\t\"period_id\": 2\n}"
+						},
 						"url": {
 							"raw": "http://localhost:8000/api/students",
 							"protocol": "http",
@@ -414,8 +476,16 @@
 					"name": "updatePeriodById",
 					"request": {
 						"method": "PUT",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"NAME OF PERIOD\"\n}"
+						},
 						"url": {
 							"raw": "http://localhost:8000/api/periods/2",
 							"protocol": "http",
@@ -437,8 +507,16 @@
 					"name": "createNewPeriod",
 					"request": {
 						"method": "POST",
-						"header": [],
-						"body": {},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"NEW PERIOD\",\n\t\"exam_id\": 3\n}"
+						},
 						"url": {
 							"raw": "http://localhost:8000/api/periods",
 							"protocol": "http",
