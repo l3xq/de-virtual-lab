@@ -142,4 +142,33 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     // Lab routes END
+
+    // Notifications routes START
+
+    Route::get('/notifications', [
+        'uses' => 'NotificationController@getNotifications',
+        'as' => 'exams.getNotifications'
+    ]);
+
+    Route::get('/notifications/{id}', [
+        'uses' => 'NotificationController@getNotificationById',
+        'as' => 'exams.getNotification'
+    ]);
+
+    Route::put('/notifications/{id}', [
+        'uses' => 'NotificationController@updateNotificationById',
+        'as' => 'exams.updateNotification'
+    ]);
+
+    Route::post('/notifications', [
+        'uses' => 'NotificationController@createNewNotification',
+        'as' => 'exams.createNotification'
+    ]);
+
+    Route::delete('/notifications/{id}', [
+        'uses' => 'NotificationController@deleteNotificationById',
+        'as' => 'exams.deleteNotification'
+    ]);
+
+    // Notifications routes END
 });

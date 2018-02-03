@@ -53,7 +53,7 @@ class ExamController extends Controller
 
     public function deleteExamById(Request $request, $id)
     {
-        $deleteExamById = Exam::where('exam_id', $id)->delete();
+        $deleteExamById = Exam::where('id', $id)->delete();
 
         return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
     }
