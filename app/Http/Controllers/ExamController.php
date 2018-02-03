@@ -54,13 +54,11 @@ class ExamController extends Controller
         return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
     }
 
-    public function createNewExam(Request $request, Exam $examObject)
+    public function createNewExam(Request $request)
     {
-        // TODO: Marko -> same issue on all cals that pass Object of any type
         $exam = new Exam;
-        var_dump($_POST);
-        dd($examObject);
-        $exam->title = $examObject['title'];
+
+        $exam->title = $_POST['title'];
 
         $exam->save();
 
