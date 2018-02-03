@@ -16,7 +16,7 @@ class CreateLabsTable extends Migration
         Schema::enableForeignKeyConstraints();
 
         Schema::create('labs', function (Blueprint $table) {
-            $table->increments('id', true)->unsigned();
+            $table->increments('id');
             $table->string('title', 50);
             $table->string('link', 200);
             $table->timestamps();

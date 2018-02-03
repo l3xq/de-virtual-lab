@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lab extends Model
 {
-    //
+    protected $primaryKey = 'id';
+
+    public $incrementing = true;
 }

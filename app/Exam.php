@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exam extends Model
 {
-    public function getAllExams()
-    {
-        return Exam::all();
-    }
+    protected $primaryKey = 'id';
+
+    public $incrementing = true;
 }

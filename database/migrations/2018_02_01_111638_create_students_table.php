@@ -16,21 +16,29 @@ class CreateStudentsTable extends Migration
         Schema::enableForeignKeyConstraints();
 
         Schema::create('students', function (Blueprint $table) {
-            $table->increments('id', true)->unsigned();
+            $table->increments('id');
             $table->string('firstName', 50);
             $table->string('lastName', 50);
             $table->string('index', 9);
             $table->float('mark');
             $table->string('unit', 20);
             $table->timestamps();
-            $table->integer('exam_id');
-            $table->integer('period_id');
+
+            $table->unsignedInteger('exam_id');
+            $table->unsignedInteger('period_id');
         });
-/*
-        Schema::table('students', function (Blueprint $table) {
-            $table->foreign('exam_id')->references('id')->on('exams');
-            $table->foreign('period_id')->references('id')->on('periods');
-        });*/
+        /*
+                Schema::table('students', function (Blueprint $table) {
+                    $sqlFirst = 'ALTER TABLE `students`
+                        ADD KEY `exam_id` (`exam_id`),
+                        ADD KEY `period_id` (`period_id`);';
+                    $sqlSecond = 'ALTER TABLE `students`
+                        ADD CONSTRAINT `students_exam_id_foreign` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                        ADD CONSTRAINT `students_period_id_foreign` FOREIGN KEY (`period_id`) REFERENCES `periods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;';
+
+                    DB::connection()->getPdo()->exec($sqlFirst);
+                    DB::connection()->getPdo()->exec($sqlSecond);
+                });*/
     }
 
     /**
