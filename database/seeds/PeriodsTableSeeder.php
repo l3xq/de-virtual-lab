@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Period as Period;
 
-class DatabaseSeeder extends Seeder
+class PeriodsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,15 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-
         $faker = Faker::create();
-        for ($i=1; $i < 15; $i++) { 
+        for ($i = 1; $i < 15; $i++) {
             $period = new Period;
             $period->name = $faker->word . '_' . $faker->word;
 
             //NOTE: This is due to FKeys issue
-            $period->exam_id = 1;
+            $period->exam_id = $faker->numberBetween(1, 15);
 
             $period->save();
         }

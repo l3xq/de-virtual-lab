@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Lesson as Lesson;
 
-class DatabaseSeeder extends Seeder
+class LessonsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,16 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-
         $faker = Faker::create();
-        for ($i=1; $i < 15; $i++) { 
+        for ($i = 1; $i < 15; $i++) {
             $lesson = new Lesson;
             $lesson->title = $faker->sentence(3, true);
-            $lesson->path = '/path/to/'. $faker->word;
+            $lesson->path = '/path/to/' . $faker->word;
 
             //NOTE: This is due to FKeys issue
-            $lesson->exam_id = 1;
+            $lesson->exam_id = $faker->numberBetween(1, 15);
 
             $lesson->save();
         }

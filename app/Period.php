@@ -6,13 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Period extends Model
 {
-    /*public function students()
-    {
-        return $this->hasMany('App\Student');
-    }
+    protected $primaryKey = 'id';
 
-    public function exam()
-    {
-        return $this->belongsTo('App\Exam');
-    }*/
+    public $incrementing = true;
 }

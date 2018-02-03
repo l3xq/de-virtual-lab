@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Exam as Exam;
 
-class DatabaseSeeder extends Seeder
+class ExamsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-
         $faker = Faker::create();
-        for ($i=1; $i < 15; $i++) { 
+        for ($i = 1; $i < 15; $i++) {
             $exam = new Exam;
             $exam->title = $faker->word;
-            
+
             $exam->save();
         }
     }
