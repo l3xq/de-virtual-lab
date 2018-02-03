@@ -62,7 +62,6 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'exams.deleteExamById'
     ]);
 
-    // TODO: When creating exam, you are creating it based on which params?
     Route::post('/exams', [
         'uses' => 'ExamController@createNewExam',
         'as' => 'exams.createNewExam'
@@ -134,4 +133,13 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     // Exam routes END
+
+    // Lab routes START
+
+    Route::get('/labs', [
+        'uses' => 'LabController@getLabs',
+        'as' => 'exams.getLabs'
+    ]);
+
+    // Lab routes END
 });

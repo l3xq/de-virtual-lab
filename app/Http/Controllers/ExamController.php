@@ -14,18 +14,21 @@ class ExamController extends Controller
     public function getExams(Request $request)
     {
         $exams = Exam::all()->toArray();
+
         return response()->json(['status' => 200, 'data' => $exams]);
     }
 
     public function getExamById(Request $request, $id)
     {
         $examById = Exam::where('id', $id)->get()->toArray();
+
         return response()->json(['status' => 200, 'data' => $examById]);
     }
 
     public function getPeriodsByExamId(Request $request, $id)
     {
         $periodsByExamId = Period::where('exam_id', $id)->get()->toArray();
+
         return response()->json(['status' => 200, 'data' => $periodsByExamId]);
     }
 
@@ -35,6 +38,7 @@ class ExamController extends Controller
             'exam_id' => $id,
             'period_id' => $pid,
             ])->get()->toArray();
+
         return response()->json(['status' => 200, 'data' => $studentsByExamAndPeriod]);
     }
 
@@ -43,12 +47,14 @@ class ExamController extends Controller
         $lessonsByExamId = Lesson::where([
             'exam_id' => $id,
             ])->get()->toArray();
+
         return response()->json(['status' => 200, 'data' => $lessonsByExamId]);
     }
 
     public function deleteExamById(Request $request, $id)
     {
         $deleteExamById = Exam::where('exam_id', $id)->delete();
+
         return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
     }
 
@@ -70,37 +76,42 @@ class ExamController extends Controller
         $exam->title = $request['title'];
 
         $exam->save();
+
         return response()->json(['status' => 200, 'data' => 'Exam has been updated.']);
     }
 
     public function deleteLessonsByExamAndId(Request $request, $id)
     {
-        // TODO: Marko -> Check if your logic is correct for that naming convention
-        $deleteLessonById = Lesson::where('exam_id', $id)->delete();
+        $deleteLessonById = Lesson::where('id', $id)->delete();
+
         return response()->json(['status' => 200, 'data' => 'Lesson with exam ID[' . $id . '] has been deleted!']);
     }
 
     public function deletePeriodById(Request $request, $id)
     {
         $deleteLessonById = Period::where('id', $id)->delete();
+
         return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been deleted!']);
     }
 
     public function getLessonById(Request $request, $id)
     {
         $getLesson = Lesson::where('id', $id)->get();
+
         return response()->json(['status' => 200, 'data' => $getLesson]);
     }
 
     public function getPeriodById(Request $request, $id)
     {
         $getPeriod = Period::where('id', $id)->get();
+
         return response()->json(['status' => 200, 'data' => $getPeriod]);
     }
 
     public function getStudentById(Request $request, $id)
     {
         $getStudent = Student::where('id', $id)->get();
+
         return response()->json(['status' => 200, 'data' => $getStudent]);
     }
 
@@ -112,6 +123,7 @@ class ExamController extends Controller
         $lesson->path = $request['path'];
 
         $lesson->save();
+
         return response()->json(['status' => 200, 'data' => 'Lesson has been updated.']);
     }
 
@@ -124,6 +136,7 @@ class ExamController extends Controller
         $lesson->exam_id = $request['exam_id'];
 
         $lesson->save();
+
         return response()->json(['status' => 200, 'data' => 'New Lesson has been created.']);
     }
 
@@ -138,6 +151,7 @@ class ExamController extends Controller
         $student->unit = $request['unit'];
 
         $student->save();
+
         return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been updated.']);
     }
 
@@ -155,6 +169,7 @@ class ExamController extends Controller
         $student->period_id = $request['period_id'];
 
         $student->save();
+
         return response()->json(['status' => 200, 'data' => 'Student has been created.']);
     }
 
@@ -165,6 +180,7 @@ class ExamController extends Controller
         $period->name = $request['name'];
 
         $period->save();
+
         return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been updated.']);
     }
 
@@ -176,12 +192,14 @@ class ExamController extends Controller
         $period->exam_id = $request['exam_id'];
 
         $period->save();
+
         return response()->json(['status' => 200, 'data' => 'Period has been created.']);
     }
 
     public function deleteStudentById(Request $request, $id)
     {
         $deleteStudentById = Student::where('id', $id)->delete();
+
         return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been deleted!']);
     }
 }
