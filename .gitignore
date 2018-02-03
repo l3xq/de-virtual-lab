@@ -11,8 +11,6 @@ npm-debug.log
 yarn-error.log
 .env
 
-/angular-src
-
 # compiled output
 /angular-src/dist
 /angular-src/tmp

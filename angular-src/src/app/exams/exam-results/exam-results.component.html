@@ -1,0 +1,29 @@
+<div style="padding: 16px;">
+  <h5 class="col-md-12 titleHeader">{{exam ? exam.title : ""}}{{"RESULTS_TITLE" | translate}}</h5>
+  <div *ngIf="periods && !periods.length" class="alert alert-danger" role="alert" style="text-align: center;">
+    {{"NO_RESULTS" | translate}}
+  </div>
+  <accordion class="col-md-12" [closeOthers]="true">
+    <div *ngFor="let item of periods">
+      <accordion-group *ngIf="item.students && item.students.length > 0" #group>
+        <div style="cursor: pointer;" accordion-heading>
+          {{item.name}}
+          <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down iconCorrection': group.isOpen, 'fa-chevron-right iconCorrection': !group.isOpen}"></i>
+        </div>
+        <div>
+          <table class="table" style="margin: 0;">
+            <tbody>
+              <tr *ngFor="let student of item.students" [ngClass]="{'passed': student.mark > 5, 'unpassed': student.mark < 6}">
+                <td>{{student.firstName}}</td>
+                <td>{{student.lastName}}</td>
+                <td>{{student.index}}</td>
+                <td>{{student.mark}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </accordion-group>
+    </div>
+
+  </accordion>
+</div>

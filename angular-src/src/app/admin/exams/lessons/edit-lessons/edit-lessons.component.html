@@ -1,0 +1,31 @@
+<div style="padding: 16px;" *ngIf="showContent">
+  <h5 class="col-md-12 titleHeader" *ngIf="lessonId != 'new'">{{"EDIT_LESSON" | translate}} {{lesson ? lesson.title : ""}}</h5>
+  <h5 class="col-md-12 titleHeader" *ngIf="lessonId == 'new'">{{"CREATE_LESSON" | translate}}</h5>
+  <form [formGroup]="form">
+      <div class="form-group row">
+        <label for="example-text-input" class="col-md-2 col-form-label">{{"LESSON_NAME" | translate}}</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" value="{{lesson ? lesson.title : ''}}" formControlName="title" id="example-text-input">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 control-label" for="textInput-markup">{{"FILE" | translate}}</label>
+        <div class="col-md-10">
+          <label for="upload" style="width: 100%;">
+            <input type="file" id="upload" formControlName="path" class="btn btn-outline-success" style="width: 100%;">
+          </label>
+        </div>
+      </div>
+  </form>
+
+  <div class="form-group row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <button type="submit" (click)="submit()" class="btn btn-outline-warning" *ngIf="lessonId != 'new'">{{'UPDATE' | translate}}</button>
+      <button type="submit" (click)="submit()" class="btn btn-outline-success" *ngIf="lessonId == 'new'">{{'CREATE' | translate}}</button>
+    </div>
+  </div>
+</div>
+<div class="spinLoader">
+  <i *ngIf="!showContent" class="fa fa-spinner fa-spin" style="font-size: 136px"></i>
+</div>

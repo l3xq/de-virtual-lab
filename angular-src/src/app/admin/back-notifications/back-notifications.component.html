@@ -1,0 +1,32 @@
+<div style="padding-top: 16px;" class="row">
+  <h5 class="col-md-12 titleHeader">{{"NOTIFICATIONS" | translate}}</h5>
+<div class="col-md-5">
+  <div class="list-group">
+      <div class="list-group-item list-group-item-action flex-column align-items-start listItem" (click)="addNotification()" style="text-align: center;">
+          <div class="d-flex w-100 justify-content-between">
+            <!-- <h5 class="mb-1 truncate">{{'ADD_NEW_NOTIFICATION' | translate}}</h5> -->
+            <button class="btn btn-outline-success" (click)="addNotification()">{{'ADD_NEW_NOTIFICATION' | translate}}</button>
+          </div>
+        </div>
+    <a *ngFor="let item of notifications" class="list-group-item list-group-item-action flex-column align-items-start listItem" (click)="selectNotification(item)" [ngClass]="{'activeItem': item.id == selectedItem.id}">
+      <div class="d-flex w-100 justify-content-between">
+          <button type="button" class="btn btn-link" style="font-size: 18px; font-weight: bold;" (click)="editNotification(item.id)"><i class="fa fa-pencil"></i> {{item.title}}</button>
+        <!-- <h5 class="mb-1 truncate">{{item.title}}</h5> -->
+        <small>{{ item.time | date }} {{ item.time | date:'shortTime'}}</small>
+      </div>
+      <p class="mb-1 truncate">{{item.text}}</p>
+      <!-- <small>Donec id elit non mi porta.</small> -->
+    </a>
+  </div>
+</div>
+<div class="col-md-7">
+  <div class="card">
+    <div class="card-body">
+        <h5 class="mb-1" style="text-align: center;">{{selectedItem ? selectedItem.title : ""}} <button type="button" class="close" aria-label="Close" style="cursor: pointer; color: red;" (click)="deleteNotification(selectedItem.id)">
+          <span aria-hidden="true">&times;</span>
+        </button></h5>
+        {{selectedItem ? selectedItem.text : ""}}
+    </div>
+  </div>
+</div>
+</div>

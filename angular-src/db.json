@@ -1,0 +1,121 @@
+{
+  "authorization": {
+    "tokenId": 1517513453747
+  },
+  "credentials": {
+    "username": "admin",
+    "password": "admin"
+  },
+  "exams": [
+    {
+      "title": "Exam 1",
+      "id": 1
+    },
+    {
+      "title": "Exam 2",
+      "id": 2
+    },
+    {
+      "title": "aaaaaaaaaaaa",
+      "id": 3
+    },
+    {
+      "title": "Exam 4",
+      "id": 4
+    },
+    {
+      "title": "hhhhhhhh",
+      "id": 5
+    },
+    {
+      "title": "asdasd",
+      "id": 6
+    },
+    {
+      "title": "sadf",
+      "id": 7
+    }
+  ],
+  "periods": [
+    {
+      "name": "sss",
+      "examId": "1",
+      "id": 5
+    }
+  ],
+  "students": [
+    {
+      "firstName": "marko",
+      "lastName": "tomic",
+      "index": "179/2011",
+      "mark": 7,
+      "unit": "RI",
+      "examId": "1",
+      "periodId": "5",
+      "id": 1
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "title": "Notification 1",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "time": 1508935260936
+    },
+    {
+      "id": 2,
+      "title": "Notification 2",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "time": 1508935260936
+    },
+    {
+      "id": 3,
+      "title": "Notification 3",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "time": 1508935260936
+    },
+    {
+      "title": "Notification 4",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "time": 1514292971390,
+      "id": 4
+    },
+    {
+      "title": "Notification 5",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "time": 1514292965352,
+      "id": 5
+    }
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Lesson 1",
+      "path": "path/path/path",
+      "examId": 1
+    },
+    {
+      "title": "aaa",
+      "path": "",
+      "examId": "3",
+      "id": 3
+    }
+  ],
+  "labs": [
+    {
+      "id": 1,
+      "title": "Lab item 1",
+      "link": "http://www.ftn.kg.ac.rs/"
+    },
+    {
+      "id": 2,
+      "title": "Lab item 2",
+      "link": "http://www.ftn.kg.ac.rs/"
+    },
+    {
+      "id": 3,
+      "title": "Lab item 3",
+      "link": "http://www.ftn.kg.ac.rs/"
+    }
+  ]
+}

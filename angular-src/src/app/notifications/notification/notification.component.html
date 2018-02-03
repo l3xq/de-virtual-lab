@@ -1,0 +1,23 @@
+<div style="padding-top: 16px;" class="row">
+    <h5 class="col-md-12 titleHeader">{{"NOTIFICATIONS" | translate}}</h5>
+  <div class="col-md-5">
+    <div class="list-group">
+      <a *ngFor="let item of notifications" class="list-group-item list-group-item-action flex-column align-items-start listItem" (click)="selectNotification(item)" [ngClass]="{'activeItem': item.id == selectedItem.id}">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1 truncate">{{item.title}}</h5>
+          <small>{{ item.time | date }} {{ item.time | date:'shortTime'}}</small>
+        </div>
+        <p class="mb-1 truncate">{{item.text}}</p>
+        <!-- <small>Donec id elit non mi porta.</small> -->
+      </a>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-body">
+          <h5 class="mb-1" style="text-align: center;">{{selectedItem ? selectedItem.title : ""}}</h5>
+          {{selectedItem ? selectedItem.text : ""}}
+      </div>
+    </div>
+  </div>
+</div>

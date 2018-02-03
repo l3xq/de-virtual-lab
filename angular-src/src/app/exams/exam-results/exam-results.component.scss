@@ -1,0 +1,20 @@
+.passed {
+    background-color: #b8edb4;
+}
+
+.unpassed {
+    background-color: #ffb5b5;
+}
+
+.tablePadding::parent {
+    padding: 0 !important;
+}
+
+.titleHeader {
+    padding: 16px;
+    text-align: center;
+}
+
+.iconCorrection {
+    margin-top: 4px;
+}

@@ -1,0 +1,11 @@
+1. install node.js
+2. install git
+3. open console and go to project root
+4. run "npm install -g @angular/cli"
+5. run "npm install"
+6. run "npm install -g json-server"
+7. run "json-server --watch db.json --port 5000"
+8. in project root open one more instance of console
+9. run "npm start"
+10. go to browser on "localhost:4200/"
+11. ENJOY!
