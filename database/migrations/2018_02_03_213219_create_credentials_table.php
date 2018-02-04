@@ -14,8 +14,10 @@ class CreateCredentialsTable extends Migration
     public function up()
     {
         Schema::create('credentials', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id')->change();
             $table->timestamps();
+
+            $table->increments('id')->change();
         });
     }
 
