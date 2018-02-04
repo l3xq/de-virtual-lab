@@ -24,7 +24,7 @@ export class ResultsComponent implements OnInit {
       this.examId = params['examId'];
 
       this.adminService.getToken().subscribe(authObject => {
-        if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;
@@ -37,23 +37,23 @@ export class ResultsComponent implements OnInit {
 
   fetchPeriods(){
       if (this.examId) {
-        this.examService.getPeriodsByExamId(this.examId).subscribe(periods => {
-          this.periods = periods;
+        this.examService.getPeriodsByExamId(this.examId).subscribe((periods: any) => {
+          this.periods = periods.data;
           this.periods.forEach(period => {
-            this.examService.getStudentsByExamAndPeriod(this.examId, period.id).subscribe(students => {
-              period.students = students;
+            this.examService.getStudentsByExamAndPeriod(this.examId, period.id).subscribe((students: any) => {
+              period.students = students.data;
             });
           });
         });
         this.examService.getExamById(this.examId).subscribe(exam => {
-          this.exam = exam;
+          this.exam = exam.data[0];
         });
       }
   }
 
   fetchExam() {
     this.examService.getExamById(this.examId).subscribe(exam => {
-      this.exam = exam;
+      this.exam = exam.data[0];
     });
   }
 

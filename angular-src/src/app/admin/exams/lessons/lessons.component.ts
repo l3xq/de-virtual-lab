@@ -23,7 +23,7 @@ export class LessonsComponent implements OnInit {
       this.examId = params['examId'];
 
       this.adminService.getToken().subscribe(authObject => {
-        if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;
@@ -35,14 +35,14 @@ export class LessonsComponent implements OnInit {
   }
 
   fetchLessons(){
-    this.examService.getLessonsByExamId(this.examId).subscribe(lessons => {
-      this.lessons = lessons;
+    this.examService.getLessonsByExamId(this.examId).subscribe((lessons: any) => {
+      this.lessons = lessons.data;
     });
   }
 
   fetchExam() {
     this.examService.getExamById(this.examId).subscribe(exam => {
-      this.exam = exam;
+      this.exam = exam.data[0];
     });
   }
 

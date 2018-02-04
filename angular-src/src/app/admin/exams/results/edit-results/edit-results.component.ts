@@ -34,7 +34,7 @@ export class EditResultsComponent implements OnInit {
         this.periodId = params['periodId'];
   
         this.adminService.getToken().subscribe(authObject => {
-          if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+          if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
             this.router.navigate(['/admins/']);
           } else {
             this.showContent = true;
@@ -51,10 +51,10 @@ export class EditResultsComponent implements OnInit {
 
   getPeriod() {
     this.examService.getPeriodById(this.periodId).subscribe(period => {
-      this.period = period;
+      this.period = period.data[0];
       this.form.value['title'] = period.name;
-      this.examService.getStudentsByExamAndPeriod(this.examId, this.periodId).subscribe(students => {
-        this.students = students;
+      this.examService.getStudentsByExamAndPeriod(this.examId, this.periodId).subscribe((students: any) => {
+        this.students = students.data;
       });
     });
   }

@@ -26,7 +26,7 @@ export class BackNotificationsComponent implements OnInit {
       this.notificationId = params['notificationId'];
 
       this.adminService.getToken().subscribe(authObject => {
-        if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;
@@ -44,8 +44,8 @@ export class BackNotificationsComponent implements OnInit {
   }
 
   fetchNotifications() {
-    this.notificationService.getNotifications().subscribe(notifications => {
-      this.notifications = notifications;
+    this.notificationService.getNotifications().subscribe((notifications: any) => {
+      console.log(notifications.data);
       this.selectedItem = notifications[0];
     });
   }

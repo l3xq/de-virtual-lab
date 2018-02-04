@@ -24,8 +24,8 @@ export class NotificationComponent implements OnInit {
   }
 
   fetchNotifications() {
-    this.notificationService.getNotifications().subscribe(notifications => {
-      this.notifications = notifications;
+    this.notificationService.getNotifications().subscribe((notifications: any) => {
+      console.log(notifications.data);
       this.selectedItem = notifications[0];
     });
   }

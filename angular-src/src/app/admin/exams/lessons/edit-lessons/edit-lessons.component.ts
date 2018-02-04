@@ -35,7 +35,7 @@ export class EditLessonsComponent implements OnInit {
       this.lessonId = params['lessonId'];
 
       this.adminService.getToken().subscribe(authObject => {
-        if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;
@@ -52,14 +52,14 @@ export class EditLessonsComponent implements OnInit {
 
   getLesson() {
     this.examService.getLessonById(this.lessonId).subscribe(lesson => {
-      this.lesson = lesson;
+      this.lesson = lesson.data[0];
       this.form.value['title'] = lesson.title;
     });
   }
 
   submit() {
     const title = this.form.value['title'];
-    const path = "";
+    const path = "Path To lesson";
     $('input[type=file]').change(function () {
       // const path = this.files[0].mozFullPath;
       // console.log(this.files[0].mozFullPath);
