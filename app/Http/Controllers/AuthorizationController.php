@@ -14,9 +14,9 @@ class AuthorizationController extends Controller
         return response()->json(['status' => 200, 'data' => $getToken]);
     }
 
-    public function updateToken(Request $request, $id)
+    public function updateToken(Request $request)
     {
-        $authorization = Authorization::find($id);
+        $authorization = Authorization::all()->first();
 
         $authorization->token_id = $request['token'];
 

@@ -174,7 +174,7 @@ Route::group(['prefix' => 'api'], function () {
     /************************************************************************/
     // Credentials & Authorization routes START
 
-    Route::put('/authorization/{id}', [
+    Route::put('/authorization', [
         'uses' => 'AuthorizationController@updateToken',
         'as' => 'exams.updateToken'
     ]);

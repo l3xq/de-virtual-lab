@@ -763,7 +763,7 @@
 							"raw": "{\n\t\"token\": 159562354\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/authorization/1",
+							"raw": "http://localhost:8000/api/authorization",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -771,8 +771,7 @@
 							"port": "8000",
 							"path": [
 								"api",
-								"authorization",
-								"1"
+								"authorization"
 							]
 						},
 						"description": ""
