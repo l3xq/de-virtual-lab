@@ -14,24 +14,20 @@ class CreatePeriodsTable extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        //TODO: Fix issue with FKeys.
+
         Schema::create('periods', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id')->change();
             $table->string('name', 50);
             $table->timestamps();
 
-            $table->unsignedInteger('exam_id');
+            $table->increments('id')->change();
         });
 
-        /*Schema::table('periods', function (Blueprint $table) {
-            $sqlFirst = 'ALTER TABLE `periods`
-                ADD KEY `exam_id` (`exam_id`);';
-            $sqlSecond = 'ALTER TABLE `periods`
-                ADD CONSTRAINT `periods_exam_id_foreign` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;';
+        Schema::table('periods', function (Blueprint $table) {
+            $table->unsignedInteger('exam_id')->default(1);
 
-            DB::connection()->getPdo()->exec($sqlFirst);
-            DB::connection()->getPdo()->exec($sqlSecond);
-        });*/
+            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
+        });
     }
 
     /**

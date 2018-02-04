@@ -53,3 +53,4 @@ yarn-error.log
 /angular-src/Thumbs.db
 
 .vs-code/*
+.env.backup

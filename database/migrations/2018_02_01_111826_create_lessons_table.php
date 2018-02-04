@@ -16,23 +16,19 @@ class CreateLessonsTable extends Migration
         Schema::enableForeignKeyConstraints();
 
         Schema::create('lessons', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id')->change();
             $table->string('title', 50);
             $table->string('path', 250);
             $table->timestamps();
 
-            $table->unsignedInteger('exam_id');
+            $table->increments('id')->change();
         });
-        /*
-                Schema::table('lessons', function (Blueprint $table) {
-                    $sqlFirst = 'ALTER TABLE `lessons`
-                        ADD KEY `exam_id` (`exam_id`);';
-                    $sqlSecond = 'ALTER TABLE `lessons`
-                        ADD CONSTRAINT `lessons_exam_id_foreign` FOREIGN KEY (`exam_id`) REFERENCES `exams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;';
 
-                    DB::connection()->getPdo()->exec($sqlFirst);
-                    DB::connection()->getPdo()->exec($sqlSecond);
-                });*/
+        Schema::table('lessons', function (Blueprint $table) {
+            $table->unsignedInteger('exam_id')->default(1);
+
+            $table->foreign('exam_id')->references('id')->on('exams')->onDelete('cascade');
+        });
     }
 
     /**
