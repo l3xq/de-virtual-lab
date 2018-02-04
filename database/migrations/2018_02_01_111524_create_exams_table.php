@@ -16,9 +16,11 @@ class CreateExamsTable extends Migration
         Schema::enableForeignKeyConstraints();
 
         Schema::create('exams', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id')->change();
             $table->string('title', 50);
             $table->timestamps();
+
+            $table->increments('id')->change();
         });
     }
 
