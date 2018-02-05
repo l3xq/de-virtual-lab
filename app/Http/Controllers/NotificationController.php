@@ -12,11 +12,11 @@ class NotificationController extends Controller
     public function getNotifications(Request $request)
     {
         try {
-            $getNotifications = Notification::all()->sortByDesc('id')->toArray();
+            $getNotifications = Notification::all()->toArray();
 
-            return response()->json(['status' => 200, 'data' => $getNotifications]); 
+            return response()->json(['status' => 200, 'data' => $getNotifications]);
         } catch (Exception $e) {
-            Log::error( $e->getMessage() );
+            Log::error($e->getMessage());
             continue;
         }
     }
@@ -26,9 +26,9 @@ class NotificationController extends Controller
         try {
             $getNotification = Notification::where('id', $id)->get();
 
-            return response()->json(['status' => 200, 'data' => $getNotification]); 
+            return response()->json(['status' => 200, 'data' => $getNotification]);
         } catch (Exception $e) {
-            Log::error( $e->getMessage() );
+            Log::error($e->getMessage());
             continue;
         }
     }
@@ -41,12 +41,12 @@ class NotificationController extends Controller
             $notification->title = $request['title'];
             $notification->text = $request['text'];
             $notification->time = $request['time'];
-    
+
             $notification->save();
-    
-            return response()->json(['status' => 200, 'data' => 'Notification has been updated.']); 
+
+            return response()->json(['status' => 200, 'data' => 'Notification has been updated.']);
         } catch (Exception $e) {
-            Log::error( $e->getMessage() );
+            Log::error($e->getMessage());
             continue;
         }
     }
@@ -59,12 +59,12 @@ class NotificationController extends Controller
             $notification->title = $request['title'];
             $notification->text = $request['text'];
             $notification->time = $request['time'];
-    
+
             $notification->save();
-    
-            return response()->json(['status' => 200, 'data' => 'New Notification has been created.']); 
+
+            return response()->json(['status' => 200, 'data' => 'New Notification has been created.']);
         } catch (Exception $e) {
-            Log::error( $e->getMessage() );
+            Log::error($e->getMessage());
             continue;
         }
     }
@@ -74,9 +74,9 @@ class NotificationController extends Controller
         try {
             $deleteNotification = Notification::where('id', $id)->delete();
 
-            return response()->json(['status' => 200, 'data' => 'Notification by ID[' . $id . '] has been deleted!']); 
+            return response()->json(['status' => 200, 'data' => 'Notification by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
-            Log::error( $e->getMessage() );
+            Log::error($e->getMessage());
             continue;
         }
     }
