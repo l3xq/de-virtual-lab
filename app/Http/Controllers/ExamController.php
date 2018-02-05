@@ -8,299 +8,198 @@ use App\Period;
 use App\Student;
 use App\Lesson;
 use Illuminate\Http\Response as Response;
-use Illuminate\Support\Facades\Log;
 
 class ExamController extends Controller
 {
     public function getExams(Request $request)
     {
-        try {
-            $exams = Exam::all()->toArray();
+        $exams = Exam::all()->toArray();
 
-            return response()->json(['status' => 200, 'data' => $exams]);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => $exams]);
     }
 
     public function getExamById(Request $request, $id)
     {
-        try {
-            $examById = Exam::where('id', $id)->get()->toArray();
+        $examById = Exam::where('id', $id)->get()->toArray();
 
-            return response()->json(['status' => 200, 'data' => $examById]);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => $examById]);
     }
 
     public function getPeriodsByExamId(Request $request, $id)
     {
-        try {
-            $periodsByExamId = Period::where('exam_id', $id)->get()->toArray();
+        $periodsByExamId = Period::where('exam_id', $id)->get()->toArray();
 
-            return response()->json(['status' => 200, 'data' => $periodsByExamId]);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => $periodsByExamId]);
     }
 
     public function getStudentsByExamAndPeriod(Request $request, $id, $pid)
     {
-        try {
-            $studentsByExamAndPeriod = Student::where([
+        $studentsByExamAndPeriod = Student::where([
                 'exam_id' => $id,
                 'period_id' => $pid,
                 ])->get()->toArray();
-    
-            return response()->json(['status' => 200, 'data' => $studentsByExamAndPeriod]);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+
+        return response()->json(['status' => 200, 'data' => $studentsByExamAndPeriod]);
     }
 
     public function getLessonsByExamId(Request $request, $id)
     {
-        try {
-            $lessonsByExamId = Lesson::where([
+        $lessonsByExamId = Lesson::where([
                 'exam_id' => $id,
                 ])->get()->toArray();
-    
-            return response()->json(['status' => 200, 'data' => $lessonsByExamId]);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+
+        return response()->json(['status' => 200, 'data' => $lessonsByExamId]);
     }
 
     public function deleteExamById(Request $request, $id)
     {
-        try {
-            $deleteExamById = Exam::where('id', $id)->delete();
+        $deleteExamById = Exam::where('id', $id)->delete();
 
-            return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
     }
 
     public function createNewExam(Request $request)
     {
-        try {
-            $exam = new Exam;
+        $exam = new Exam;
 
-            $exam->title = $request['title'];
+        $exam->title = $request['title'];
 
-            $exam->save();
+        $exam->save();
 
-            return response()->json(['status' => 200, 'data' => 'New exam has been created.']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'New exam has been created.']);
     }
 
     public function updateExamById(Request $request, $id)
     {
-        try {
-            $exam = Exam::find($id);
+        $exam = Exam::find($id);
 
-            $exam->title = $request['title'];
+        $exam->title = $request['title'];
 
-            $exam->save();
+        $exam->save();
 
-            return response()->json(['status' => 200, 'data' => 'Exam has been updated.']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Exam has been updated.']);
     }
 
     public function deleteLessonsByExamAndId(Request $request, $id)
     {
-        try {
-            $deleteLessonById = Lesson::where('id', $id)->delete();
+        $deleteLessonById = Lesson::where('id', $id)->delete();
 
-            return response()->json(['status' => 200, 'data' => 'Lesson with exam ID[' . $id . '] has been deleted!']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Lesson with exam ID[' . $id . '] has been deleted!']);
     }
 
     public function deletePeriodById(Request $request, $id)
     {
-        try {
-            $deleteLessonById = Period::where('id', $id)->delete();
+        $deleteLessonById = Period::where('id', $id)->delete();
 
-            return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been deleted!']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been deleted!']);
     }
 
     public function getLessonById(Request $request, $id)
     {
-        try {
-            $getLesson = Lesson::where('id', $id)->get();
+        $getLesson = Lesson::where('id', $id)->get();
 
-            return response()->json(['status' => 200, 'data' => $getLesson]);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => $getLesson]);
     }
 
     public function getPeriodById(Request $request, $id)
     {
-        try {
-            $getPeriod = Period::where('id', $id)->get();
+        $getPeriod = Period::where('id', $id)->get();
 
-            return response()->json(['status' => 200, 'data' => $getPeriod]);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => $getPeriod]);
     }
 
     public function getStudentById(Request $request, $id)
     {
-        try {
-            $getStudent = Student::where('id', $id)->get();
+        $getStudent = Student::where('id', $id)->get();
 
-            return response()->json(['status' => 200, 'data' => $getStudent]);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => $getStudent]);
     }
 
     public function updateLessonById(Request $request, $id)
     {
-        try {
-            $lesson = Lesson::find($id);
+        $lesson = Lesson::find($id);
 
-            $lesson->title = $request['title'];
-            $lesson->path = $request['path'];
+        $lesson->title = $request['title'];
+        $lesson->path = $request['path'];
 
-            $lesson->save();
+        $lesson->save();
 
-            return response()->json(['status' => 200, 'data' => 'Lesson has been updated.']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Lesson has been updated.']);
     }
 
     public function createNewLesson(Request $request)
     {
-        try {
-            $lesson = new Lesson;
+        $lesson = new Lesson;
 
-            $lesson->title = $request['title'];
-            $lesson->path = $request['path'];
-            $lesson->exam_id = $request['exam_id'];
+        $lesson->title = $request['title'];
+        $lesson->path = $request['path'];
+        $lesson->exam_id = $request['exam_id'];
 
-            $lesson->save();
+        $lesson->save();
 
-            return response()->json(['status' => 200, 'data' => 'New Lesson has been created.']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'New Lesson has been created.']);
     }
 
     public function updateStudentById(Request $request, $id)
     {
-        try {
-            $student = Student::find($id);
+        $student = Student::find($id);
 
-            $student->firstName = $request['firstName'];
-            $student->lastName = $request['lastName'];
-            $student->index = $request['index'];
-            $student->mark = $request['mark'];
-            $student->unit = $request['unit'];
+        $student->firstName = $request['firstName'];
+        $student->lastName = $request['lastName'];
+        $student->index = $request['index'];
+        $student->mark = $request['mark'];
+        $student->unit = $request['unit'];
 
-            $student->save();
+        $student->save();
 
-            return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been updated.']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been updated.']);
     }
 
     public function createNewStudent(Request $request)
     {
-        try {
-            $student = new Student;
+        $student = new Student;
 
-            $student->firstName = $request['firstName'];
-            $student->lastName = $request['lastName'];
-            $student->index = $request['index'];
-            $student->mark = $request['mark'];
-            $student->unit = $request['unit'];
+        $student->firstName = $request['firstName'];
+        $student->lastName = $request['lastName'];
+        $student->index = $request['index'];
+        $student->mark = $request['mark'];
+        $student->unit = $request['unit'];
 
-            $student->exam_id = $request['exam_id'];
-            $student->period_id = $request['period_id'];
+        $student->exam_id = $request['exam_id'];
+        $student->period_id = $request['period_id'];
 
-            $student->save();
+        $student->save();
 
-            return response()->json(['status' => 200, 'data' => 'Student has been created.']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Student has been created.']);
     }
 
     public function updatePeriodById(Request $request, $id)
     {
-        try {
-            $period = Period::find($id);
+        $period = Period::find($id);
 
-            $period->name = $request['name'];
+        $period->name = $request['name'];
 
-            $period->save();
+        $period->save();
 
         return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been updated.']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
     }
 
     public function createNewPeriod(Request $request)
     {
-        try {
-            $period = new Period;
+        $period = new Period;
 
-            $period->name = $request['name'];
-            $period->exam_id = $request['exam_id'];
+        $period->name = $request['name'];
+        $period->exam_id = $request['exam_id'];
 
-            $period->save();
+        $period->save();
 
-            return response()->json(['status' => 200, 'data' => 'Period has been created.']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Period has been created.']);
     }
 
     public function deleteStudentById(Request $request, $id)
     {
-        try {
-            $deleteStudentById = Student::where('id', $id)->delete();
+        $deleteStudentById = Student::where('id', $id)->delete();
 
-            return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been deleted!']);
-        } catch (Exception $e) {
-            Log::error( $e->getMessage() );
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been deleted!']);
     }
 }
