@@ -11,14 +11,14 @@ class NotificationController extends Controller
 {
     public function getNotifications(Request $request)
     {
-        try {
-            $getNotifications = Notification::all()->toArray();
+//        try {
+        $getNotifications = Notification::all()->toArray();
 
-            return response()->json(['status' => 200, 'data' => $getNotifications]);
-        } catch (Exception $e) {
+        return response()->json(['status' => 200, 'data' => $getNotifications]);
+        /*} catch (Exception $e) {
             Log::error($e->getMessage());
             continue;
-        }
+        }*/
     }
 
     public function getNotificationById(Request $request, $id)
