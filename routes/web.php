@@ -138,7 +138,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('/labs', [
         'uses' => 'LabController@getLabs',
-        'as' => 'exams.getLabs'
+        'as' => 'labs.getLabs'
     ]);
 
     // Lab routes END
@@ -147,27 +147,27 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('/notifications', [
         'uses' => 'NotificationController@getNotifications',
-        'as' => 'exams.getNotifications'
+        'as' => 'notifications.getNotifications'
     ]);
 
     Route::get('/notifications/{id}', [
         'uses' => 'NotificationController@getNotificationById',
-        'as' => 'exams.getNotification'
+        'as' => 'notifications.getNotification'
     ]);
 
     Route::put('/notifications/{id}', [
         'uses' => 'NotificationController@updateNotificationById',
-        'as' => 'exams.updateNotification'
+        'as' => 'notifications.updateNotification'
     ]);
 
     Route::post('/notifications', [
         'uses' => 'NotificationController@createNewNotification',
-        'as' => 'exams.createNotification'
+        'as' => 'notifications.createNotification'
     ]);
 
     Route::delete('/notifications/{id}', [
         'uses' => 'NotificationController@deleteNotificationById',
-        'as' => 'exams.deleteNotification'
+        'as' => 'notifications.deleteNotification'
     ]);
 
     // Notifications routes END
@@ -176,17 +176,17 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::put('/authorization', [
         'uses' => 'AuthorizationController@updateToken',
-        'as' => 'exams.updateToken'
+        'as' => 'auth.updateToken'
     ]);
 
     Route::get('/authorization', [
         'uses' => 'AuthorizationController@getToken',
-        'as' => 'exams.getToken'
+        'as' => 'auth.getToken'
     ]);
 
     Route::get('/credentials', [
         'uses' => 'CredentialsController@getCredentials',
-        'as' => 'exams.getCredentials'
+        'as' => 'auth.getCredentials'
     ]);
 
     // Credentials & Authorization routes END
