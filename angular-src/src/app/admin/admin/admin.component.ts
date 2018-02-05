@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
       const username = this.loginForm.value['username'];
       const password = this.loginForm.value['password'];
       this.adminService.getCredentials().subscribe(credentials => {
-        if (username === credentials.username && password === credentials.password) {
+        if (username === credentials.data[0].username && password === credentials.data[0].password) {
           this.adminService.updateToken(this.token).subscribe(data => {
             this.router.navigate(['/backoffice/', this.token ]); 
             // this.onLogin.emit();

@@ -53,7 +53,7 @@ export class EditStudentsComponent implements OnInit {
       this.studentId = params['studentId'];
 
       this.adminService.getToken().subscribe(authObject => {
-        if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;
@@ -70,7 +70,7 @@ export class EditStudentsComponent implements OnInit {
 
   getStudent() {
     this.examService.getStudentById(this.studentId).subscribe(student => {
-      this.student = student;
+      this.student = student.data[0];
       this.form.patchValue(this.student);
     });
   }

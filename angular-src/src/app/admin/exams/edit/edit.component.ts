@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
       this.examId = params['examId'];
 
       this.adminService.getToken().subscribe(authObject => {
-        if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;
@@ -46,7 +46,7 @@ export class EditComponent implements OnInit {
 
   getExam() {
     this.examService.getExamById(this.examId).subscribe(exam => {
-      this.exam = exam;
+      this.exam = exam.data[0];
       this.form.value['name'] = exam.title;
     });
   }

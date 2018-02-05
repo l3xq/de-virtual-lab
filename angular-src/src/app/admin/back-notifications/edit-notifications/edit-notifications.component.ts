@@ -43,7 +43,7 @@ export class EditNotificationsComponent implements OnInit {
       this.notificationId = params['notificationId'];
 
       this.adminService.getToken().subscribe(authObject => {
-        if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;

@@ -17,8 +17,8 @@ export class LabComponent implements OnInit {
   }
 
   fetchLabs() {
-    this.labService.getLabs().subscribe(labs => {
-      this.labs = labs;
+    this.labService.getLabs().subscribe((labs: any) => {
+      this.labs = labs.data;
     });
   }
 

@@ -19,16 +19,16 @@ export class ExamResultsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.examId = params['id'];
       if (this.examId) {
-        this.examService.getPeriodsByExamId(this.examId).subscribe(periods => {
-          this.periods = periods;
+        this.examService.getPeriodsByExamId(this.examId).subscribe((periods: any) => {
+          this.periods = periods.data;
           this.periods.forEach(period => {
-            this.examService.getStudentsByExamAndPeriod(this.examId, period.id).subscribe(students => {
-              period.students = students;
+            this.examService.getStudentsByExamAndPeriod(this.examId, period.id).subscribe((students: any) => {
+              period.students = students.data;
             });
           });
         });
         this.examService.getExamById(this.examId).subscribe(exam => {
-          this.exam = exam;
+          this.exam = exam.data[0];
         });
       }
     });

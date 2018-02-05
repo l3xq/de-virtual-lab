@@ -13,7 +13,7 @@ export class AdminService {
   }
 
   updateToken(token): Observable<any> {
-    return this.http.put(this.baseUrl + '/authorization', { tokenId: token}).map((res: any) => res);
+    return this.http.put(this.baseUrl + '/authorization', { token: token}).map((res: any) => res);
   }
 
   getToken(): Observable<any> {

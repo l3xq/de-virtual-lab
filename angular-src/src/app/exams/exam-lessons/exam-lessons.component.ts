@@ -18,13 +18,13 @@ export class ExamLessonsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
       if (this.id) {
-        this.examService.getLessonsByExamId(this.id).subscribe(lessons => {
-          this.lessons = lessons;
+        this.examService.getLessonsByExamId(this.id).subscribe((lessons: any) => {
+          this.lessons = lessons.data;
         });
       }
     });
     this.examService.getExamById(this.id).subscribe(exam => {
-      this.exam = exam;
+      this.exam = exam.data[0];
     });
   }
 

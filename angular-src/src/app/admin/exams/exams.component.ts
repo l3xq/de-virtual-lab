@@ -18,7 +18,7 @@ export class ExamsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.tokenId = Number(params['id']);
       this.adminService.getToken().subscribe(authObject => {
-        if (!(this.tokenId && this.tokenId === authObject.tokenId)) {
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;
@@ -33,7 +33,7 @@ export class ExamsComponent implements OnInit {
 
   fetchExams() {
     this.examService.getExams().subscribe((exams: any) => {
-      this.exams = exams;
+      this.exams = exams.data;
       console.log(this.exams);
     });
   }
