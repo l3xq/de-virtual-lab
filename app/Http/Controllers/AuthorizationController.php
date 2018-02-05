@@ -4,36 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Authorization;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class AuthorizationController extends Controller
 {
-
     public function getToken(Request $request)
     {
-        try {
-            $getToken = Authorization::all()->toArray();
+        $getToken = Authorization::all()->toArray();
 
-            return response()->json(['status' => 200, 'data' => $getToken]);
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => $getToken]);
     }
 
     public function updateToken(Request $request)
     {
-        try {
-            $authorization = Authorization::all()->first();
+        $authorization = Authorization::all()->first();
 
-            $authorization->token_id = $request['token'];
+        $authorization->token_id = $request['token'];
 
-            $authorization->save();
+        $authorization->save();
 
-            return response()->json(['status' => 200, 'data' => 'TOKEN has been updated.']);
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
-            continue;
-        }
+        return response()->json(['status' => 200, 'data' => 'TOKEN has been updated.']);
     }
 }
