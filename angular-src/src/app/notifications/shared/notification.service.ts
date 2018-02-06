@@ -11,14 +11,14 @@ export class NotificationService {
   }
 
   getNotifications(): Observable<any[]> {
-    return this.http.get(this.baseUrl+ '/notifications?_sort=id&_order=desc').map((res: any[]) => res);
+    return this.http.get(this.baseUrl + '/notifications').map((res: any[]) => res);
   }
 
   getNotificationById(id: string): Observable<any> {
-    return this.http.get(this.baseUrl+ '/notifications/' + id).map((res: any) => res);
+    return this.http.get(this.baseUrl + '/notifications/' + id).map((res: any) => res);
   }
 
-  updateNotificationById(notificationId: string, object: any){
+  updateNotificationById(notificationId: string, object: any) {
     return this.http.put(this.baseUrl + '/notifications/' + notificationId, object).map((res: any) => res);
   }
 

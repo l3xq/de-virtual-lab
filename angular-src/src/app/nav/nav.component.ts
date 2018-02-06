@@ -14,23 +14,23 @@ export class NavComponent implements OnInit {
   constructor(private translate: TranslateService, private storage: LocalStorageService) { }
 
   serbian() {
-    this.lang = "EN";
+    this.lang = 'EN';
     localStorage.setItem('language', 'sr');
     this.translate.use('sr');
   }
 
   english() {
-    this.lang = "SR";
+    this.lang = 'SR';
     localStorage.setItem('language', 'en');
     this.translate.use('en');
   }
 
   ngOnInit() {
-    let lang = localStorage.getItem('language');
-    if (lang && lang === "en") {
-      this.lang = "SR";
-    } else if (lang && lang === "sr") {
-      this.lang = "EN";
+    const lang = localStorage.getItem('language');
+    if (lang && lang === 'en') {
+      this.lang = 'SR';
+    } else if (lang && lang === 'sr') {
+      this.lang = 'EN';
     }
   }
 

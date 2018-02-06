@@ -9,8 +9,8 @@ import { LocalStorageService } from 'ngx-webstorage';
 })
 export class AppComponent {
   constructor(translate: TranslateService, private storage: LocalStorageService) {
-    let language = localStorage.getItem('language');
-    if(language){
+    const language = localStorage.getItem('language');
+    if (language) {
       translate.setDefaultLang(language);
       translate.use(language);
     } else {

@@ -31,7 +31,10 @@ export class EditNotificationsComponent implements OnInit {
   notification: any;
   form: any;
 
-  constructor(private fb: FormBuilder, private notificationsService: NotificationService, private adminService: AdminService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder,
+    private notificationsService: NotificationService,
+    private adminService: AdminService, private router:
+      Router, private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       title: ['', Validators.required],
       text: ['', Validators.required]
@@ -43,6 +46,7 @@ export class EditNotificationsComponent implements OnInit {
       this.notificationId = params['notificationId'];
 
       this.adminService.getToken().subscribe(authObject => {
+        // tslint:disable-next-line:triple-equals
         if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
@@ -53,14 +57,14 @@ export class EditNotificationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.notificationId != 'new') {
+    if (this.notificationId !== 'new') {
       this.getNotification();
     }
   }
 
   getNotification() {
     this.notificationsService.getNotificationById(this.notificationId).subscribe(notification => {
-      this.notification = notification;
+      this.notification = notification.data[0];
       this.form.patchValue(this.notification);
     });
   }
@@ -68,15 +72,15 @@ export class EditNotificationsComponent implements OnInit {
   submit() {
     const notificationData = new Notification(this.form.value);
     notificationData.time = Date.now();
-   
-    if (this.notificationId != 'new') {
+
+    if (this.notificationId !== 'new') {
       this.notificationsService.updateNotificationById(this.notificationId, notificationData).subscribe(notification => { });
     } else {
       this.notificationsService.createNewNotification(notificationData).subscribe(notification => { });
     }
     setTimeout(() => {
       this.showContent = false;
-      this.router.navigate(["backoffice/notifications/", this.tokenId]);
+      this.router.navigate(['backoffice/notifications/', this.tokenId]);
     }, 1000);
     this.showContent = false;
   }

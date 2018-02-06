@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
   @Output() onLogin = new EventEmitter<any>();
   loginForm: FormGroup;
   showValidationErrors = false;
-  
+
   token = Date.now();
 
   constructor(private fb: FormBuilder, private adminService: AdminService, private router: Router) {
@@ -35,14 +35,12 @@ export class AdminComponent implements OnInit {
       this.adminService.getCredentials().subscribe(credentials => {
         if (username === credentials.data[0].username && password === credentials.data[0].password) {
           this.adminService.updateToken(this.token).subscribe(data => {
-            this.router.navigate(['/backoffice/', this.token ]); 
+            this.router.navigate(['/backoffice/', this.token ]);
             // this.onLogin.emit();
             // this.loginForm.reset();
             this.showValidationErrors = false;
           });
-                   
-        }
-        else {
+        } else {
           this.showValidationErrors = true;
         }
       });

@@ -1,4 +1,10 @@
 <div style="padding: 16px;" *ngIf="showContent">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/backoffice/{{tokenId}}">{{'BACKOFFICE' | translate}}</a></li>
+        <li class="breadcrumb-item"><a routerLink="/backoffice/exams/{{tokenId}}">{{'EXAMS' | translate}}</a></li>
+        <li class="breadcrumb-item"><a routerLink="/backoffice/exams/lessons/{{examId}}/{{tokenId}}">{{'EXAM_LESSONS' | translate}}</a></li>
+        <li class="breadcrumb-item active">{{lesson ? lesson.title : "ADD_LESSON"}}</li>
+      </ol>
   <h5 class="col-md-12 titleHeader" *ngIf="lessonId != 'new'">{{"EDIT_LESSON" | translate}} {{lesson ? lesson.title : ""}}</h5>
   <h5 class="col-md-12 titleHeader" *ngIf="lessonId == 'new'">{{"CREATE_LESSON" | translate}}</h5>
   <form [formGroup]="form">

@@ -21,7 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CommonModule,
         HttpClientModule,
         BrowserModule,
-		Ng2Webstorage,
+        Ng2Webstorage,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

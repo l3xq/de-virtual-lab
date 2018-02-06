@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AdminService {
-  
-  baseUrl: string;  
+
+  baseUrl: string;
 
   constructor(private http: HttpClient, private configService: ConfigService) {
     this.baseUrl = configService.baseUrl();

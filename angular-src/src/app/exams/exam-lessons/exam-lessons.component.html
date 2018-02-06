@@ -1,4 +1,8 @@
 <div style="padding: 16px;">
+        <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/exams">{{'EXAMS' | translate}}</a></li>
+                <li class="breadcrumb-item active">{{exam ? exam.title : ""}} - {{'LESSONS' | translate}}</li>
+              </ol>
     <h5 class="col-md-12 titleHeader">{{exam ? exam.title : ""}} {{"LESSONS_TITLE" | translate}}</h5>
     <div *ngIf="lessons && !lessons.length" class="alert alert-danger" role="alert" style="text-align: center;">
        {{"NO_LESSONS" | translate}}

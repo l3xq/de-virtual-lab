@@ -1,17 +1,24 @@
 <div style="padding: 16px;">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/exams">{{'EXAMS' | translate}}</a></li>
+        <li class="breadcrumb-item active">{{exam ? exam.title : ""}} - {{'RESULTS' | translate}}</li>
+      </ol>
   <h5 class="col-md-12 titleHeader">{{exam ? exam.title : ""}}{{"RESULTS_TITLE" | translate}}</h5>
   <div *ngIf="periods && !periods.length" class="alert alert-danger" role="alert" style="text-align: center;">
     {{"NO_RESULTS" | translate}}
   </div>
   <accordion class="col-md-12" [closeOthers]="true">
     <div *ngFor="let item of periods">
-      <accordion-group *ngIf="item.students && item.students.length > 0" #group>
+      <accordion-group #group>
         <div style="cursor: pointer;" accordion-heading>
           {{item.name}}
           <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down iconCorrection': group.isOpen, 'fa-chevron-right iconCorrection': !group.isOpen}"></i>
         </div>
         <div>
-          <table class="table" style="margin: 0;">
+            <div *ngIf="item.students && item.students.length === 0" class="alert alert-danger" role="alert" style="text-align: center;">
+                {{"NO_STUDENTS" | translate}}
+              </div>
+          <table *ngIf="item.students && item.students.length > 0" class="table" style="margin: 0;">
             <tbody>
               <tr *ngFor="let student of item.students" [ngClass]="{'passed': student.mark > 5, 'unpassed': student.mark < 6}">
                 <td>{{student.firstName}}</td>

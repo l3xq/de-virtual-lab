@@ -11,6 +11,6 @@ export class LabService {
   }
 
   getLabs(): Observable<any[]> {
-    return this.http.get(this.baseUrl+ '/labs').map((res: any[]) => res);
+    return this.http.get(this.baseUrl + '/labs').map((res: any[]) => res);
   }
 }

@@ -29,8 +29,21 @@ import { EditNotificationsComponent } from './back-notifications/edit-notificati
     ExamsModule
   ],
   providers: [AdminService],
-  declarations: [AdminComponent, BackofficeComponent, ExamsComponent, EditComponent, BackNotificationsComponent, BackLabComponent, LessonsComponent, ResultsComponent, EditResultsComponent, EditLessonsComponent, EditStudentsComponent, EditNotificationsComponent],
+  declarations: [
+    AdminComponent,
+    BackofficeComponent,
+    ExamsComponent,
+    EditComponent,
+    BackNotificationsComponent,
+    BackLabComponent,
+    LessonsComponent,
+    ResultsComponent,
+    EditResultsComponent,
+    EditLessonsComponent,
+    EditStudentsComponent,
+    EditNotificationsComponent
+  ],
   exports: [],
-  
+
 })
 export class AdminModule { }

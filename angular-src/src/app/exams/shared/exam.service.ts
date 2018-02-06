@@ -51,27 +51,27 @@ export class ExamService {
     return this.http.delete(this.baseUrl + '/periods/' + periodId).map((res: any) => res);
   }
 
-  getLessonById(lessonId: string){
+  getLessonById(lessonId: string) {
     return this.http.get(this.baseUrl + '/lessons/' + lessonId).map((res: any) => res);
   }
 
-  getPeriodById(periodId: string){
+  getPeriodById(periodId: string) {
     return this.http.get(this.baseUrl + '/periods/' + periodId).map((res: any) => res);
   }
 
-  getStudentById(studentId: string){
+  getStudentById(studentId: string) {
     return this.http.get(this.baseUrl + '/students/' + studentId).map((res: any) => res);
   }
 
-  updateLessonById(lessonId: string, object: any){
-    return this.http.put(this.baseUrl + '/lessons/' + lessonId, {title: object.title, path: object.path}).map((res: any) => res);
+  updateLessonById(lessonId: string, object: any) {
+    return this.http.put(this.baseUrl + '/lessons/' + lessonId, { title: object.title, path: object.path }).map((res: any) => res);
   }
 
   createNewLesson(lesson: any) {
     return this.http.post(this.baseUrl + '/lessons', lesson).map((res: any) => res);
   }
 
-  updateStudentById(studentId: string, object: any){
+  updateStudentById(studentId: string, object: any) {
     return this.http.put(this.baseUrl + '/students/' + studentId, object).map((res: any) => res);
   }
 
@@ -79,14 +79,14 @@ export class ExamService {
     return this.http.post(this.baseUrl + '/students', student).map((res: any) => res);
   }
 
-  updatePeriodById(periodId: string, object: any){
+  updatePeriodById(periodId: string, object: any) {
     return this.http.put(this.baseUrl + '/periods/' + periodId, object).map((res: any) => res);
   }
 
   createNewPeriod(period: any) {
     return this.http.post(this.baseUrl + '/periods', period).map((res: any) => res);
   }
-  
+
   deleteStudentById(studentId: string) {
     return this.http.delete(this.baseUrl + '/students/' + studentId).map((res: any) => res);
   }

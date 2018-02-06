@@ -25,9 +25,11 @@ export class NotificationComponent implements OnInit {
 
   fetchNotifications() {
     this.notificationService.getNotifications().subscribe((notifications: any) => {
-      console.log(notifications.data);
-      this.selectedItem = notifications[0];
+      this.notifications = notifications.data;
+      this.notifications.sort(function (a, b) {
+        return b.time - a.time;
+      });
+      this.selectedItem = notifications.data[0];
     });
   }
-
 }

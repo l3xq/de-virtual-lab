@@ -18,7 +18,11 @@ export class EditComponent implements OnInit {
   exam: any;
   form: any;
 
-  constructor(private fb: FormBuilder, private examService: ExamService, private adminService: AdminService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder,
+    private examService: ExamService,
+    private adminService: AdminService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       name: ['', Validators.required]
     });
@@ -29,6 +33,7 @@ export class EditComponent implements OnInit {
       this.examId = params['examId'];
 
       this.adminService.getToken().subscribe(authObject => {
+        // tslint:disable-next-line:triple-equals
         if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
@@ -39,7 +44,7 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.examId != 'new') {
+    if (this.examId !== 'new') {
       this.getExam();
     }
   }
@@ -53,10 +58,10 @@ export class EditComponent implements OnInit {
 
   submit() {
     const name = this.form.value['name'];
-    let object = {
+    const object = {
       title: name
-    }
-    if (this.examId != 'new') {
+    };
+    if (this.examId !== 'new') {
       this.examService.updateExamById(this.examId, object).subscribe(exam => { });
     } else {
       this.examService.createNewExam(object).subscribe(exam => { });

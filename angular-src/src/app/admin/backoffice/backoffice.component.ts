@@ -16,8 +16,9 @@ export class BackofficeComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.tokenId = Number(params['id']);
       this.adminService.getToken().subscribe(authObject => {
+        // tslint:disable-next-line:triple-equals
         if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']); 
+          this.router.navigate(['/admins/']);
         } else {
           this.showContent = true;
         }
@@ -25,9 +26,9 @@ export class BackofficeComponent implements OnInit {
     });
   }
 
-  logout(){
-    this.adminService.updateToken("").subscribe(data => {
-      this.router.navigate(['/admins/']); 
+  logout() {
+    this.adminService.updateToken('').subscribe(data => {
+      this.router.navigate(['/admins/']);
     });
   }
 

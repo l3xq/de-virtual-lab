@@ -16,13 +16,17 @@ export class LessonsComponent implements OnInit {
   exam: any;
   lessons: any[];
 
-  constructor(private examService: ExamService, private adminService: AdminService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private examService: ExamService,
+    private adminService: AdminService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
 
       this.tokenId = Number(params['id']);
       this.examId = params['examId'];
 
       this.adminService.getToken().subscribe(authObject => {
+        // tslint:disable-next-line:triple-equals
         if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
@@ -34,7 +38,7 @@ export class LessonsComponent implements OnInit {
     });
   }
 
-  fetchLessons(){
+  fetchLessons() {
     this.examService.getLessonsByExamId(this.examId).subscribe((lessons: any) => {
       this.lessons = lessons.data;
     });
@@ -47,24 +51,25 @@ export class LessonsComponent implements OnInit {
   }
 
   navigateToEditLesson(itemId: string) {
-    if (itemId)
-      this.router.navigate(["backoffice/exams/lessons/", this.examId, this.tokenId, itemId]);
-    else
-      this.router.navigate(["backoffice/exams/lessons/", this.examId, this.tokenId, "new"]);
+    if (itemId) {
+      this.router.navigate(['backoffice/exams/lessons/', this.examId, this.tokenId, itemId]);
+    } else {
+      this.router.navigate(['backoffice/exams/lessons/', this.examId, this.tokenId, 'new']);
+    }
   }
 
   deleteLesson(lessonId: string) {
     this.showContent = false;
-    setTimeout(() => {      
-      this.examService.deleteLessonByExamAndId(lessonId).subscribe(data => { 
-      this.fetchLessons();
-      this.showContent = true;
-      });      
-    }, 1000); 
+    setTimeout(() => {
+      this.examService.deleteLessonByExamAndId(lessonId).subscribe(data => {
+        this.fetchLessons();
+        this.showContent = true;
+      });
+    }, 1000);
   }
 
   ngOnInit() {
   }
-  
+
 
 }

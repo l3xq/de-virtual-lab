@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular
 import { ExamService } from '../../../../exams/shared/exam.service';
 import { AdminService } from '../../../shared/admin.service';
 
-declare var $ :any;
+declare var $: any;
 
 @Component({
   selector: 'app-edit-lessons',
@@ -22,7 +22,11 @@ export class EditLessonsComponent implements OnInit {
   form: any;
   file: any;
 
-  constructor(private fb: FormBuilder, private examService: ExamService, private adminService: AdminService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder,
+    private examService: ExamService,
+    private adminService: AdminService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       title: ['', Validators.required],
       path: ['', Validators.required]
@@ -35,6 +39,7 @@ export class EditLessonsComponent implements OnInit {
       this.lessonId = params['lessonId'];
 
       this.adminService.getToken().subscribe(authObject => {
+        // tslint:disable-next-line:triple-equals
         if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
@@ -45,7 +50,7 @@ export class EditLessonsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.lessonId != 'new') {
+    if (this.lessonId !== 'new') {
       this.getLesson();
     }
   }
@@ -59,17 +64,17 @@ export class EditLessonsComponent implements OnInit {
 
   submit() {
     const title = this.form.value['title'];
-    const path = "Path To lesson";
+    const path = 'Path To lesson';
     $('input[type=file]').change(function () {
       // const path = this.files[0].mozFullPath;
       // console.log(this.files[0].mozFullPath);
-  });
-    let object = {
+    });
+    const object = {
       title: title,
       path: path,
-      examId: this.examId
-    }
-    if (this.lessonId != 'new') {
+      exam_id: this.examId
+    };
+    if (this.lessonId !== 'new') {
       this.examService.updateLessonById(this.lessonId, object).subscribe(lesson => { });
     } else {
       this.examService.createNewLesson(object).subscribe(lesson => { });
@@ -78,7 +83,7 @@ export class EditLessonsComponent implements OnInit {
     this.form.reset();
     setTimeout(() => {
       this.showContent = false;
-      this.router.navigate(['/backoffice/exams/lessons',this.examId, this.tokenId]);
+      this.router.navigate(['/backoffice/exams/lessons', this.examId, this.tokenId]);
     }, 1000);
     this.showContent = false;
   }

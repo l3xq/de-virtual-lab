@@ -5,8 +5,8 @@ export class Student {
   index: String;
   mark: String;
   unit: String;
-  examId: String;
-  periodId: String;
+  exam_id: String;
+  period_id: String;
 
   constructor(student?: Partial<Student>) {
     Object.assign(this, student);
@@ -36,7 +36,11 @@ export class EditStudentsComponent implements OnInit {
   form: any;
   studentId: any;
 
-  constructor(private fb: FormBuilder, private examService: ExamService, private adminService: AdminService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder,
+    private examService: ExamService,
+    private adminService: AdminService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -53,6 +57,7 @@ export class EditStudentsComponent implements OnInit {
       this.studentId = params['studentId'];
 
       this.adminService.getToken().subscribe(authObject => {
+        // tslint:disable-next-line:triple-equals
         if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
@@ -63,7 +68,7 @@ export class EditStudentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.studentId != 'new') {
+    if (this.studentId !== 'new') {
       this.getStudent();
     }
   }
@@ -77,17 +82,17 @@ export class EditStudentsComponent implements OnInit {
 
   submit() {
     const studentData = new Student(this.form.value);
-    studentData.examId = this.examId;
-    studentData.periodId = this.periodId;
-   
-    if (this.studentId != 'new') {
+    studentData.exam_id = this.examId;
+    studentData.period_id = this.periodId;
+
+    if (this.studentId !== 'new') {
       this.examService.updateStudentById(this.studentId, studentData).subscribe(student => { });
     } else {
       this.examService.createNewStudent(studentData).subscribe(student => { });
     }
     setTimeout(() => {
       this.showContent = false;
-      this.router.navigate(["backoffice/exams/results/", this.examId, this.tokenId]);
+      this.router.navigate(['backoffice/exams/results/', this.examId, this.tokenId]);
     }, 1000);
     this.showContent = false;
   }

@@ -18,7 +18,10 @@ export class BackNotificationsComponent implements OnInit {
   notificationId: any;
   showContent: boolean;
 
-  constructor( private notificationService: NotificationService, private adminService: AdminService, private activatedRoute: ActivatedRoute, private router: Router,) {
+  constructor(private notificationService: NotificationService,
+    private adminService: AdminService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
 
     this.activatedRoute.params.subscribe(params => {
 
@@ -26,6 +29,7 @@ export class BackNotificationsComponent implements OnInit {
       this.notificationId = params['notificationId'];
 
       this.adminService.getToken().subscribe(authObject => {
+        // tslint:disable-next-line:triple-equals
         if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
           this.router.navigate(['/admins/']);
         } else {
@@ -34,7 +38,7 @@ export class BackNotificationsComponent implements OnInit {
       });
       this.fetchNotifications();
     });
-   }
+  }
 
   ngOnInit() {
   }
@@ -45,27 +49,30 @@ export class BackNotificationsComponent implements OnInit {
 
   fetchNotifications() {
     this.notificationService.getNotifications().subscribe((notifications: any) => {
-      console.log(notifications.data);
-      this.selectedItem = notifications[0];
+      this.notifications = notifications.data;
+      this.notifications.sort(function (a, b) {
+        return b.time - a.time;
+      });
+      this.selectedItem = notifications.data[0];
     });
   }
 
   addNotification() {
-    this.router.navigate(["backoffice/notifications/", this.tokenId, "new"]);
+    this.router.navigate(['backoffice/notifications/', this.tokenId, 'new']);
   }
 
   editNotification(notificationId) {
-    this.router.navigate(["backoffice/notifications/", this.tokenId, notificationId]);
+    this.router.navigate(['backoffice/notifications/', this.tokenId, notificationId]);
   }
 
   deleteNotification(notificationId: string) {
     this.showContent = false;
-    setTimeout(() => {      
-      this.notificationService.deleteNotificationById(notificationId).subscribe(data => { 
-      this.fetchNotifications();
-      this.showContent = true;
-      });      
-    }, 1000);  
+    setTimeout(() => {
+      this.notificationService.deleteNotificationById(notificationId).subscribe(data => {
+        this.fetchNotifications();
+        this.showContent = true;
+      });
+    }, 1000);
   }
 
 }

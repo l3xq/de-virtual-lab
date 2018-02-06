@@ -1,4 +1,9 @@
 <div style="padding: 16px;" *ngIf="showContent">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/backoffice/{{tokenId}}">{{'BACKOFFICE' | translate}}</a></li>
+        <li class="breadcrumb-item"><a routerLink="/backoffice/exams/{{tokenId}}">{{'EXAMS' | translate}}</a></li>
+        <li class="breadcrumb-item active">{{exam ? exam.title : ""}} - {{'LESSONS' | translate}}</li>
+      </ol>
   <h5 class="col-md-12 titleHeader">{{exam ? exam.title : ""}} {{"MANAGE_LESSONS" | translate}}</h5>
   <div *ngIf="lessons && !lessons.length" class="alert alert-danger" role="alert" style="text-align: center;">
     {{"NO_LESSONS" | translate}}
