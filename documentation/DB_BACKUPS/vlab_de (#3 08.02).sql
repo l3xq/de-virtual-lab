@@ -30,15 +30,17 @@ CREATE TABLE IF NOT EXISTS `authorizations` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `token_id` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `authorizations`
 --
 
-INSERT INTO `authorizations` (`id`, `token_id`, `created_at`, `updated_at`) VALUES
-(1, 1517513453747, NULL, NULL);
+INSERT INTO `authorizations` (`token_id`, `created_at`, `updated_at`) VALUES
+(1517513453747, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -51,15 +53,17 @@ CREATE TABLE IF NOT EXISTS `credentials` (
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `credentials`
 --
 
-INSERT INTO `credentials` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', NULL, NULL);
+INSERT INTO `credentials` (`username`, `password`, `created_at`, `updated_at`) VALUES
+('admin', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -68,20 +72,22 @@ INSERT INTO `credentials` (`id`, `username`, `password`, `created_at`, `updated_
 --
 
 CREATE TABLE IF NOT EXISTS `exams` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `exams`
 --
 
-INSERT INTO `exams` (`id`, `title`, `created_at`, `updated_at`) VALUES
-(1, 'UPDATE EXAM 1', NULL, '2018-02-03 19:04:33'),
-(2, 'EXAM_2', NULL, NULL),
-(3, 'Exam_EXAMPLE', '2018-02-03 13:11:22', '2018-02-03 13:11:22');
+INSERT INTO `exams` (`title`, `created_at`, `updated_at`) VALUES
+('UPDATE EXAM 1', NULL, '2018-02-03 19:04:33'),
+('EXAM_2', NULL, NULL),
+('Exam_EXAMPLE', '2018-02-03 13:11:22', '2018-02-03 13:11:22');
 
 -- --------------------------------------------------------
 
@@ -90,20 +96,22 @@ INSERT INTO `exams` (`id`, `title`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `labs` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `labs`
 --
 
-INSERT INTO `labs` (`id`, `title`, `link`, `created_at`, `updated_at`) VALUES
-(1, 'LAB_1', 'http://ftn.kg.ac.rs/', NULL, NULL),
-(2, 'LAB_2', 'http://ftn.kg.ac.rs/', NULL, NULL);
+INSERT INTO `labs` (`title`, `link`, `created_at`, `updated_at`) VALUES
+('LAB_1', 'http://ftn.kg.ac.rs/', NULL, NULL),
+('LAB_2', 'http://ftn.kg.ac.rs/', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,24 +120,26 @@ INSERT INTO `labs` (`id`, `title`, `link`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `lessons` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `exam_id` int(10) UNSIGNED NOT NULL
+  `exam_id` int(10) UNSIGNED NOT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `lessons`
 --
 
-INSERT INTO `lessons` (`id`, `title`, `path`, `created_at`, `updated_at`, `exam_id`) VALUES
-(1, 'LESSON_1', 'http://ftn.kg.ac.rs/', NULL, NULL, 1),
-(2, 'RANDOM TITLE', 'ftn.kg.ac.rs', NULL, '2018-02-03 19:07:38', 2),
-(3, 'LESSON_3', 'http://ftn.kg.ac.rs/', NULL, NULL, 2),
-(4, 'LESSON_4', 'http://ftn.kg.ac.rs/', NULL, NULL, 1),
-(5, 'LESSON_CREATED', 'PATH_FOR_NEW_LESSON', '2018-02-03 19:12:34', '2018-02-03 19:12:34', 2);
+INSERT INTO `lessons` (`title`, `path`, `created_at`, `updated_at`, `exam_id`) VALUES
+('LESSON_1', 'http://ftn.kg.ac.rs/', NULL, NULL, 1),
+('RANDOM TITLE', 'ftn.kg.ac.rs', NULL, '2018-02-03 19:07:38', 2),
+('LESSON_3', 'http://ftn.kg.ac.rs/', NULL, NULL, 2),
+('LESSON_4', 'http://ftn.kg.ac.rs/', NULL, NULL, 1),
+('LESSON_CREATED', 'PATH_FOR_NEW_LESSON', '2018-02-03 19:12:34', '2018-02-03 19:12:34', 2);
 
 -- --------------------------------------------------------
 
@@ -138,9 +148,11 @@ INSERT INTO `lessons` (`id`, `title`, `path`, `created_at`, `updated_at`, `exam_
 --
 
 CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+  `batch` int(11) NOT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -164,22 +176,24 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `notifications` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `time` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `notifications`
 --
 
-INSERT INTO `notifications` (`id`, `title`, `text`, `time`, `created_at`, `updated_at`) VALUES
-(2, 'RANDOM TITLE', 'LOREM IPSUMNMSMSMSMS', 159562354, NULL, '2018-02-03 20:10:45'),
-(3, 'NOTIFICATION_3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet nibh quis urna rhoncus aliquam id id ante. Vestibulum vel placerat elit, non tincidunt massa. Praesent rhoncus ut felis ultrices ultricies. Pellentesque efficitur dignissim libero quis luctus. Ut ac leo egestas, pellentesque purus sed, finibus ipsum. In et eros vitae eros venenatis luctus. Vivamus eget lacus in nunc porttitor blandit. Integer eget sem justo. Aenean non magna eget lectus luctus finibus hendrerit vitae nulla. Nunc ut gravida enim. Integer efficitur mi non rhoncus tristique. Aliquam erat volutpat. Morbi lectus justo, sagittis vitae ultrices nec, eleifend vitae nisi.', 1517483960, NULL, NULL),
-(4, 'RANDOM TITLE', 'LOREM IPSUMNMSMSMSMS', 159562354, '2018-02-03 20:13:46', '2018-02-03 20:13:46');
+INSERT INTO `notifications` (`title`, `text`, `time`, `created_at`, `updated_at`) VALUES
+('RANDOM TITLE', 'LOREM IPSUMNMSMSMSMS', 159562354, NULL, '2018-02-03 20:10:45'),
+('NOTIFICATION_3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet nibh quis urna rhoncus aliquam id id ante. Vestibulum vel placerat elit, non tincidunt massa. Praesent rhoncus ut felis ultrices ultricies. Pellentesque efficitur dignissim libero quis luctus. Ut ac leo egestas, pellentesque purus sed, finibus ipsum. In et eros vitae eros venenatis luctus. Vivamus eget lacus in nunc porttitor blandit. Integer eget sem justo. Aenean non magna eget lectus luctus finibus hendrerit vitae nulla. Nunc ut gravida enim. Integer efficitur mi non rhoncus tristique. Aliquam erat volutpat. Morbi lectus justo, sagittis vitae ultrices nec, eleifend vitae nisi.', 1517483960, NULL, NULL),
+('RANDOM TITLE', 'LOREM IPSUMNMSMSMSMS', 159562354, '2018-02-03 20:13:46', '2018-02-03 20:13:46');
 
 -- --------------------------------------------------------
 
@@ -200,23 +214,25 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 --
 
 CREATE TABLE IF NOT EXISTS `periods` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `exam_id` int(10) UNSIGNED NOT NULL
+  `exam_id` int(10) UNSIGNED NOT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `periods`
 --
 
-INSERT INTO `periods` (`id`, `name`, `created_at`, `updated_at`, `exam_id`) VALUES
-(1, 'PERIOD_1', NULL, NULL, 1),
-(2, 'NAME OF PERIOD', NULL, '2018-02-03 19:29:27', 1),
-(3, 'PERIOD_3', NULL, NULL, 1),
-(4, 'PERIOD_4', NULL, NULL, 2),
-(5, 'NEW PERIOD', '2018-02-03 19:31:12', '2018-02-03 19:31:12', 3);
+INSERT INTO `periods` (`name`, `created_at`, `updated_at`, `exam_id`) VALUES
+('PERIOD_1', NULL, NULL, 1),
+('NAME OF PERIOD', NULL, '2018-02-03 19:29:27', 1),
+('PERIOD_3', NULL, NULL, 1),
+('PERIOD_4', NULL, NULL, 2),
+('NEW PERIOD', '2018-02-03 19:31:12', '2018-02-03 19:31:12', 3);
 
 -- --------------------------------------------------------
 
@@ -225,7 +241,7 @@ INSERT INTO `periods` (`id`, `name`, `created_at`, `updated_at`, `exam_id`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `students` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `firstName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lastName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `index` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -234,18 +250,20 @@ CREATE TABLE IF NOT EXISTS `students` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `exam_id` int(10) UNSIGNED NOT NULL,
-  `period_id` int(10) UNSIGNED NOT NULL
+  `period_id` int(10) UNSIGNED NOT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `firstName`, `lastName`, `index`, `mark`, `unit`, `created_at`, `updated_at`, `exam_id`, `period_id`) VALUES
-(1, 'Marko', 'Tomic', '21/2011', 9.00, 'RI', NULL, NULL, 1, 2),
-(2, 'Alex', 'Nesh', '21/2121', 10.99, 'Envoy', NULL, '2018-02-03 19:25:16', 1, 3),
-(3, 'Serhio', 'Satanini', '100/2011', 6.00, 'RI', NULL, NULL, 2, 3),
-(4, 'Alex', 'Nesh', '21/2121', 10.99, 'Envoy', '2018-02-03 19:28:05', '2018-02-03 19:28:05', 2, 2);
+INSERT INTO `students` (`firstName`, `lastName`, `index`, `mark`, `unit`, `created_at`, `updated_at`, `exam_id`, `period_id`) VALUES
+('Marko', 'Tomic', '21/2011', 9.00, 'RI', NULL, NULL, 1, 2),
+('Alex', 'Nesh', '21/2121', 10.99, 'Envoy', NULL, '2018-02-03 19:25:16', 1, 3),
+('Serhio', 'Satanini', '100/2011', 6.66, 'RI', NULL, NULL, 2, 3),
+('Alex', 'Nesh', '21/2121', 10.99, 'Envoy', '2018-02-03 19:28:05', '2018-02-03 19:28:05', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -254,13 +272,15 @@ INSERT INTO `students` (`id`, `firstName`, `lastName`, `index`, `mark`, `unit`, 
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+
+  PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -268,35 +288,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 --
--- Indexes for table `exams`
---
-ALTER TABLE `exams`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `labs`
---
-ALTER TABLE `labs`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `lessons`
 --
 ALTER TABLE `lessons`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `exam_id` (`exam_id`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `notifications`
---
-ALTER TABLE `notifications`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `password_resets`
@@ -308,14 +303,12 @@ ALTER TABLE `password_resets`
 -- Indexes for table `periods`
 --
 ALTER TABLE `periods`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `exam_id` (`exam_id`);
 
 --
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `exam_id` (`exam_id`),
   ADD KEY `period_id` (`period_id`);
 
@@ -323,53 +316,9 @@ ALTER TABLE `students`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
---
--- AUTO_INCREMENT for dumped tables
---
 
---
--- AUTO_INCREMENT for table `exams`
---
-ALTER TABLE `exams`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `labs`
---
-ALTER TABLE `labs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `lessons`
---
-ALTER TABLE `lessons`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `notifications`
---
-ALTER TABLE `notifications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `periods`
---
-ALTER TABLE `periods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `students`
---
-ALTER TABLE `students`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
