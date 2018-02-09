@@ -12,6 +12,7 @@ import { EditLessonsComponent } from './exams/lessons/edit-lessons/edit-lessons.
 import { EditResultsComponent } from './exams/results/edit-results/edit-results.component';
 import { EditStudentsComponent } from './exams/results/edit-students/edit-students.component';
 import { EditNotificationsComponent } from './back-notifications/edit-notifications/edit-notifications.component';
+import { EditLabComponent } from './back-lab/edit-lab/edit-lab.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: 'backoffice/labs/:id',
     component: BackLabComponent
+  },
+  {
+    path: 'backoffice/labs/:id/:labId',
+    component: EditLabComponent
   }
 ];
 

@@ -18,6 +18,7 @@ import { EditLessonsComponent } from './exams/lessons/edit-lessons/edit-lessons.
 import { FilePickerModule } from 'angular-file-picker';
 import { EditStudentsComponent } from './exams/results/edit-students/edit-students.component';
 import { EditNotificationsComponent } from './back-notifications/edit-notifications/edit-notifications.component';
+import { EditLabComponent } from './back-lab/edit-lab/edit-lab.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { EditNotificationsComponent } from './back-notifications/edit-notificati
     EditResultsComponent,
     EditLessonsComponent,
     EditStudentsComponent,
-    EditNotificationsComponent
+    EditNotificationsComponent,
+    EditLabComponent
   ],
   exports: [],
 

@@ -2,7 +2,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/backoffice/{{tokenId}}">{{'BACKOFFICE' | translate}}</a></li>
         <li class="breadcrumb-item"><a routerLink="/backoffice/notifications/{{tokenId}}">{{'NOTIFICATIONS' | translate}}</a></li>
-        <li class="breadcrumb-item active">{{notification ? notification.title : "ADD_NOTIFICATION"}}</li>
+        <li class="breadcrumb-item active">{{notification ? notification.title : "ADD_NOTIFICATION" | translate}}</li>
       </ol>
   <h5 class="col-md-12 titleHeader" *ngIf="notificationId != 'new'">{{"EDIT_NOTIFICATION" | translate}} - {{notification ? notification.title : ""}}</h5>
   <h5 class="col-md-12 titleHeader" *ngIf="notificationId == 'new'">{{"CREATE_NOTIFICATION" | translate}}</h5>

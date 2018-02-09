@@ -3,7 +3,7 @@
         <li class="breadcrumb-item"><a routerLink="/backoffice/{{tokenId}}">{{'BACKOFFICE' | translate}}</a></li>
         <li class="breadcrumb-item"><a routerLink="/backoffice/exams/{{tokenId}}">{{'EXAMS' | translate}}</a></li>
         <li class="breadcrumb-item"><a routerLink="/backoffice/exams/results/{{examId}}/{{tokenId}}">{{'EXAM_RESULTS' | translate}}</a></li>
-        <li class="breadcrumb-item active">{{period ? period.name : "ADD_PERIOD"}}</li>
+        <li class="breadcrumb-item active">{{period ? period.name : "ADD_PERIOD" | translate}}</li>
       </ol>
   <h5 class="col-md-12 titleHeader" *ngIf="periodId != 'new'">{{"EDIT_PERIOD" | translate}} {{period ? period.name : ""}}</h5>
   <h5 class="col-md-12 titleHeader" *ngIf="periodId == 'new'">{{"CREATE_PERIOD" | translate}}</h5>
