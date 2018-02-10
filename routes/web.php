@@ -141,6 +141,26 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'labs.getLabs'
     ]);
 
+    Route::get('/labs/{id}', [
+        'uses' => 'LabController@getLabById',
+        'as' => 'labs.getLabById'
+    ]);
+
+    Route::put('/labs/{id}', [
+        'uses' => 'LabController@updateLabById',
+        'as' => 'labs.updateLab'
+    ]);
+
+    Route::post('/labs', [
+        'uses' => 'LabController@createNewLab',
+        'as' => 'labs.createLab'
+    ]);
+
+    Route::delete('/labs/{id}', [
+        'uses' => 'LabController@deleteLabById',
+        'as' => 'labs.deleteLab'
+    ]);
+
     // Lab routes END
     /************************************************************************/
     // Notifications routes START

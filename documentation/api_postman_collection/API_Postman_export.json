@@ -29,7 +29,7 @@
 								"1"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -51,7 +51,7 @@
 								"exams"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -74,7 +74,7 @@
 								"1"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -98,7 +98,7 @@
 								"students_periodId=1"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -122,7 +122,7 @@
 								"periods"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -146,7 +146,7 @@
 								"lessons"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -162,7 +162,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"title\": \"NOVI EXAM\"\n}"
+							"raw": "{\n\"title\": \"NOVI EXA sdM\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/exams",
@@ -176,7 +176,7 @@
 								"exams"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -258,7 +258,7 @@
 								"1"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -281,7 +281,7 @@
 								"1"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -304,7 +304,7 @@
 								"2"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -327,7 +327,7 @@
 								"2"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -358,7 +358,7 @@
 								"2"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -423,7 +423,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"firstName\": \"Alex\",\n\t\"lastName\": \"Nesh\",\n\t\"index\": \"21/2121\",\n\t\"mark\": 10.99,\n\t\"unit\": \"Envoy\"\n\t\n}"
+							"raw": "{\n  \"firstName\": \"Alex\",\n  \"lastName\": \"Nesh\",\n  \"index\": \"21/2121\",\n  \"mark\": 10.99,\n  \"unit\": \"Envoy\"\n  \n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/students/2",
@@ -438,7 +438,7 @@
 								"2"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -454,7 +454,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"firstName\": \"Alex\",\n\t\"lastName\": \"Nesh\",\n\t\"index\": \"21/2121\",\n\t\"mark\": 10.99,\n\t\"unit\": \"Envoy\",\n\t\"exam_id\": 2,\n\t\"period_id\": 2\n}"
+							"raw": "{\n  \"firstName\": \"Alex\",\n  \"lastName\": \"Nesh\",\n  \"index\": \"21/2121\",\n  \"mark\": 10.99,\n  \"unit\": \"Envoy\",\n  \"exam_id\": 2,\n  \"period_id\": 2\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/students",
@@ -468,7 +468,7 @@
 								"students"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -484,7 +484,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"NAME OF PERIOD\"\n}"
+							"raw": "{\n  \"name\": \"NAME OF PERIOD\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/periods/2",
@@ -499,7 +499,7 @@
 								"2"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -515,7 +515,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"NEW PERIOD\",\n\t\"exam_id\": 3\n}"
+							"raw": "{\n  \"name\": \"NEW PERIOD\",\n  \"exam_id\": 3\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/periods",
@@ -529,7 +529,7 @@
 								"periods"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -552,7 +552,7 @@
 								"2"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				}
@@ -580,7 +580,114 @@
 								"labs"
 							]
 						},
-						"description": ""
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "getLabById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/api/labs/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"labs",
+								"2"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "deleteLabById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8000/api/labs/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"labs",
+								"1"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "updateLabById",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"title\": \"RANDOM TITLE\", \"path\": \"ftn.kg.ac.rs\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/labs/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"labs",
+								"2"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "createNewLab",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Alex\",\n  \"lastName\": \"Nesh\",\n  \"index\": \"21/2121\",\n  \"mark\": 10.99,\n  \"unit\": \"Envoy\",\n  \"exam_id\": 2,\n  \"period_id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/labs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"labs"
+							]
+						},
+						"description": null
 					},
 					"response": []
 				}
@@ -608,7 +715,7 @@
 								"notifications"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -631,7 +738,7 @@
 								"1"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -647,7 +754,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"title\": \"RANDOM TITLE\", \n\t\"text\": \"LOREM IPSUMNMSMSMSMS\",\n\t\"time\": 159562354\n}"
+							"raw": "{\n  \"title\": \"RANDOM TITLE\", \n  \"text\": \"LOREM IPSUMNMSMSMSMS\",\n  \"time\": 159562354\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/notifications/2",
@@ -662,7 +769,7 @@
 								"2"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -694,7 +801,7 @@
 								"1"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				}
@@ -722,7 +829,7 @@
 								"authorization"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -744,7 +851,7 @@
 								"credentials"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -760,7 +867,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"token\": 159562354\n}"
+							"raw": "{\n  \"token\": 159562354\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/authorization",
@@ -774,7 +881,7 @@
 								"authorization"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				}
