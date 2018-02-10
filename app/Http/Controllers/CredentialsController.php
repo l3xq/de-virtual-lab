@@ -9,8 +9,14 @@ class CredentialsController extends Controller
 {
     public function getCredentials(Request $request)
     {
-        $getCredentials = Credentials::all()->toArray();
+        try {
+            $getCredentials = Credentials::all()->toArray();
 
-        return response()->json(['status' => 200, 'data' => $getCredentials]);
+            return response()->json(['status' => 200, 'data' => $getCredentials]);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 }

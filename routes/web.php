@@ -99,7 +99,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::put('/lessons/{id}', [
         'uses' => 'ExamController@updateLessonById',
-        'as' => 'exams.updateLesson'
+        'as' => 'exams.updateLessonById'
     ]);
 
     Route::post('/lessons', [

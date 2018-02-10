@@ -9,19 +9,31 @@ class AuthorizationController extends Controller
 {
     public function getToken(Request $request)
     {
-        $getToken = Authorization::all()->toArray();
+        try {
+            $getToken = Authorization::all()->toArray();
 
-        return response()->json(['status' => 200, 'data' => $getToken]);
+            return response()->json(['status' => 200, 'data' => $getToken]);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
     public function updateToken(Request $request)
     {
-        $authorization = Authorization::all()->first();
+        try {
+            $authorization = Authorization::all()->first();
 
-        $authorization->token_id = $request['token'];
+            $authorization->token_id = $request['token'];
 
-        $authorization->save();
+            $authorization->save();
 
-        return response()->json(['status' => 200, 'data' => 'TOKEN has been updated.']);
+            return response()->json(['status' => 200, 'data' => 'TOKEN has been updated.']);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 }

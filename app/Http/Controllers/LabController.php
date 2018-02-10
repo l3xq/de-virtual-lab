@@ -9,47 +9,77 @@ class LabController extends Controller
 {
     public function getLabs(Request $request)
     {
-        $getLabs = Lab::all()->toArray();
+        try {
+            $getLabs = Lab::all()->toArray();
 
-        return response()->json(['status' => 200, 'data' => $getLabs]);
+            return response()->json(['status' => 200, 'data' => $getLabs]);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
     public function getLabById(Request $request, $id)
     {
-        $labById = Lab::where('id', $id)->get()->toArray();
+        try {
+            $labById = Lab::where('id', $id)->get()->toArray();
 
-        return response()->json(['status' => 200, 'data' => $labById]);
+            return response()->json(['status' => 200, 'data' => $labById]);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
 
     public function updateLabById(Request $request, $id)
     {
-        $lab = Lab::find($id);
+        try {
+            $lab = Lab::find($id);
 
-        $lab->title = $request['title'];
-        $lab->link = $request['link'];
+            $lab->title = $request['title'];
+            $lab->link = $request['link'];
 
-        $lab->save();
+            $lab->save();
 
-        return response()->json(['status' => 200, 'data' => 'Lab has been updated.']);
+            return response()->json(['status' => 200, 'data' => 'Lab has been updated.']);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
     public function createNewLab(Request $request)
     {
-        $lab = new Lab();
+        try {
+            $lab = new Lab();
 
-        $lab->title = $request['title'];
-        $lab->link = $request['link'];
+            $lab->title = $request['title'];
+            $lab->link = $request['link'];
 
-        $lab->save();
+            $lab->save();
 
-        return response()->json(['status' => 200, 'data' => 'New Lab has been created.']);
+            return response()->json(['status' => 200, 'data' => 'New Lab has been created.']);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
     public function deleteLabById(Request $request, $id)
     {
-        $deleteLabById = Lab::where('id', $id)->delete();
+        try {
+            $deleteLabById = Lab::where('id', $id)->delete();
 
-        return response()->json(['status' => 200, 'data' => 'Lab by ID[' . $id . '] has been deleted!']);
+            return response()->json(['status' => 200, 'data' => 'Lab by ID[' . $id . '] has been deleted!']);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 }
