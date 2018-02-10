@@ -8,14 +8,21 @@ use App\Period;
 use App\Student;
 use App\Lesson;
 use Illuminate\Http\Response as Response;
+use Illuminate\Support\Facades\Log;
 
 class ExamController extends Controller
 {
     public function getExams(Request $request)
     {
-        $exams = Exam::all()->toArray();
+        try {
+            $exams = Exam::all()->toArray();
 
-        return response()->json(['status' => 200, 'data' => $exams]);
+            return response()->json(['status' => 200, 'data' => $exams]);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error( $e->getMessage() );
+            return false;
+        }
     }
 
     public function getExamById(Request $request, $id)
