@@ -14,7 +14,9 @@ _(Work in progress)_
 TODOs:
 
 
-+ Add exception handling ASAP
++ ~~Add exception handling ASAP~~
 + Add better auth
-+ Refactor stat-dnm calls
-+ Test DB Schema
++ ~~Refactor stat-dnm calls~~
++ ~~Test DB Schema~~
++ ~~Add file uploads~~
++ ~~Add validators~~
