@@ -17,3 +17,4 @@ TODOs:
 + Add exception handling ASAP
 + Add better auth
 + Refactor stat-dnm calls
++ Test DB Schema
