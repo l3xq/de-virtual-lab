@@ -61,15 +61,10 @@ export class EditLabComponent implements OnInit {
   }
 
   getLab() {
-    // this.labsService.getLabById(this.labId).subscribe(lab => {
-    //   this.lab = lab.data[0];
-      this.lab = { // fake data
-        id: 1,
-        title: 'Lab title',
-        link: 'http://google.com'
-      };
+    this.labsService.getLabById(this.labId).subscribe(lab => {
+      this.lab = lab.data[0];
       this.form.patchValue(this.lab);
-    // });
+    });
   }
 
   submit() {

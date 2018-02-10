@@ -9,7 +9,8 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  title = 'app';
+  title = 'APP_NAME';
+  imgSource = '../../assets/img/digilogo.png';
 
   ngOnInit() {
   }

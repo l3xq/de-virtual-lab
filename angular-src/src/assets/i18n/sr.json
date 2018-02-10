@@ -1,5 +1,9 @@
 {
-    "APP_NAME": "Digitalna Laboratorija",
+    "WELCOME": "Dobrodošli u ",
+    "APP_NAME": "Digitalnu Laboratoriju",
+    "FACULTY_NAME": "Fakultet tehničkih nauka Čačak",
+    "HEAD_DIGITAL": "Digitalna",
+    "HEAD_LAB": "oratorija",
     "EXAMS_TITLE": "Lista predmeta",
     "EXAMS": "Predmeti",
     "NO_EXAMS_MESSAGE": "Nema predmeta.",
@@ -71,5 +75,6 @@
     "MANAGE_LABS": "Izmeni laboratorije",
     "EDIT_LAB": "Izmeni laboratoriju",
     "CREATE_LAB": "Kreiraj laboratoriju",
-    "ADD_PERIOD": "Dodaj ispitni rok"
+    "ADD_PERIOD": "Dodaj ispitni rok",
+    "NO_STUDENTS": "Nema rezultata za ovaj ispitni rok."
 }

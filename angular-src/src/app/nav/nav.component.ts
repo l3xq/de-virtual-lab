@@ -10,6 +10,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 export class NavComponent implements OnInit {
 
   private lang: string;
+  private logoSrc = '../../assets/img/logo.png';
 
   constructor(private translate: TranslateService, private storage: LocalStorageService) { }
 
