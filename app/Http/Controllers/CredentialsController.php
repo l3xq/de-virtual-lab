@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Credentials;
 use Illuminate\Http\Request;
+use Exception;
+
 
 class CredentialsController extends Controller
 {

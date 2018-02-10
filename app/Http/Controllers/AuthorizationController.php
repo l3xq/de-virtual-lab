@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Authorization;
 use Illuminate\Http\Request;
+use Exception;
+
 
 class AuthorizationController extends Controller
 {

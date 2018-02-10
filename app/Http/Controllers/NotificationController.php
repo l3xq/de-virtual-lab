@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as Response;
 use App\Notification;
+use Exception;
+
 
 class NotificationController extends Controller
 {
