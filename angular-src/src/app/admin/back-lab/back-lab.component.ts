@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LabService } from '../../labs/shared/lab.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AdminService } from '../../admin/shared/admin.service';
 
 @Component({
   selector: 'app-back-lab',
@@ -7,9 +10,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackLabComponent implements OnInit {
 
-  constructor() { }
+  labs: any[];
+  selectedItem: any;
+  today: number = Date.now();
+
+  tokenId: any;
+  labId: any;
+  showContent: boolean;
+
+  constructor(private labsService: LabService,
+    private adminService: AdminService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
+
+    this.activatedRoute.params.subscribe(params => {
+
+      this.tokenId = Number(params['id']);
+      this.labId = params['labId'];
+
+      this.adminService.getToken().subscribe(authObject => {
+        // tslint:disable-next-line:triple-equals
+        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
+          this.router.navigate(['/admins/']);
+        } else {
+          this.showContent = true;
+        }
+      });
+      this.fetchLabs();
+    });
+  }
 
   ngOnInit() {
   }
 
+  fetchLabs() {
+    this.labsService.getLabs().subscribe((labs: any) => {
+      this.labs = labs.data;
+    });
+  }
+
+  navigateToEditLab(labId) {
+    if (labId) {
+      this.router.navigate(['backoffice/labs/', this.tokenId, labId]);
+    } else {
+      this.router.navigate(['backoffice/labs/', this.tokenId, 'new']);
+    }
+  }
+
+  deleteLab(labId: string) {
+      this.showContent = false;
+      setTimeout(() => {
+        this.labsService.deleteLabById(labId).subscribe(data => {
+          this.fetchLabs();
+          this.showContent = true;
+        });
+      }, 1000);
+  }
 }
