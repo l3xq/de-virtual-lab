@@ -17,8 +17,10 @@
       <div class="form-group row">
         <label class="col-md-2 control-label" for="textInput-markup">{{"FILE" | translate}}</label>
         <div class="col-md-10">
-          <label for="upload" style="width: 100%;">
-            <input type="file" id="upload" formControlName="path" class="btn btn-outline-success" style="width: 100%;">
+          <span *ngIf="lesson && lesson.file !== ''" (click)="download()" style="cursor: pointer;" title="{{ 'DOWNLOAD_FILE' | translate }}"><i class="fa fa-file"></i> {{lesson.name}}</span>
+          <label class="btn btn-sm btn-link text-muted" for="fileUrl">
+            {{( lesson && lesson.file === '' ? 'ADD_FILE' : 'CHANGE_FILE') | translate}}
+            <input type="file" id="fileUrl" name="fileUrl" (change)="uploadFile($event)" hidden>
           </label>
         </div>
       </div>
@@ -27,8 +29,8 @@
   <div class="form-group row">
     <div class="col-md-2"></div>
     <div class="col-md-10">
-      <button type="submit" (click)="submit()" class="btn btn-outline-warning" *ngIf="lessonId != 'new'">{{'UPDATE' | translate}}</button>
-      <button type="submit" (click)="submit()" class="btn btn-outline-success" *ngIf="lessonId == 'new'">{{'CREATE' | translate}}</button>
+      <button type="submit" (click)="submit()" class="btn btn-outline-warning" *ngIf="lessonId != 'new'" [disabled]="lesson && lesson.file === ''">{{'UPDATE' | translate}}</button>
+      <button type="submit" (click)="submit()" class="btn btn-outline-success" *ngIf="lessonId == 'new'" [disabled]="lesson && lesson.file === ''">{{'CREATE' | translate}}</button>
     </div>
   </div>
 </div>

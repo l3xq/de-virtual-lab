@@ -76,6 +76,9 @@
     "EDIT_LAB": "Edit lab",
     "CREATE_LAB": "Create lab",
     "ADD_PERIOD": "Add period",
-    "NO_STUDENTS": "No results for this examation period."
+    "NO_STUDENTS": "No results for this examation period.",
+    "ADD_FILE": "Add file",
+    "CHANGE_FILE": "Change file",
+    "DOWNLOAD_FILE": "Download file"
 
 }

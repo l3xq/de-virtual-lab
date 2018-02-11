@@ -64,7 +64,7 @@ export class ExamService {
   }
 
   updateLessonById(lessonId: string, object: any) {
-    return this.http.put(this.baseUrl + '/lessons/' + lessonId, { title: object.title, path: object.path }).map((res: any) => res);
+    return this.http.put(this.baseUrl + '/lessons/' + lessonId, object).map((res: any) => res);
   }
 
   createNewLesson(lesson: any) {

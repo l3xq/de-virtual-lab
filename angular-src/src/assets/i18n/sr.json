@@ -76,5 +76,8 @@
     "EDIT_LAB": "Izmeni laboratoriju",
     "CREATE_LAB": "Kreiraj laboratoriju",
     "ADD_PERIOD": "Dodaj ispitni rok",
-    "NO_STUDENTS": "Nema rezultata za ovaj ispitni rok."
+    "NO_STUDENTS": "Nema rezultata za ovaj ispitni rok.",
+    "ADD_FILE": "Dodaj datoteku",
+    "CHANGE_FILE": "Izmeni datoteku",
+    "DOWNLOAD_FILE": "Preuzmi datoteku"
 }

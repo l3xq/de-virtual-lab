@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Exam } from '../shared/exam.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from '../shared/exam.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-exam-lessons',
@@ -26,6 +27,17 @@ export class ExamLessonsComponent implements OnInit {
     this.examService.getExamById(this.id).subscribe(exam => {
       this.exam = exam.data[0];
     });
+  }
+
+  download(lesson: any) {
+    const byteCharacters = atob(lesson.file);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const file = new Blob([byteArray], { type: lesson.mime });
+    saveAs(file, lesson.name);
   }
 
   ngOnInit() {
