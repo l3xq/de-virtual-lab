@@ -6,7 +6,6 @@ use App\Credentials;
 use Illuminate\Http\Request;
 use Exception;
 
-
 class CredentialsController extends Controller
 {
     public function getCredentials(Request $request)

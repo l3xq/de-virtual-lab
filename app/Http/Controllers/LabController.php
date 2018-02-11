@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Lab;
 use Exception;
 
-
 class LabController extends Controller
 {
     public function getLabs(Request $request)
@@ -75,7 +74,9 @@ class LabController extends Controller
     public function deleteLabById(Request $request, $id)
     {
         try {
-            $deleteLabById = Lab::where('id', $id)->delete();
+            $lab = Lab::find('id');
+
+            $lab->delete();
 
             return response()->json(['status' => 200, 'data' => 'Lab by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {

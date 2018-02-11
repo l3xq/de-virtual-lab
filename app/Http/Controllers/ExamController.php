@@ -89,9 +89,8 @@ class ExamController extends Controller
     {
         try {
             $exam = Exam::find($id);
-            $exam->delete();
 
-            //$deleteExamById = Exam::where('id', $id)->delete();
+            $exam->delete();
 
             return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
@@ -138,8 +137,8 @@ class ExamController extends Controller
     public function deleteLessonsByExamAndId(Request $request, $id)
     {
         try {
-            //$deleteLessonById = Lesson::where('id', $id)->delete();
             $lesson = Lesson::find($id);
+
             $lesson->delete();
 
             return response()->json(['status' => 200, 'data' => 'Lesson with ID[' . $id . '] has been deleted!']);
@@ -153,7 +152,9 @@ class ExamController extends Controller
     public function deletePeriodById(Request $request, $id)
     {
         try {
-            $deleteLessonById = Period::where('id', $id)->delete();
+            $period = Period::find($id);
+
+            $period->delete();
 
             return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
@@ -328,7 +329,9 @@ class ExamController extends Controller
     public function deleteStudentById(Request $request, $id)
     {
         try {
-            $deleteStudentById = Student::where('id', $id)->delete();
+            $student = Student::find($id);
+
+            $student->delete();
 
             return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {

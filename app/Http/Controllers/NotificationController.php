@@ -7,7 +7,6 @@ use Illuminate\Http\Response as Response;
 use App\Notification;
 use Exception;
 
-
 class NotificationController extends Controller
 {
     public function getNotifications(Request $request)
@@ -77,7 +76,9 @@ class NotificationController extends Controller
     public function deleteNotificationById(Request $request, $id)
     {
         try {
-            $deleteNotification = Notification::where('id', $id)->delete();
+            $notification = Notification::find($id);
+
+            $notification->delete();
 
             return response()->json(['status' => 200, 'data' => 'Notification by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
