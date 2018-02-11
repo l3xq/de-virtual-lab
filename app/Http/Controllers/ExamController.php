@@ -200,7 +200,7 @@ class ExamController extends Controller
     public function updateLessonById(Request $request, $id)
     {
         try {
-            $rules = array(
+            /*$rules = array(
                 'file' => 'required|mimes:doc,docx,pdf',
             );
 
@@ -232,7 +232,18 @@ class ExamController extends Controller
                 $lesson->file = 'UPDATE_ASAP';
 
                 $lesson->save();
-            }
+            }*/
+
+            $lesson = Lesson::find($id);
+
+            $lesson->title = $request['title'];
+            $lesson->exam_id = $request['exam_id'];
+            $lesson->name = $request['name'];
+            $lesson->file = $request['file'];
+            $lesson->mime = $request['mime'];
+            $lesson->size = $request['size'];
+
+            $lesson->save();
 
             return response()->json(['status' => 200, 'data' => 'Lesson has been updated.']);
         } catch (Exception $e) {
@@ -245,7 +256,7 @@ class ExamController extends Controller
     public function createNewLesson(Request $request)
     {
         try {
-            $rules = array(
+            /*$rules = array(
                 'file' => 'required|mimes:doc,docx,pdf',
             );
 
@@ -277,7 +288,18 @@ class ExamController extends Controller
                 $lesson->file = 'UPDATE_ASAP';
 
                 $lesson->save();
-            }
+            }*/
+
+            $lesson = new Lesson;
+
+            $lesson->title = $request['title'];
+            $lesson->exam_id = $request['exam_id'];
+            $lesson->name = $request['name'];
+            $lesson->file = $request['file'];
+            $lesson->mime = $request['mime'];
+            $lesson->size = $request['size'];
+
+            $lesson->save();
 
             return response()->json(['status' => 200, 'data' => 'Lesson has been created.']);
         } catch (Exception $e) {
