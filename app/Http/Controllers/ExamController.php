@@ -88,7 +88,10 @@ class ExamController extends Controller
     public function deleteExamById(Request $request, $id)
     {
         try {
-            $deleteExamById = Exam::where('id', $id)->delete();
+            $exam = Exam::find($id);
+            $exam->delete();
+
+            //$deleteExamById = Exam::where('id', $id)->delete();
 
             return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
@@ -135,7 +138,9 @@ class ExamController extends Controller
     public function deleteLessonsByExamAndId(Request $request, $id)
     {
         try {
-            $deleteLessonById = Lesson::where('id', $id)->delete();
+            //$deleteLessonById = Lesson::where('id', $id)->delete();
+            $lesson = Lesson::find($id);
+            $lesson->delete();
 
             return response()->json(['status' => 200, 'data' => 'Lesson with ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
@@ -200,40 +205,6 @@ class ExamController extends Controller
     public function updateLessonById(Request $request, $id)
     {
         try {
-            /*$rules = array(
-                'file' => 'required|mimes:doc,docx,pdf',
-            );
-
-            $validator = Validator::make(Input::all(), $rules);
-
-            $validatorToJSON = json_encode($validator);
-
-            if ($validator->fails()) {
-                return response()->json(['status' => 200, 'data' => 'Lesson update failed!', 'error' => $validatorToJSON]);
-            }
-
-            if (Input::hasFile('file')) {
-                $f = Input::file('file');
-                $lesson = Lesson::find($id);
-
-                $lesson->title = $request['title'];
-                $lesson->exam_id = $request['exam_id'];
-                $lesson->name = $f->getClientOriginalName();
-                $lesson->file = base64_encode(file_get_contents($f->getRealPath()));
-                $lesson->mime = $f->getMimeType();
-                $lesson->size = $f->getSize();
-
-                $lesson->save();
-            } else {
-                $lesson = Lesson::find($id);
-
-                $lesson->title = $request['title'];
-                $lesson->exam_id = $request['exam_id'];
-                $lesson->file = 'UPDATE_ASAP';
-
-                $lesson->save();
-            }*/
-
             $lesson = Lesson::find($id);
 
             $lesson->title = $request['title'];
@@ -256,40 +227,6 @@ class ExamController extends Controller
     public function createNewLesson(Request $request)
     {
         try {
-            /*$rules = array(
-                'file' => 'required|mimes:doc,docx,pdf',
-            );
-
-            $validator = Validator::make(Input::all(), $rules);
-
-            $validatorToJSON = json_encode($validator);
-
-            if ($validator->fails()) {
-                return response()->json(['status' => 200, 'data' => 'Lesson creation failed!', 'error' => $validatorToJSON]);
-            }
-
-            if (Input::hasFile('file')) {
-                $f = Input::file('file');
-                $lesson = new Lesson;
-
-                $lesson->title = $request['title'];
-                $lesson->exam_id = $request['exam_id'];
-                $lesson->name = $f->getClientOriginalName();
-                $lesson->file = base64_encode(file_get_contents($f->getRealPath()));
-                $lesson->mime = $f->getMimeType();
-                $lesson->size = $f->getSize();
-
-                $lesson->save();
-            } else {
-                $lesson = new Lesson;
-
-                $lesson->title = $request['title'];
-                $lesson->exam_id = $request['exam_id'];
-                $lesson->file = 'UPDATE_ASAP';
-
-                $lesson->save();
-            }*/
-
             $lesson = new Lesson;
 
             $lesson->title = $request['title'];

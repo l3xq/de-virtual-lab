@@ -15,8 +15,9 @@ TODOs:
 
 
 + ~~Add exception handling ASAP~~
-+ Add better auth
++ ~~Add better auth (questionable...)~~
 + ~~Refactor stat-dnm calls~~
 + ~~Test DB Schema~~
 + ~~Add file uploads~~
 + ~~Add validators~~
++ ~~Remove unused loaders & classes~~
