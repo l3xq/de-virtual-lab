@@ -197,7 +197,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/authorization', [
         'uses' => 'AuthorizationController@updateToken',
         'as' => 'auth.updateToken'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::get('/authorization', [
         'uses' => 'AuthorizationController@getToken',
