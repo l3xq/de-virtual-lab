@@ -210,4 +210,7 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     // Credentials & Authorization routes END
+
+    Route::resource('authenticate', 'AuthenticateController', ['only' => ['exams']]);
+    Route::post('authenticate', 'AuthenticateController@authenticate');
 });
