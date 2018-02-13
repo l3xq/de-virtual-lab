@@ -13,12 +13,6 @@ use App\Exam;
 |
 */
 
-/*Route::get('/', [
-    //return view('welcome');
-    'uses' => 'StudentController@getAllStudents',
-        'as' => 'students.all'
-]);*/
-
 Route::group(['prefix' => 'api'], function () {
     Route::get('/', [
         'uses' => 'StudentController@show',
@@ -60,27 +54,27 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/exams/{id}', [
         'uses' => 'ExamController@deleteExamById',
         'as' => 'exams.deleteExamById'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::post('/exams', [
         'uses' => 'ExamController@createNewExam',
         'as' => 'exams.createNewExam'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::put('/exams/{id}', [
         'uses' => 'ExamController@updateExamById',
         'as' => 'exams.updateExamById'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::delete('/lessons/{id}', [
         'uses' => 'ExamController@deleteLessonsByExamAndId',
         'as' => 'exams.deleteLessons'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::delete('/periods/{id}', [
         'uses' => 'ExamController@deletePeriodById',
         'as' => 'exams.deletePeriod'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::get('/lessons/{id}', [
         'uses' => 'ExamController@getLessonById',
@@ -100,37 +94,37 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/lessons/{id}', [
         'uses' => 'ExamController@updateLessonById',
         'as' => 'exams.updateLessonById'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::post('/lessons', [
         'uses' => 'ExamController@createNewLesson',
         'as' => 'exams.createNewLesson'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::put('/students/{id}', [
         'uses' => 'ExamController@updateStudentById',
         'as' => 'exams.updateStudent'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::post('/students', [
         'uses' => 'ExamController@createNewStudent',
         'as' => 'exams.createNewStudent'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::put('/periods/{id}', [
         'uses' => 'ExamController@updatePeriodById',
         'as' => 'exams.updatePeriod'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::post('/periods', [
         'uses' => 'ExamController@createNewPeriod',
         'as' => 'exams.createNewPeriod'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::delete('/students/{id}', [
         'uses' => 'ExamController@deleteStudentById',
         'as' => 'exams.deleteStudentById'
-    ]);
+    ])->middleware('jwt.auth');
 
     // Exam routes END
     /************************************************************************/
@@ -149,17 +143,17 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/labs/{id}', [
         'uses' => 'LabController@updateLabById',
         'as' => 'labs.updateLab'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::post('/labs', [
         'uses' => 'LabController@createNewLab',
         'as' => 'labs.createLab'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::delete('/labs/{id}', [
         'uses' => 'LabController@deleteLabById',
         'as' => 'labs.deleteLab'
-    ]);
+    ])->middleware('jwt.auth');
 
     // Lab routes END
     /************************************************************************/
@@ -178,17 +172,17 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/notifications/{id}', [
         'uses' => 'NotificationController@updateNotificationById',
         'as' => 'notifications.updateNotification'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::post('/notifications', [
         'uses' => 'NotificationController@createNewNotification',
         'as' => 'notifications.createNotification'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::delete('/notifications/{id}', [
         'uses' => 'NotificationController@deleteNotificationById',
         'as' => 'notifications.deleteNotification'
-    ]);
+    ])->middleware('jwt.auth');
 
     // Notifications routes END
     /************************************************************************/
@@ -197,17 +191,20 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/authorization', [
         'uses' => 'AuthorizationController@updateToken',
         'as' => 'auth.updateToken'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::get('/authorization', [
         'uses' => 'AuthorizationController@getToken',
         'as' => 'auth.getToken'
-    ]);
+    ])->middleware('jwt.auth');
 
     Route::get('/credentials', [
         'uses' => 'CredentialsController@getCredentials',
         'as' => 'auth.getCredentials'
-    ]);
+    ])->middleware('jwt.auth');
 
     // Credentials & Authorization routes END
+
+    Route::resource('authenticate', 'AuthenticateController');
+    Route::post('authenticate', 'AuthenticateController@authenticate');
 });

@@ -1,21 +1,27 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        $this->call(ExamsTableSeeder::class);
-        $this->call(LabsTableSeeder::class);
-        $this->call(LessonsTableSeeder::class);
-        $this->call(NotificationsTableSeeder::class);
-        $this->call(PeriodsTableSeeder::class);
-        $this->call(StudentsTableSeeder::class);
+        Model::unguard();
+
+        DB::table('users')->delete();
+
+        $users = array(
+            ['name' => 'Gosn Admin', 'email' => 'admin@thyself.com', 'password' => Hash::make('secret')],
+        );
+
+        foreach ($users as $user)
+        {
+            User::create($user);
+        }
+
+        Model::reguard();
     }
 }
