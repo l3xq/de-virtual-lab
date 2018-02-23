@@ -13,28 +13,17 @@ const VARIABLE = 11;
 })
 export class BackofficeComponent implements OnInit {
 
-  tokenId: any;
   showContent = false;
 
   constructor(private adminService: AdminService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
-      this.tokenId = Number(params['id']);
-      this.adminService.getToken().subscribe(authObject => {
-        // tslint:disable-next-line:triple-equals
-        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']);
-        } else {
-          this.showContent = true;
-        }
-      });
+      this.showContent = true;
     });
   }
 
   logout() {
-   const appId = Math.floor(Math.random() * (MAX_VALUE - MIN_VALUE + VARIABLE)) + MIN_VALUE;
-    this.adminService.updateToken(appId).subscribe(data => {
-      this.router.navigate(['/admins/']);
-    });
+    localStorage.removeItem('access_token');
+    this.router.navigate(['/admins']);
   }
 
   ngOnInit() {

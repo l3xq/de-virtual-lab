@@ -10,7 +10,6 @@ import { AdminService } from '../../shared/admin.service';
 })
 export class LessonsComponent implements OnInit {
 
-  tokenId: number;
   examId: string;
   showContent: boolean;
   exam: any;
@@ -22,17 +21,9 @@ export class LessonsComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
 
-      this.tokenId = Number(params['id']);
       this.examId = params['examId'];
 
-      this.adminService.getToken().subscribe(authObject => {
-        // tslint:disable-next-line:triple-equals
-        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']);
-        } else {
-          this.showContent = true;
-        }
-      });
+      this.showContent = true;
       this.fetchLessons();
       this.fetchExam();
     });
@@ -52,9 +43,9 @@ export class LessonsComponent implements OnInit {
 
   navigateToEditLesson(itemId: string) {
     if (itemId) {
-      this.router.navigate(['backoffice/exams/lessons/', this.examId, this.tokenId, itemId]);
+      this.router.navigate(['backoffice-exams-lessons/', this.examId, itemId]);
     } else {
-      this.router.navigate(['backoffice/exams/lessons/', this.examId, this.tokenId, 'new']);
+      this.router.navigate(['backoffice-exams-lessons/', this.examId, 'new']);
     }
   }
 

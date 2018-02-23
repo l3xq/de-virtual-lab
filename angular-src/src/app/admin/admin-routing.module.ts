@@ -13,6 +13,7 @@ import { EditResultsComponent } from './exams/results/edit-results/edit-results.
 import { EditStudentsComponent } from './exams/results/edit-students/edit-students.component';
 import { EditNotificationsComponent } from './back-notifications/edit-notifications/edit-notifications.component';
 import { EditLabComponent } from './back-lab/edit-lab/edit-lab.component';
+import { AuthGuard } from '../core/auth.guard';
 
 const routes: Routes = [
   {
@@ -21,55 +22,63 @@ const routes: Routes = [
   },
   {
     path: 'backoffice',
-    component: AdminComponent
+    component: BackofficeComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/:id',
-    component: BackofficeComponent
+    path: 'backoffice-exams',
+    component: ExamsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/exams/:id',
-    component: ExamsComponent
+    path: 'backoffice-exams/:examId',
+    component: EditComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/exams/:examId/:id',
-    component: EditComponent
+    path: 'backoffice-exams-lessons/:examId',
+    component: LessonsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/exams/lessons/:examId/:id',
-    component: LessonsComponent
+    path: 'backoffice-exams-results/:examId',
+    component: ResultsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/exams/results/:examId/:id',
-    component: ResultsComponent
+    path: 'backoffice-exams-lessons/:examId/:lessonId',
+    component: EditLessonsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/exams/lessons/:examId/:id/:lessonId',
-    component: EditLessonsComponent
+    path: 'backoffice-exams-periods/:examId/:periodId',
+    component: EditResultsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/exams/periods/:examId/:id/:periodId',
-    component: EditResultsComponent
+    path: 'backoffice-exams-periods-students/:examId/:periodId/:studentId',
+    component: EditStudentsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/exams/periods/students/:examId/:id/:periodId/:studentId',
-    component: EditStudentsComponent
+    path: 'backoffice-notifications',
+    component: BackNotificationsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/notifications/:id',
-    component: BackNotificationsComponent
+    path: 'backoffice-notifications/:notificationId',
+    component: EditNotificationsComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/notifications/:id/:notificationId',
-    component: EditNotificationsComponent
+    path: 'backoffice-labs',
+    component: BackLabComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'backoffice/labs/:id',
-    component: BackLabComponent
-  },
-  {
-    path: 'backoffice/labs/:id/:labId',
-    component: EditLabComponent
+    path: 'backoffice-labs/:labId',
+    component: EditLabComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

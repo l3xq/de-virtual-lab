@@ -14,7 +14,6 @@ export class ResultsComponent implements OnInit {
   periods: any[];
   students: any[];
   exam: any;
-  tokenId: number;
   showContent: boolean;
 
   constructor(private examService: ExamService,
@@ -23,17 +22,9 @@ export class ResultsComponent implements OnInit {
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
 
-      this.tokenId = Number(params['id']);
       this.examId = params['examId'];
 
-      this.adminService.getToken().subscribe(authObject => {
-        // tslint:disable-next-line:triple-equals
-        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']);
-        } else {
-          this.showContent = true;
-        }
-      });
+      this.showContent = true;
       this.fetchPeriods();
       this.fetchExam();
     });
@@ -66,14 +57,14 @@ export class ResultsComponent implements OnInit {
 
   navigateToEditPeriod(itemId: string) {
     if (itemId) {
-      this.router.navigate(['backoffice/exams/periods/', this.examId, this.tokenId, itemId]);
+      this.router.navigate(['backoffice-exams-periods/', this.examId, itemId]);
     } else {
-      this.router.navigate(['backoffice/exams/periods/', this.examId, this.tokenId, 'new']);
+      this.router.navigate(['backoffice-exams-periods/', this.examId, 'new']);
     }
   }
 
   navigateToEditStudent(periodId, studentId) {
-    this.router.navigate(['backoffice/exams/periods/students/', this.examId, this.tokenId, periodId, studentId]);
+    this.router.navigate(['backoffice-exams-periods-students/', this.examId, periodId, studentId]);
   }
 
   deletePeriod(periodId: string) {

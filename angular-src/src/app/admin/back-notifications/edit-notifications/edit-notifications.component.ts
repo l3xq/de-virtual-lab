@@ -25,7 +25,6 @@ export class EditNotificationsComponent implements OnInit {
 
   @Output() onSubmit = new EventEmitter<any>();
 
-  tokenId: number;
   notificationId: string;
   showContent: boolean;
   notification: any;
@@ -42,17 +41,9 @@ export class EditNotificationsComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
 
-      this.tokenId = Number(params['id']);
       this.notificationId = params['notificationId'];
 
-      this.adminService.getToken().subscribe(authObject => {
-        // tslint:disable-next-line:triple-equals
-        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']);
-        } else {
-          this.showContent = true;
-        }
-      });
+      this.showContent = true;
     });
   }
 
@@ -80,7 +71,7 @@ export class EditNotificationsComponent implements OnInit {
     }
     setTimeout(() => {
       this.showContent = false;
-      this.router.navigate(['backoffice/notifications/', this.tokenId]);
+      this.router.navigate(['/backoffice-notifications']);
     }, 1000);
     this.showContent = false;
   }

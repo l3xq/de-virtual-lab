@@ -11,24 +11,13 @@ import { AdminService } from '../shared/admin.service';
 export class ExamsComponent implements OnInit {
 
   exams: any[];
-  tokenId: number;
   showContent = true;
 
   constructor(private examService: ExamService,
     private adminService: AdminService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.params.subscribe(params => {
-      this.tokenId = Number(params['id']);
-      this.adminService.getToken().subscribe(authObject => {
-        // tslint:disable-next-line:triple-equals
-        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']);
-        } else {
-          this.showContent = true;
-        }
-      });
-    });
+      this.showContent = true;
   }
 
   ngOnInit() {
@@ -54,23 +43,23 @@ export class ExamsComponent implements OnInit {
 
   navigateToEdit(itemId: string) {
     if (itemId) {
-      this.router.navigate(['backoffice/exams/', itemId, this.tokenId]);
+      this.router.navigate(['backoffice-exams/', itemId]);
     } else {
-      this.router.navigate(['backoffice/exams/', 'new', this.tokenId]);
+      this.router.navigate(['backoffice-exams/', 'new']);
     }
   }
 
   navigateToBackoffice() {
-      this.router.navigate(['backoffice/', this.tokenId]);
+      this.router.navigate(['backoffice/']);
   }
   navigateToEditLessons(itemId: string) {
     if (itemId) {
-      this.router.navigate(['backoffice/exams/lessons/', itemId, this.tokenId]);
+      this.router.navigate(['backoffice-exams-lessons/', itemId]);
     }
   }
   navigateToEditResults(itemId: string) {
     if (itemId) {
-      this.router.navigate(['backoffice/exams/results/', itemId, this.tokenId]);
+      this.router.navigate(['backoffice-exams-results/', itemId]);
     }
   }
 

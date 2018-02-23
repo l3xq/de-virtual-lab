@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ngx-webstorage';
+import { AuthGuard } from './auth.guard';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,7 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     exports: [TranslateModule, ModalModule],
     declarations: [],
-    providers: [ConfigService]
+    providers: [ConfigService, AuthGuard]
 })
 export class CoreModule {
     constructor( @Optional() @SkipSelf() parentModule: CoreModule) {

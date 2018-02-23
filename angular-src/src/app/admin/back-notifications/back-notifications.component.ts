@@ -14,7 +14,6 @@ export class BackNotificationsComponent implements OnInit {
   selectedItem: any;
   today: number = Date.now();
 
-  tokenId: any;
   notificationId: any;
   showContent: boolean;
 
@@ -25,17 +24,9 @@ export class BackNotificationsComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
 
-      this.tokenId = Number(params['id']);
       this.notificationId = params['notificationId'];
 
-      this.adminService.getToken().subscribe(authObject => {
-        // tslint:disable-next-line:triple-equals
-        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']);
-        } else {
-          this.showContent = true;
-        }
-      });
+      this.showContent = true;
       this.fetchNotifications();
     });
   }
@@ -58,11 +49,11 @@ export class BackNotificationsComponent implements OnInit {
   }
 
   addNotification() {
-    this.router.navigate(['backoffice/notifications/', this.tokenId, 'new']);
+    this.router.navigate(['backoffice-notifications/', 'new']);
   }
 
   editNotification(notificationId) {
-    this.router.navigate(['backoffice/notifications/', this.tokenId, notificationId]);
+    this.router.navigate(['backoffice-notifications/', notificationId]);
   }
 
   deleteNotification(notificationId: string) {

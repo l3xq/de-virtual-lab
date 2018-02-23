@@ -12,7 +12,6 @@ import { AdminService } from '../../../shared/admin.service';
 export class EditResultsComponent implements OnInit {
 
   @Output() onSubmit = new EventEmitter<any>();
-  tokenId: number;
   examId: string;
   periodId: string;
   showContent: boolean;
@@ -32,18 +31,10 @@ export class EditResultsComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
 
-      this.tokenId = Number(params['id']);
       this.examId = params['examId'];
       this.periodId = params['periodId'];
 
-      this.adminService.getToken().subscribe(authObject => {
-        // tslint:disable-next-line:triple-equals
-        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']);
-        } else {
-          this.showContent = true;
-        }
-      });
+      this.showContent = true;
     });
   }
 
@@ -78,7 +69,7 @@ export class EditResultsComponent implements OnInit {
     this.form.reset();
     setTimeout(() => {
       this.showContent = false;
-      this.router.navigate(['/backoffice/exams/results', this.examId, this.tokenId]);
+      this.router.navigate(['/backoffice-exams-results', this.examId]);
     }, 1000);
     this.showContent = false;
   }
@@ -94,7 +85,7 @@ export class EditResultsComponent implements OnInit {
   }
 
   navigateToEditStudent(periodId, studentId) {
-    this.router.navigate(['backoffice/exams/periods/students/', this.examId, this.tokenId, periodId, studentId]);
+    this.router.navigate(['backoffice-exams-periods-students/', this.examId, periodId, studentId]);
   }
 
 }

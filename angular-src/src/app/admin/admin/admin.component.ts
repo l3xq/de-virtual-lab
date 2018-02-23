@@ -15,8 +15,6 @@ export class AdminComponent implements OnInit {
   loginForm: FormGroup;
   showValidationErrors = false;
 
-  token = Date.now();
-
   constructor(private fb: FormBuilder, private adminService: AdminService, private router: Router) {
     this.loginForm = fb.group({
       username: ['', Validators.required],
@@ -25,24 +23,19 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    if (this.adminService.isAuthenticated()) {
+      this.router.navigate(['/backoffice']);
+    }
   }
 
   doLogIn() {
     if (this.loginForm.valid) {
       const username = this.loginForm.value['username'];
       const password = this.loginForm.value['password'];
-      this.adminService.getCredentials().subscribe(credentials => {
-        if (username === credentials.data[0].username && password === credentials.data[0].password) {
-          this.adminService.updateToken(this.token).subscribe(data => {
-            this.router.navigate(['/backoffice/', this.token ]);
-            // this.onLogin.emit();
-            // this.loginForm.reset();
-            this.showValidationErrors = false;
-          });
-        } else {
-          this.showValidationErrors = true;
-        }
+      this.adminService.authorization({ email: username, password: password }).subscribe((token: any) => {
+        localStorage.setItem('access_token', token.token);
+        this.router.navigate(['/backoffice']);
+        this.showValidationErrors = false;
       });
     } else {
       this.showValidationErrors = true;

@@ -1,3 +1,12 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.6deb5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Feb 03, 2018 at 10:29 PM
+-- Server version: 5.7.21-0ubuntu0.17.10.1
+-- PHP Version: 5.6.33-1+ubuntu17.10.1+deb.sury.org+1
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -25,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `authorizations` (
   `updated_at` timestamp NULL DEFAULT NULL,
 
   PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Dumping data for table `authorizations`
@@ -48,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `credentials` (
   `updated_at` timestamp NULL DEFAULT NULL,
 
   PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Dumping data for table `credentials`
@@ -70,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `exams` (
   `updated_at` timestamp NULL DEFAULT NULL,
 
   PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `labs`
@@ -84,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `labs` (
   `updated_at` timestamp NULL DEFAULT NULL,
 
   PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `lessons`
@@ -102,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `lessons` (
   `exam_id` int(10) UNSIGNED NOT NULL,
 
   PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `notifications`
@@ -117,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `updated_at` timestamp NULL DEFAULT NULL,
 
   PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `periods`
@@ -131,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `periods` (
   `exam_id` int(10) UNSIGNED NOT NULL,
 
   PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `students`
@@ -150,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `period_id` int(10) UNSIGNED NOT NULL,
 
   PRIMARY KEY(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `password_resets`
@@ -159,9 +168,8 @@ CREATE TABLE IF NOT EXISTS `students` (
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `created_at` timestamp NULL DEFAULT NULL 
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `users`
@@ -175,9 +183,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`)
+  
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 
 -- At this moment, hash is for password "secret"
 INSERT INTO `users` VALUES (1,'Admin','admin@de.lab','$2y$10$HIznB5SFIl0xrUea0k.Oeul0Qz7IXFwhEcc6Q4t/WrRlw5doK0gFm',NULL,'2018-02-12 23:21:22','2018-02-12 23:21:22');
@@ -191,6 +199,18 @@ INSERT INTO `users` VALUES (1,'Admin','admin@de.lab','$2y$10$HIznB5SFIl0xrUea0k.
 --
 ALTER TABLE `lessons`
   ADD KEY `exam_id` (`exam_id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- Indexes for table `periods`

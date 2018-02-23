@@ -12,15 +12,12 @@ export class AdminService {
     this.baseUrl = configService.baseUrl();
   }
 
-  updateToken(token): Observable<any> {
-    return this.http.put(this.baseUrl + '/authorization', { token: token}).map((res: any) => res);
+  isAuthenticated() {
+    return localStorage.getItem('access_token');
   }
 
-  getToken(): Observable<any> {
-    return this.http.get(this.baseUrl + '/authorization').map((res: any) => res);
+  authorization(credentials: any): Observable<any> {
+    return this.http.post(this.baseUrl + '/authenticate', credentials);
   }
 
-  getCredentials(): Observable<any> {
-    return this.http.get(this.baseUrl + '/credentials').map((res: any) => res);
-  }
 }

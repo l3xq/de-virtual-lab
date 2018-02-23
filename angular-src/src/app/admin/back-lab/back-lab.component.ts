@@ -14,7 +14,6 @@ export class BackLabComponent implements OnInit {
   selectedItem: any;
   today: number = Date.now();
 
-  tokenId: any;
   labId: any;
   showContent: boolean;
 
@@ -24,18 +23,9 @@ export class BackLabComponent implements OnInit {
     private router: Router) {
 
     this.activatedRoute.params.subscribe(params => {
-
-      this.tokenId = Number(params['id']);
       this.labId = params['labId'];
 
-      this.adminService.getToken().subscribe(authObject => {
-        // tslint:disable-next-line:triple-equals
-        if (!(this.tokenId && this.tokenId == authObject.data[0].token_id)) {
-          this.router.navigate(['/admins/']);
-        } else {
-          this.showContent = true;
-        }
-      });
+      this.showContent = true;
       this.fetchLabs();
     });
   }
@@ -51,9 +41,9 @@ export class BackLabComponent implements OnInit {
 
   navigateToEditLab(labId) {
     if (labId) {
-      this.router.navigate(['backoffice/labs/', this.tokenId, labId]);
+      this.router.navigate(['backoffice-labs/', labId]);
     } else {
-      this.router.navigate(['backoffice/labs/', this.tokenId, 'new']);
+      this.router.navigate(['backoffice-labs/', 'new']);
     }
   }
 

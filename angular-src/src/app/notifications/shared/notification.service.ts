@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigService } from '../../core/config.service';
 import { Observable } from 'rxjs/Observable';
 
@@ -8,6 +8,16 @@ export class NotificationService {
   baseUrl: string;
   constructor(private http: HttpClient, private configService: ConfigService) {
     this.baseUrl = configService.baseUrl();
+  }
+
+  getHeaders(token: any) {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    };
   }
 
   getNotifications(): Observable<any[]> {
@@ -19,14 +29,17 @@ export class NotificationService {
   }
 
   updateNotificationById(notificationId: string, object: any) {
-    return this.http.put(this.baseUrl + '/notifications/' + notificationId, object).map((res: any) => res);
+    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
+    return this.http.put(this.baseUrl + '/notifications/' + notificationId, object, headers).map((res: any) => res);
   }
 
   createNewNotification(notification: any) {
-    return this.http.post(this.baseUrl + '/notifications', notification).map((res: any) => res);
+    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
+    return this.http.post(this.baseUrl + '/notifications', notification, headers).map((res: any) => res);
   }
 
   deleteNotificationById(notificationId: string) {
-    return this.http.delete(this.baseUrl + '/notifications/' + notificationId).map((res: any) => res);
+    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
+    return this.http.delete(this.baseUrl + '/notifications/' + notificationId, headers).map((res: any) => res);
   }
 }

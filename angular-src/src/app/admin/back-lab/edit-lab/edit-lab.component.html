@@ -1,7 +1,7 @@
 <div style="padding: 16px;" *ngIf="showContent">
   <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/backoffice/{{tokenId}}">{{'BACKOFFICE' | translate}}</a></li>
-      <li class="breadcrumb-item"><a routerLink="/backoffice/labs/{{tokenId}}">{{'LABS' | translate}}</a></li>
+      <li class="breadcrumb-item"><a routerLink="/backoffice">{{'BACKOFFICE' | translate}}</a></li>
+      <li class="breadcrumb-item"><a routerLink="/backoffice-labs">{{'LABS' | translate}}</a></li>
       <li class="breadcrumb-item active">{{lab ? lab.title : "ADD_LAB" | translate}}</li>
     </ol>
 <h5 class="col-md-12 titleHeader" *ngIf="labId != 'new'">{{"EDIT_LAB" | translate}} - {{lab ? lab.title : ""}}</h5>

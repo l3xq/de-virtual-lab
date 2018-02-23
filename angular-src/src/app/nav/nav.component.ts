@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +11,7 @@ export class NavComponent implements OnInit {
   private lang: string;
   private logoSrc = '../../assets/img/logo.png';
 
-  constructor(private translate: TranslateService, private storage: LocalStorageService) { }
+  constructor(private translate: TranslateService) { }
 
   serbian() {
     this.lang = 'EN';

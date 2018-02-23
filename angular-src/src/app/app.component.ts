@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,7 @@ import { LocalStorageService } from 'ngx-webstorage';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(translate: TranslateService, private storage: LocalStorageService) {
+  constructor(translate: TranslateService) {
     const language = localStorage.getItem('language');
     if (language) {
       translate.setDefaultLang(language);
