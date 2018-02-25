@@ -17,6 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { ExamService } from '../../../../exams/shared/exam.service';
 import { AdminService } from '../../../shared/admin.service';
+import { AlertsService } from '../../../../notification/alerts.service';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -38,6 +39,7 @@ export class EditLessonsComponent implements OnInit {
     private examService: ExamService,
     private adminService: AdminService,
     private router: Router,
+    private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       title: ['', Validators.required]
@@ -107,8 +109,11 @@ export class EditLessonsComponent implements OnInit {
     this.lesson.exam_id = this.examId;
     if (this.lessonId !== 'new') {
       this.examService.updateLessonById(this.lessonId, this.lesson).subscribe(lesson => { });
+      this.alertsService.success('LESSON_UPDATED');
     } else {
-      this.examService.createNewLesson(this.lesson).subscribe(lesson => { });
+      this.examService.createNewLesson(this.lesson).subscribe(lesson => {
+        this.alertsService.success('LESSON_CREATED');
+      });
     }
     this.onSubmit.emit();
     this.form.reset();

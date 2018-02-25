@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { LabService } from '../../../labs/shared/lab.service';
 import { AdminService } from '../../shared/admin.service';
+import { AlertsService } from '../../../notification/alerts.service';
 
 @Component({
   selector: 'app-edit-lab',
@@ -30,8 +31,10 @@ export class EditLabComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private labsService: LabService,
-    private adminService: AdminService, private router:
-      Router, private activatedRoute: ActivatedRoute) {
+    private adminService: AdminService,
+    private notificationsService: AlertsService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       title: ['', Validators.required],
       link: ['', Validators.required]
@@ -62,9 +65,13 @@ export class EditLabComponent implements OnInit {
     const labData = new Lab(this.form.value);
 
     if (this.labId !== 'new') {
-      this.labsService.updateLabById(this.labId, labData).subscribe(lab => { });
+      this.labsService.updateLabById(this.labId, labData).subscribe(lab => {
+        this.notificationsService.success('LAB_UPDATED');
+      });
     } else {
-      this.labsService.createNewLab(labData).subscribe(lab => { });
+      this.labsService.createNewLab(labData).subscribe(lab => {
+        this.notificationsService.success('LAB_CREATED');
+      });
     }
     setTimeout(() => {
       this.showContent = false;

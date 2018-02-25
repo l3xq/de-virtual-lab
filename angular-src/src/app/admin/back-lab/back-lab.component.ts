@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LabService } from '../../labs/shared/lab.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../admin/shared/admin.service';
+import { AlertsService } from '../../notification/alerts.service';
 
 @Component({
   selector: 'app-back-lab',
@@ -20,6 +21,7 @@ export class BackLabComponent implements OnInit {
   constructor(private labsService: LabService,
     private adminService: AdminService,
     private activatedRoute: ActivatedRoute,
+    private notificationsService: AlertsService,
     private router: Router) {
 
     this.activatedRoute.params.subscribe(params => {
@@ -52,6 +54,7 @@ export class BackLabComponent implements OnInit {
       setTimeout(() => {
         this.labsService.deleteLabById(labId).subscribe(data => {
           this.fetchLabs();
+          this.notificationsService.success('LAB_DELETED');
           this.showContent = true;
         });
       }, 1000);

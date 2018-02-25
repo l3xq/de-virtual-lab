@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { ExamService } from '../../../../exams/shared/exam.service';
 import { AdminService } from '../../../shared/admin.service';
+import { AlertsService } from '../../../../notification/alerts.service';
 
 @Component({
   selector: 'app-edit-results',
@@ -24,6 +25,7 @@ export class EditResultsComponent implements OnInit {
     private examService: ExamService,
     private adminService: AdminService,
     private router: Router,
+    private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       title: ['', Validators.required]
@@ -61,9 +63,13 @@ export class EditResultsComponent implements OnInit {
       exam_id: this.examId
     };
     if (this.periodId !== 'new') {
-      this.examService.updatePeriodById(this.periodId, object).subscribe(period => { });
+      this.examService.updatePeriodById(this.periodId, object).subscribe(period => {
+        this.alertsService.success('PERIOD_UPDATED');
+      });
     } else {
-      this.examService.createNewPeriod(object).subscribe(period => { });
+      this.examService.createNewPeriod(object).subscribe(period => {
+        this.alertsService.success('PERIOD_CREATED');
+      });
     }
     this.onSubmit.emit();
     this.form.reset();
@@ -78,6 +84,7 @@ export class EditResultsComponent implements OnInit {
     this.showContent = false;
     setTimeout(() => {
       this.examService.deleteStudentById(studentId).subscribe(data => {
+        this.alertsService.success('STUDENT_DELETED');
         this.getPeriod();
         this.showContent = true;
       });

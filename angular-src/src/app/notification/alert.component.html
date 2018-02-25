@@ -1,0 +1,4 @@
+<div *ngIf="notification" [ngClass]="{ 'hide': toHide, 'alert-success': notification.type === notificationType.SUCCESS, 'alert-warning': notification.type === notificationType.WARNING, 'alert-danger': notification.type === notificationType.ERROR }" class="alert notification">
+ <i class="statusIcon fa" [ngClass]="{'fa-check-circle': notification.type === notificationType.SUCCESS, 'fa-exclamation-triangle': notification.type === notificationType.WARNING, 'fa-times-circle': notification.type === notificationType.ERROR }"></i> 
+ <span class="message">{{ notification.message | translate}}</span>
+</div>

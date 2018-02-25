@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpService } from '../../core/http.service';
 import { Exam } from './exam.model';
 import { ConfigService } from '../../core/config.service';
 import { Observable } from 'rxjs/Observable';
@@ -7,109 +7,86 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ExamService {
   baseUrl: string;
-  constructor(private http: HttpClient, private configService: ConfigService) {
-    this.baseUrl = configService.baseUrl();
-  }
-
-  getHeaders(token: any) {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json; charset=utf-8',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
+  constructor(private http: HttpService) {
   }
 
   getExams(): Observable<Exam[]> {
-    return this.http.get(this.baseUrl + '/exams').map((res: Exam[]) => res);
+    return this.http.get('/exams');
   }
 
   getExamById(id: string): Observable<any> {
-    return this.http.get(this.baseUrl + '/exams/' + id).map((res: any) => res);
+    return this.http.get('/exams/' + id);
   }
 
   getPeriodsByExamId(id): Observable<any[]> {
-    return this.http.get(this.baseUrl + '/exams/' + id + '/periods').map((res: any) => res);
+    return this.http.get('/exams/' + id + '/periods');
   }
 
   getStudentsByExamAndPeriod(examId: string, periodId: string): Observable<any[]> {
-    return this.http.get(this.baseUrl + '/exams/' + examId + '/students_periodId=' + periodId).map((res: any) => res);
+    return this.http.get('/exams/' + examId + '/students_periodId=' + periodId);
   }
 
   getLessonsByExamId(examId: string): Observable<any[]> {
-    return this.http.get(this.baseUrl + '/exams/' + examId + '/lessons').map((res: any) => res);
+    return this.http.get('/exams/' + examId + '/lessons');
   }
 
   deleteExamById(examId: string): Observable<any[]> {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.delete(this.baseUrl + '/exams/' + examId, headers).map((res: any) => res);
+    return this.http.delete('/exams/' + examId);
   }
 
   createNewExam(exam: any): Observable<any[]> {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.post(this.baseUrl + '/exams', exam, headers).map((res: any) => res);
+    return this.http.post('/exams', exam);
   }
 
   updateExamById(examId: string, object: any): Observable<any[]> {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.put(this.baseUrl + '/exams/' + examId, object, headers).map((res: any) => res);
+    return this.http.put('/exams/' + examId, object);
   }
 
   deleteLessonByExamAndId(lessonId: string) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.delete(this.baseUrl + '/lessons/' + lessonId, headers).map((res: any) => res);
+    return this.http.delete('/lessons/' + lessonId);
   }
 
   deletePeriodById(periodId: string) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.delete(this.baseUrl + '/periods/' + periodId, headers).map((res: any) => res);
+    return this.http.delete('/periods/' + periodId);
   }
 
   getLessonById(lessonId: string) {
-    return this.http.get(this.baseUrl + '/lessons/' + lessonId).map((res: any) => res);
+    return this.http.get('/lessons/' + lessonId);
   }
 
   getPeriodById(periodId: string) {
-    return this.http.get(this.baseUrl + '/periods/' + periodId).map((res: any) => res);
+    return this.http.get('/periods/' + periodId);
   }
 
   getStudentById(studentId: string) {
-    return this.http.get(this.baseUrl + '/students/' + studentId).map((res: any) => res);
+    return this.http.get('/students/' + studentId);
   }
 
   updateLessonById(lessonId: string, object: any) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.put(this.baseUrl + '/lessons/' + lessonId, object, headers).map((res: any) => res);
+    return this.http.put('/lessons/' + lessonId, object);
   }
 
   createNewLesson(lesson: any) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.post(this.baseUrl + '/lessons', lesson, headers).map((res: any) => res);
+    return this.http.post('/lessons', lesson);
   }
 
   updateStudentById(studentId: string, object: any) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.put(this.baseUrl + '/students/' + studentId, object, headers).map((res: any) => res);
+    return this.http.put('/students/' + studentId, object);
   }
 
   createNewStudent(student: any) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.post(this.baseUrl + '/students', student, headers).map((res: any) => res);
+    return this.http.post('/students', student);
   }
 
   updatePeriodById(periodId: string, object: any) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.put(this.baseUrl + '/periods/' + periodId, object, headers).map((res: any) => res);
+    return this.http.put('/periods/' + periodId, object);
   }
 
   createNewPeriod(period: any) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.post(this.baseUrl + '/periods', period, headers).map((res: any) => res);
+    return this.http.post('/periods', period);
   }
 
   deleteStudentById(studentId: string) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.delete(this.baseUrl + '/students/' + studentId, headers).map((res: any) => res);
+    return this.http.delete('/students/' + studentId);
   }
 }

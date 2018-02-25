@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from '../../../exams/shared/exam.service';
 import { AdminService } from '../../shared/admin.service';
+import { AlertsService } from '../../../notification/alerts.service';
 
 @Component({
   selector: 'app-results',
@@ -19,12 +20,10 @@ export class ResultsComponent implements OnInit {
   constructor(private examService: ExamService,
     private adminService: AdminService,
     private router: Router,
+    private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
-
       this.examId = params['examId'];
-
-      this.showContent = true;
       this.fetchPeriods();
       this.fetchExam();
     });
@@ -44,11 +43,13 @@ export class ResultsComponent implements OnInit {
         this.exam = exam.data[0];
       });
     }
+    this.showContent = true;
   }
 
   fetchExam() {
     this.examService.getExamById(this.examId).subscribe(exam => {
       this.exam = exam.data[0];
+      this.showContent = true;
     });
   }
 
@@ -71,6 +72,7 @@ export class ResultsComponent implements OnInit {
     this.showContent = false;
     setTimeout(() => {
       this.examService.deletePeriodById(periodId).subscribe(data => {
+        this.alertsService.success('PERIOD_DELETED');
         this.fetchPeriods();
         this.showContent = true;
       });
@@ -81,6 +83,7 @@ export class ResultsComponent implements OnInit {
     this.showContent = false;
     setTimeout(() => {
       this.examService.deleteStudentById(studentId).subscribe(data => {
+        this.alertsService.success('STUDENT_DELETED');
         this.fetchPeriods();
         this.showContent = true;
       });

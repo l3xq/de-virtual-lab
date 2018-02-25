@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AdminService } from '../shared/admin.service';
 
 const MAX_VALUE = 10000;
@@ -15,14 +15,12 @@ export class BackofficeComponent implements OnInit {
 
   showContent = false;
 
-  constructor(private adminService: AdminService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.params.subscribe(params => {
+  constructor(private adminService: AdminService, private router: Router) {
       this.showContent = true;
-    });
   }
 
   logout() {
-    localStorage.removeItem('access_token');
+    sessionStorage.removeItem('access_token');
     this.router.navigate(['/admins']);
   }
 

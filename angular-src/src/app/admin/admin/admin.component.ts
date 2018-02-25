@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
       const username = this.loginForm.value['username'];
       const password = this.loginForm.value['password'];
       this.adminService.authorization({ email: username, password: password }).subscribe((token: any) => {
-        localStorage.setItem('access_token', token.token);
+        sessionStorage.setItem('access_token', token.token);
         this.router.navigate(['/backoffice']);
         this.showValidationErrors = false;
       });

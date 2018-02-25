@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { ExamService } from '../../../exams/shared/exam.service';
 import { AdminService } from '../../shared/admin.service';
+import { AlertsService } from '../../../notification/alerts.service';
 
 @Component({
   selector: 'app-edit',
@@ -21,6 +22,7 @@ export class EditComponent implements OnInit {
     private examService: ExamService,
     private adminService: AdminService,
     private router: Router,
+    private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       name: ['', Validators.required]
@@ -53,9 +55,13 @@ export class EditComponent implements OnInit {
       title: name
     };
     if (this.examId !== 'new') {
-      this.examService.updateExamById(this.examId, object).subscribe(exam => { });
+      this.examService.updateExamById(this.examId, object).subscribe(exam => {
+        this.alertsService.success('EXAM_UPDATED');
+      });
     } else {
-      this.examService.createNewExam(object).subscribe(exam => { });
+      this.examService.createNewExam(object).subscribe(exam => {
+        this.alertsService.success('EXAM_CREATED');
+      });
     }
     this.onSubmit.emit();
     this.form.reset();

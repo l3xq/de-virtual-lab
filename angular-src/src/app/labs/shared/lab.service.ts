@@ -1,45 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ConfigService } from '../../core/config.service';
+import { HttpService } from '../../core/http.service';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class LabService {
   baseUrl: string;
-  constructor(private http: HttpClient, private configService: ConfigService) {
-    this.baseUrl = configService.baseUrl();
-  }
-
-  getHeaders(token: any) {
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json; charset=utf-8',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token
-      })
-    };
+  constructor(private http: HttpService) {
   }
 
   getLabs(): Observable<any[]> {
-    return this.http.get(this.baseUrl + '/labs').map((res: any[]) => res);
+    return this.http.get('/labs');
   }
 
   getLabById(id: string): Observable<any> {
-    return this.http.get(this.baseUrl + '/labs/' + id).map((res: any) => res);
+    return this.http.get('/labs/' + id);
   }
 
   updateLabById(labId: string, object: any) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.put(this.baseUrl + '/labs/' + labId, object, headers).map((res: any) => res);
+    return this.http.put('/labs/' + labId, object);
   }
 
   createNewLab(lab: any) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.post(this.baseUrl + '/labs', lab, headers).map((res: any) => res);
+    return this.http.post('/labs', lab);
   }
 
   deleteLabById(labId: string) {
-    const headers: any = this.getHeaders(localStorage.getItem('access_token'));
-    return this.http.delete(this.baseUrl + '/labs/' + labId, headers).map((res: any) => res);
+    return this.http.delete('/labs/' + labId);
   }
 }

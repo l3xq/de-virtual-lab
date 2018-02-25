@@ -1,3 +1,23 @@
-<p>
-  about works!
-</p>
+<div style="padding: 16px;">
+  <h5 class="col-md-12 titleHeader">{{ 'ABOUT_LAB' | translate }}</h5>
+  <p style="text-indent: 50px;" class="text-justify">{{'TEXT_ABOUT' | translate}}</p>
+
+  <h5 class="col-md-12 titleHeader">{{ 'CONTACT' | translate }}</h5>
+  <div class="col-12 col-md-6 col-lg-8 mb-md-0 mb-sm-2 text-md-left text-center">
+    <strong>{{'FACULTY_NAME' | translate}}</strong>
+    <br/>
+    <strong>Svetog Save 65, 32102 Čačak </strong>
+    <br/>
+    <strong>{{'PHONE' | translate}}:</strong> 032 302-700
+    <br/>
+    <strong>{{'FAX' | translate}}:</strong> 032 342-101
+    <br/>
+    <strong>{{'EMAIL' | translate}}:</strong> digilab@ftn.kg.ac.rs
+    <br/>
+  </div>
+  <h5 class="col-md-12 titleHeader">{{ 'LOCATION' | translate }}</h5>
+
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+</div>

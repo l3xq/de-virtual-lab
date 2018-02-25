@@ -79,6 +79,39 @@
     "NO_STUDENTS": "No results for this examation period.",
     "ADD_FILE": "Add file",
     "CHANGE_FILE": "Change file",
-    "DOWNLOAD_FILE": "Download file"
+    "DOWNLOAD_FILE": "Download file",
+    "NO_LABS_MESSAGE": "No labs links.",
+    "ABOUT_LAB": "About Digital lab",
+    "LOCATION": "Location",
+    "PHONE": "Phone",
+    "FAX": "Fax",
+    "EMAIL": "E-mail",
+    "TEXT_ABOUT": "Here is some words about the Digital Laboratory.",
+
+    "LAB_UPDATED": "Laboratory has been updated.",
+    "LAB_CREATED": "Laboratory has been created.",
+    "LAB_DELETED": "Laboratory has been deleted.",
+    
+    "NOTIFICATION_UPDATED": "Notification has been updated.",
+    "NOTIFICATION_CREATED": "Notification has been created.",
+    "NOTIFICATION_DELETED": "Notification has been deleted.",
+
+    "EXAM_UPDATED": "Exam has been updated.",
+    "EXAM_CREATED": "Exam has been created.",
+    "EXAM_DELETED": "Exam has been deleted.",
+
+    "LESSON_UPDATED": "Lesson has been updated.",
+    "LESSON_CREATED": "Lesson has been created.",
+    "LESSON_DELETED": "Lesson has been deleted.",
+
+    "PERIOD_UPDATED": "Examination period has been updated.",
+    "PERIOD_CREATED": "Examination period has been created.",
+    "PERIOD_DELETED": "Examination period has been deleted.",
+
+    "STUDENT_UPDATED": "Student has been updated.",
+    "STUDENT_CREATED": "Student has been created.",
+    "STUDENT_DELETED": "Student has been deleted."
+
+
 
 }

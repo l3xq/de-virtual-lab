@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExamService } from '../../exams/shared/exam.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminService } from '../shared/admin.service';
+import { AlertsService } from '../../notification/alerts.service';
 
 @Component({
   selector: 'app-exams',
@@ -11,13 +12,13 @@ import { AdminService } from '../shared/admin.service';
 export class ExamsComponent implements OnInit {
 
   exams: any[];
-  showContent = true;
+  showContent: boolean;
 
   constructor(private examService: ExamService,
     private adminService: AdminService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
-      this.showContent = true;
+    private activatedRoute: ActivatedRoute,
+    private alertsService: AlertsService) {
   }
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class ExamsComponent implements OnInit {
   fetchExams() {
     this.examService.getExams().subscribe((exams: any) => {
       this.exams = exams.data;
-      console.log(this.exams);
+      this.showContent = true;
     });
   }
 
@@ -35,6 +36,7 @@ export class ExamsComponent implements OnInit {
     this.showContent = false;
     setTimeout(() => {
       this.examService.deleteExamById(examId).subscribe(data => {
+        this.alertsService.success('EXAM_DELETED');
         this.fetchExams();
         this.showContent = true;
       });
@@ -50,7 +52,7 @@ export class ExamsComponent implements OnInit {
   }
 
   navigateToBackoffice() {
-      this.router.navigate(['backoffice/']);
+    this.router.navigate(['backoffice/']);
   }
   navigateToEditLessons(itemId: string) {
     if (itemId) {

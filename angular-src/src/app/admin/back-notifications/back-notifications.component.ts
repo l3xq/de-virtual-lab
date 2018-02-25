@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../notifications/shared/notification.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../admin/shared/admin.service';
+import { AlertsService } from '../../notification/alerts.service';
 
 @Component({
   selector: 'app-back-notifications',
@@ -20,6 +21,7 @@ export class BackNotificationsComponent implements OnInit {
   constructor(private notificationService: NotificationService,
     private adminService: AdminService,
     private activatedRoute: ActivatedRoute,
+    private alertService: AlertsService,
     private router: Router) {
 
     this.activatedRoute.params.subscribe(params => {
@@ -60,6 +62,7 @@ export class BackNotificationsComponent implements OnInit {
     this.showContent = false;
     setTimeout(() => {
       this.notificationService.deleteNotificationById(notificationId).subscribe(data => {
+        this.alertService.success('NOTIFICATION_DELETED');
         this.fetchNotifications();
         this.showContent = true;
       });

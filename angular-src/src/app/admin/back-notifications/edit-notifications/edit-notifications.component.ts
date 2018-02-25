@@ -14,6 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { NotificationService } from '../../../notifications/shared/notification.service';
 import { AdminService } from '../../shared/admin.service';
+import { AlertsService } from '../../../notification/alerts.service';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class EditNotificationsComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private notificationsService: NotificationService,
     private adminService: AdminService, private router:
-      Router, private activatedRoute: ActivatedRoute) {
+      Router, private activatedRoute: ActivatedRoute, private alertService: AlertsService) {
     this.form = fb.group({
       title: ['', Validators.required],
       text: ['', Validators.required]
@@ -65,9 +66,13 @@ export class EditNotificationsComponent implements OnInit {
     notificationData.time = Date.now();
 
     if (this.notificationId !== 'new') {
-      this.notificationsService.updateNotificationById(this.notificationId, notificationData).subscribe(notification => { });
+      this.notificationsService.updateNotificationById(this.notificationId, notificationData).subscribe(notification => {
+        this.alertService.success('NOTIFICATION_UPDATED');
+      });
     } else {
-      this.notificationsService.createNewNotification(notificationData).subscribe(notification => { });
+      this.notificationsService.createNewNotification(notificationData).subscribe(notification => {
+        this.alertService.success('NOTIFICATION_CREATED');
+      });
     }
     setTimeout(() => {
       this.showContent = false;

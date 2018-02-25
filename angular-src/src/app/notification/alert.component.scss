@@ -1,0 +1,21 @@
+.notification {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    max-width: 500px;
+    z-index: 9999;
+}
+  
+.hide {
+    display: none;
+}
+
+.statusIcon {
+    margin-right: 6px;
+    font-size: 24px;
+}
+
+.message {
+    vertical-align: text-bottom;
+}
+  

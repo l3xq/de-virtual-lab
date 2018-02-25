@@ -12,7 +12,9 @@ import { AdminModule } from './admin/admin.module';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { ContactsComponent } from './contacts/contacts.component';
+import { AlertComponent } from './notification/alert.component';
+import { AlertsService } from './notification/alerts.service';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { ContactsComponent } from './contacts/contacts.component';
     NavComponent,
     HomeComponent,
     AboutComponent,
-    ContactsComponent
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +32,14 @@ import { ContactsComponent } from './contacts/contacts.component';
     NotificationsModule,
     LabsModule,
     AdminModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAWVGLmSvTzgZosyPPj_QiwBkQYOIh28Hw'
+    })
   ],
-  providers: [],
+  providers: [AlertsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

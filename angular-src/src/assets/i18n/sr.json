@@ -79,5 +79,36 @@
     "NO_STUDENTS": "Nema rezultata za ovaj ispitni rok.",
     "ADD_FILE": "Dodaj datoteku",
     "CHANGE_FILE": "Izmeni datoteku",
-    "DOWNLOAD_FILE": "Preuzmi datoteku"
+    "DOWNLOAD_FILE": "Preuzmi datoteku",
+    "NO_LABS_MESSAGE": "Nema linkova.",
+    "ABOUT_LAB": "O laboratoriji",
+    "LOCATION": "Lokacija",
+    "PHONE": "Telefon",
+    "FAX": "Faks",
+    "EMAIL": "E-mail",
+    "TEXT_ABOUT": "Evo nekoliko reci o Digitalnoj laboratoriji.",
+
+    "LAB_UPDATED": "Laboratorija je ažurirana.",
+    "LAB_CREATED": "Laboratorija je kreirana.",
+    "LAB_DELETED": "Laboratorija je obrisana.",
+    
+    "NOTIFICATION_UPDATED": "Obaveštenje je ažurirano.",
+    "NOTIFICATION_CREATED": "Obaveštenje je kreirano.",
+    "NOTIFICATION_DELETED": "Obaveštenje je obrisano.",
+
+    "EXAM_UPDATED": "Ispit je ažuriran.",
+    "EXAM_CREATED": "Ispit je kreiran.",
+    "EXAM_DELETED": "Ispit je obrisan.",
+
+    "LESSON_UPDATED": "Lekcija je ažurirana.",
+    "LESSON_CREATED": "Lekcija je kreirana.",
+    "LESSON_DELETED": "Lekcija je obrisana.",
+
+    "PERIOD_UPDATED": "Ispitni rok je ažuriran.",
+    "PERIOD_CREATED": "Ispitni rok je kreiran.",
+    "PERIOD_DELETED": "Ispitni rok je obrisan.",
+
+    "STUDENT_UPDATED": "Student je ažuriran.",
+    "STUDENT_CREATED": "Student je kreiran.",
+    "STUDENT_DELETED": "Student je obrisan."
 }

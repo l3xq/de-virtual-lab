@@ -18,6 +18,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { ExamService } from '../../../../exams/shared/exam.service';
 import { AdminService } from '../../../shared/admin.service';
+import { AlertsService } from '../../../../notification/alerts.service';
 
 @Component({
   selector: 'app-edit-students',
@@ -39,6 +40,7 @@ export class EditStudentsComponent implements OnInit {
     private examService: ExamService,
     private adminService: AdminService,
     private router: Router,
+    private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       firstName: ['', Validators.required],
@@ -77,9 +79,13 @@ export class EditStudentsComponent implements OnInit {
     studentData.period_id = this.periodId;
 
     if (this.studentId !== 'new') {
-      this.examService.updateStudentById(this.studentId, studentData).subscribe(student => { });
+      this.examService.updateStudentById(this.studentId, studentData).subscribe(student => {
+        this.alertsService.success('STUDENT_UPDATED');
+      });
     } else {
-      this.examService.createNewStudent(studentData).subscribe(student => { });
+      this.examService.createNewStudent(studentData).subscribe(student => {
+        this.alertsService.success('STUDENT_CREATED');
+      });
     }
     setTimeout(() => {
       this.showContent = false;

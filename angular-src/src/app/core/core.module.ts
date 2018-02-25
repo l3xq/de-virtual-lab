@@ -11,6 +11,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ngx-webstorage';
 import { AuthGuard } from './auth.guard';
+import { HttpService } from './http.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -34,7 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     exports: [TranslateModule, ModalModule],
     declarations: [],
-    providers: [ConfigService, AuthGuard]
+    providers: [ConfigService, AuthGuard, HttpService]
 })
 export class CoreModule {
     constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
