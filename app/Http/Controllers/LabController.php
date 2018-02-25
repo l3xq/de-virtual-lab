@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Lab;
 use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Input;
 
 class LabController extends Controller
 {
@@ -38,7 +40,7 @@ class LabController extends Controller
     public function updateLabById(Request $request, $id)
     {
         try {
-            $lab = Lab::find($id);
+            $lab = Lab::where('id', $id)->first();
 
             $lab->title = $request['title'];
             $lab->link = $request['link'];
@@ -74,7 +76,7 @@ class LabController extends Controller
     public function deleteLabById(Request $request, $id)
     {
         try {
-            $lab = Lab::find('id');
+            $lab = Lab::where('id', $id)->first();
 
             $lab->delete();
 

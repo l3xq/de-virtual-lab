@@ -58,6 +58,16 @@
 				{
 					"name": "deleteExamById",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTU1MjQ3OSwiZXhwIjoxNTE5NTU2MDc5LCJuYmYiOjE1MTk1NTI0NzksImp0aSI6IkpGWmtRQUs0RkZlMkVWdUEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.XC7tSuBSNlE3oNtzviIBfDEQNYnGMpOl8kn8wQIff-k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {},
@@ -153,6 +163,16 @@
 				{
 					"name": "createNewExam",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTU1MjA3OCwiZXhwIjoxNTE5NTU1Njc4LCJuYmYiOjE1MTk1NTIwNzgsImp0aSI6IkI0dVBmS3hWZDJFem9hTEYiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.DYMpH4ha_DGn8rU37-3tkQzbFyoB6s61_ogG8mrBXjk",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -384,6 +404,16 @@
 				{
 					"name": "createNewLesson",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTU1MjQ3OSwiZXhwIjoxNTE5NTU2MDc5LCJuYmYiOjE1MTk1NTI0NzksImp0aSI6IkpGWmtRQUs0RkZlMkVWdUEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.XC7tSuBSNlE3oNtzviIBfDEQNYnGMpOl8kn8wQIff-k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -487,6 +517,16 @@
 				{
 					"name": "createNewStudent",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTU1MjQ3OSwiZXhwIjoxNTE5NTU2MDc5LCJuYmYiOjE1MTk1NTI0NzksImp0aSI6IkpGWmtRQUs0RkZlMkVWdUEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.XC7tSuBSNlE3oNtzviIBfDEQNYnGMpOl8kn8wQIff-k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -548,6 +588,16 @@
 				{
 					"name": "createNewPeriod",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTU1MjQ3OSwiZXhwIjoxNTE5NTU2MDc5LCJuYmYiOjE1MTk1NTI0NzksImp0aSI6IkpGWmtRQUs0RkZlMkVWdUEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.XC7tSuBSNlE3oNtzviIBfDEQNYnGMpOl8kn8wQIff-k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -633,7 +683,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8000/api/labs/2",
+							"raw": "http://localhost:8000/api/labs/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -642,7 +692,7 @@
 							"path": [
 								"api",
 								"labs",
-								"2"
+								"3"
 							]
 						},
 						"description": null
@@ -652,11 +702,21 @@
 				{
 					"name": "deleteLabById",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTU1MjQ3OSwiZXhwIjoxNTE5NTU2MDc5LCJuYmYiOjE1MTk1NTI0NzksImp0aSI6IkpGWmtRQUs0RkZlMkVWdUEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.XC7tSuBSNlE3oNtzviIBfDEQNYnGMpOl8kn8wQIff-k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8000/api/labs/1",
+							"raw": "http://localhost:8000/api/labs/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -665,7 +725,7 @@
 							"path": [
 								"api",
 								"labs",
-								"1"
+								"3"
 							]
 						},
 						"description": null
@@ -675,6 +735,16 @@
 				{
 					"name": "updateLabById",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTU1MjQ3OSwiZXhwIjoxNTE5NTU2MDc5LCJuYmYiOjE1MTk1NTI0NzksImp0aSI6IkpGWmtRQUs0RkZlMkVWdUEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.XC7tSuBSNlE3oNtzviIBfDEQNYnGMpOl8kn8wQIff-k",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -684,10 +754,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"title\": \"RANDOM TITLE\", \"path\": \"ftn.kg.ac.rs\"}"
+							"raw": "{\n\t\"title\": \"RANDOM TITLE\", \n\t\"link\": \"ftn.kg.ac.rs\"\n\t\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8000/api/labs/2",
+							"raw": "http://localhost:8000/api/labs/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -696,7 +766,7 @@
 							"path": [
 								"api",
 								"labs",
-								"2"
+								"4"
 							]
 						},
 						"description": null
@@ -706,6 +776,16 @@
 				{
 					"name": "createNewLab",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTU1MjA3OCwiZXhwIjoxNTE5NTU1Njc4LCJuYmYiOjE1MTk1NTIwNzgsImp0aSI6IkI0dVBmS3hWZDJFem9hTEYiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.DYMpH4ha_DGn8rU37-3tkQzbFyoB6s61_ogG8mrBXjk",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -715,7 +795,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"firstName\": \"Alex\",\n  \"lastName\": \"Nesh\",\n  \"index\": \"21/2121\",\n  \"mark\": 10.99,\n  \"unit\": \"Envoy\",\n  \"exam_id\": 2,\n  \"period_id\": 2\n}"
+							"raw": "{\n  \"title\": \"naziv lab.\",\n  \"link\": \"ftn.kg.ac.rs\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/labs",
@@ -900,6 +980,16 @@
 				{
 					"name": "updateToken",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxODQ3ODgwNSwiZXhwIjoxNTE4NDgyNDA1LCJuYmYiOjE1MTg0Nzg4MDUsImp0aSI6Ikw4TUhIWnJDQ0VxNDk4d2IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.H8NXZwJnHbExZYUDaAjD1exe1bAPcLe-uj6uLxVuxok",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -909,7 +999,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxODQ3ODA5MCwiZXhwIjoxNTE4NDgxNjkwLCJuYmYiOjE1MTg0NzgwOTAsImp0aSI6IjdLRWlLR3d5V0xSRjYyNU0iLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.N6bYVC6hX6W5DfgmNixaMUoKPhTLzRoWGQtBBOBeD0E\"\n  \"token_id\": 159562354\n}"
+							"raw": "{\n  \"token\": 159562354\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/authorization",
@@ -930,6 +1020,16 @@
 				{
 					"name": "AUTH",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxODQ3ODgwNSwiZXhwIjoxNTE4NDgyNDA1LCJuYmYiOjE1MTg0Nzg4MDUsImp0aSI6Ikw4TUhIWnJDQ0VxNDk4d2IiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.H8NXZwJnHbExZYUDaAjD1exe1bAPcLe-uj6uLxVuxok",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
