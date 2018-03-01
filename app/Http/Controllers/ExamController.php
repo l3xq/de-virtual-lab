@@ -46,7 +46,19 @@ class ExamController extends Controller
         try {
             $periodsByExamId = Period::where('exam_id', $id)->get()->toArray();
 
-            return response()->json(['status' => 200, 'data' => $periodsByExamId]);
+            $periodTempArray = [];
+            $periodsStriped = [];
+
+            foreach ($periodsByExamId as $period) {
+                $periodTempArray['id'] = $period['id'];
+                $periodTempArray['exam_id'] = $period['exam_id'];
+                $periodTempArray['title'] = $period['title'];
+                $periodTempArray['name'] = $period['name'];
+
+                array_push($periodsStriped, $periodTempArray);
+            }
+
+            return response()->json(['status' => 200, 'data' => $periodsStriped]);
         } catch (Exception $e) {
             // Log errors
             Log::error($e->getMessage());
@@ -77,7 +89,19 @@ class ExamController extends Controller
                 'exam_id' => $id,
             ])->get()->toArray();
 
-            return response()->json(['status' => 200, 'data' => $lessonsByExamId]);
+            $lessonTempArray = [];
+            $lessonsStriped = [];
+
+            foreach ($lessonsByExamId as $lesson) {
+                $lessonTempArray['id'] = $lesson['id'];
+                $lessonTempArray['exam_id'] = $lesson['exam_id'];
+                $lessonTempArray['title'] = $lesson['title'];
+                $lessonTempArray['name'] = $lesson['name'];
+
+                array_push($lessonsStriped, $lessonTempArray);
+            }
+
+            return response()->json(['status' => 200, 'data' => $lessonsStriped]);
         } catch (Exception $e) {
             // Log errors
             Log::error($e->getMessage());
@@ -167,6 +191,31 @@ class ExamController extends Controller
     public function getLessonById(Request $request, $id)
     {
         try {
+            $getLesson = Lesson::where('id', $id)->get()->toArray();
+
+            // TODO: Change approach to limit possible double IDs
+
+            // This was done because of the previous migration when double IDs were possible
+            $tmp = reset($getLesson);
+
+            $lessonTempArray = [];
+
+            $lessonTempArray['id'] = $tmp['id'];
+            $lessonTempArray['exam_id'] = $tmp['exam_id'];
+            $lessonTempArray['title'] = $tmp['title'];
+            $lessonTempArray['name'] = $tmp['name'];
+
+            return response()->json(['status' => 200, 'data' => $lessonTempArray]);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
+    }
+
+    public function getFullLessonInfoById(Request $request, $id)
+    {
+        try {
             $getLesson = Lesson::where('id', $id)->get();
 
             return response()->json(['status' => 200, 'data' => $getLesson]);
@@ -178,6 +227,31 @@ class ExamController extends Controller
     }
 
     public function getPeriodById(Request $request, $id)
+    {
+        try {
+            $getPeriod = Period::where('id', $id)->get()->toArray();
+
+            // TODO: Change approach to limit possible double IDs
+
+            // This was done because of the previous migration when double IDs were possible
+            $tmp = reset($getPeriod);
+
+            $periodTempArray = [];
+
+            $periodTempArray['id'] = $tmp['id'];
+            $periodTempArray['exam_id'] = $tmp['exam_id'];
+            $periodTempArray['title'] = $tmp['title'];
+            $periodTempArray['name'] = $tmp['name'];
+
+            return response()->json(['status' => 200, 'data' => $periodTempArray]);
+        } catch (Exception $e) {
+            // Log errors
+            Log::error($e->getMessage());
+            return false;
+        }
+    }
+
+    public function getFullPeriodInfoById(Request $request, $id)
     {
         try {
             $getPeriod = Period::where('id', $id)->get();
@@ -296,7 +370,7 @@ class ExamController extends Controller
         try {
             $period = Period::find($id);
 
-            $period->name = $request['name'];
+            $period->title = $request['title'];
 
             $period->save();
 
@@ -313,8 +387,12 @@ class ExamController extends Controller
         try {
             $period = new Period;
 
-            $period->name = $request['name'];
+            $period->title = $request['title'];
             $period->exam_id = $request['exam_id'];
+            $period->name = $request['name'];
+            $period->file = $request['file'];
+            $period->mime = $request['mime'];
+            $period->size = $request['size'];
 
             $period->save();
 

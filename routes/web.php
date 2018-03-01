@@ -81,9 +81,19 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'exams.getLesson'
     ]);
 
+    Route::get('/lessons/{id}/file', [
+        'uses' => 'ExamController@getFullLessonInfoById',
+        'as' => 'exams.getFullLessonInfo'
+    ]);
+
     Route::get('/periods/{id}', [
         'uses' => 'ExamController@getPeriodById',
         'as' => 'exams.getPeriod'
+    ]);
+
+    Route::get('/periods/{id}/file', [
+        'uses' => 'ExamController@getFullPeriodInfoById',
+        'as' => 'exams.getFullPeriodInfoById'
     ]);
 
     Route::get('/students/{id}', [
