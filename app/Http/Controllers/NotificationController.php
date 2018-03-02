@@ -9,6 +9,10 @@ use Exception;
 
 class NotificationController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getNotifications(Request $request)
     {
         try {
@@ -21,6 +25,11 @@ class NotificationController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getNotificationById(Request $request, $id)
     {
         try {
@@ -33,6 +42,11 @@ class NotificationController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateNotificationById(Request $request, $id)
     {
         try {
@@ -51,6 +65,10 @@ class NotificationController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createNewNotification(Request $request)
     {
         try {
@@ -69,6 +87,11 @@ class NotificationController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteNotificationById(Request $request, $id)
     {
         try {

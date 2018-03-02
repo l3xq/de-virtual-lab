@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ExamController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getExams(Request $request)
     {
         try {
@@ -27,6 +31,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getExamById(Request $request, $id)
     {
         try {
@@ -39,6 +48,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getPeriodsByExamId(Request $request, $id)
     {
         try {
@@ -63,6 +77,12 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @param $pid
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getStudentsByExamAndPeriod(Request $request, $id, $pid)
     {
         try {
@@ -78,6 +98,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getLessonsByExamId(Request $request, $id)
     {
         try {
@@ -104,6 +129,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteExamById(Request $request, $id)
     {
         try {
@@ -118,6 +148,10 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createNewExam(Request $request)
     {
         try {
@@ -134,13 +168,17 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateExamById(Request $request, $id)
     {
         try {
             $exam = Exam::find($id);
 
             $exam->title = $request['title'];
-            $exam->ss = $request['title'];
 
             $exam->save();
 
@@ -151,6 +189,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteLessonsByExamAndId(Request $request, $id)
     {
         try {
@@ -165,6 +208,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deletePeriodById(Request $request, $id)
     {
         try {
@@ -179,12 +227,15 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getLessonById(Request $request, $id)
     {
         try {
             $getLesson = Lesson::where('id', $id)->get()->toArray();
-
-            // TODO: Change approach to limit possible double IDs
 
             // This was done because of the previous migration when double IDs were possible
             $tmp = reset($getLesson);
@@ -203,6 +254,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getFullLessonInfoById(Request $request, $id)
     {
         try {
@@ -215,6 +271,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getPeriodById(Request $request, $id)
     {
         try {
@@ -239,6 +300,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getFullPeriodInfoById(Request $request, $id)
     {
         try {
@@ -251,6 +317,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getStudentById(Request $request, $id)
     {
         try {
@@ -263,6 +334,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateLessonById(Request $request, $id)
     {
         try {
@@ -284,6 +360,10 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createNewLesson(Request $request)
     {
         try {
@@ -305,6 +385,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateStudentById(Request $request, $id)
     {
         try {
@@ -325,6 +410,10 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createNewStudent(Request $request)
     {
         try {
@@ -348,6 +437,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updatePeriodById(Request $request, $id)
     {
         try {
@@ -376,6 +470,10 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createNewPeriod(Request $request)
     {
         try {
@@ -405,6 +503,11 @@ class ExamController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteStudentById(Request $request, $id)
     {
         try {

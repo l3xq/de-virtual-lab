@@ -16,10 +16,8 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //TESTING
-
         $students = json_encode(Student::all()->toArray());
-        var_dump($students);
+
         return Response::json(['status' => 200, 'getAllStudents' => $students]);
     }
 }

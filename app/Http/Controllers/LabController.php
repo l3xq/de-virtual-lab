@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Input;
 
 class LabController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getLabs(Request $request)
     {
         try {
@@ -22,6 +26,11 @@ class LabController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getLabById(Request $request, $id)
     {
         try {
@@ -34,7 +43,11 @@ class LabController extends Controller
         }
     }
 
-
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateLabById(Request $request, $id)
     {
         try {
@@ -52,6 +65,10 @@ class LabController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createNewLab(Request $request)
     {
         try {
@@ -69,6 +86,11 @@ class LabController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteLabById(Request $request, $id)
     {
         try {

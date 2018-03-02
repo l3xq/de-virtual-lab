@@ -6,10 +6,11 @@
 
 ## TODOs
 * Make cron task to backup DB on daily basis
-* Remove old auth routes and methods; Remove unused classes
+* ~~Remove old auth routes and methods; Remove unused classes~~
+* ~~Fix error responses~~
 * Make CI/CD automation (Jenkins mb?)
-* Add code notation, for future reference
-* Test new services, test DB collation
+* ~~Add code notation, for future reference~~
+* ~~Test new services, test DB collation~~
 
 ## UnitTests
 * Add UnitTests for php part
