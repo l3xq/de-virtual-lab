@@ -610,7 +610,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTg5OTgxMywiZXhwIjoxNTE5OTAzNDEzLCJuYmYiOjE1MTk4OTk4MTMsImp0aSI6InRJMkN4ellQSHdKenJCM28iLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.tNH5ATCg9Yc6JihFNkL7DCPnF5T1oc1qes8KckkG2xI",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGhlbnRpY2F0ZSIsImlhdCI6MTUxOTk4MjU4NCwiZXhwIjoxNTE5OTg2MTg0LCJuYmYiOjE1MTk5ODI1ODQsImp0aSI6Ill2elBheEM5aFl3eUFvdkoiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.6_QS2-bm30YXWQcgNzVFDpekKLgKESMuzeYr3EtLxWM",
 									"type": "string"
 								}
 							]
@@ -624,7 +624,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"NAME OF PERIOD\"\n}"
+							"raw": "{\n  \"title\": \"Update period\",\n  \"name\": \"\",\n  \"file\": \"\",\n  \"mime\": \"\",\n  \"size\": 0\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8000/api/periods/1",
