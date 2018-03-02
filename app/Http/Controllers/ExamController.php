@@ -147,6 +147,7 @@ class ExamController extends Controller
             $exam = Exam::find($id);
 
             $exam->title = $request['title'];
+            $exam->ss = $request['title'];
 
             $exam->save();
 
@@ -154,7 +155,8 @@ class ExamController extends Controller
         } catch (Exception $e) {
             // Log errors
             Log::error($e->getMessage());
-            return false;
+            // TODO: Make all returns like this one
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
