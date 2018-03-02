@@ -45,6 +45,7 @@
     "EDIT_LESSON": "Edit lesson - ",
     "CREATE_LESSON": "Create lesson",
     "EDIT": "Edit",
+    "EDIT_STUDENT": "Edit student ",
     "LESSON_NAME": "Lesson Name: ",
     "FILE": "File: ",
     "ADD_NEW_PERIOD": "Add new examination period",
@@ -65,6 +66,7 @@
     "INDEX_NUMBER": "Index ID:",
     "MARK": "Mark:",
     "UNIT": "Unit:",
+    "DOWNLOAD_RESULTS": "Download results",
     "EXAM_LESSONS": "Exam lessons",
     "BACKOFFICE": "Backoffice",
     "ADD_NOTIFICATION": "Add notification",
@@ -87,6 +89,7 @@
     "FAX": "Fax",
     "EMAIL": "E-mail",
     "TEXT_ABOUT": "Here is some words about the Digital Laboratory.",
+    "UNAUTHORIZED": "Session expired!",
 
     "LAB_UPDATED": "Laboratory has been updated.",
     "LAB_CREATED": "Laboratory has been created.",
@@ -110,7 +113,10 @@
 
     "STUDENT_UPDATED": "Student has been updated.",
     "STUDENT_CREATED": "Student has been created.",
-    "STUDENT_DELETED": "Student has been deleted."
+    "STUDENT_DELETED": "Student has been deleted.",
+    "REALLY_SURE_DELETE": "Really delete \"{{text}}\"?",
+    "REALLY_SURE_REMOVE": "Really remove \"{{text}}\"?",
+    "REMOVE_FILE": "Remove file"
 
 
 

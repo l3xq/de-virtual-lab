@@ -6,11 +6,12 @@
       </ol>
   <h5 class="col-md-12 titleHeader" *ngIf="examId != 'new'">{{"EDIT_EXAM" | translate}} {{exam ? exam.title : ""}}</h5>
   <h5 class="col-md-12 titleHeader" *ngIf="examId == 'new'">{{"CREATE_EXAM" | translate}}</h5>
+
   <form [formGroup]="form">
     <div class="form-group row">
       <label for="example-text-input" class="col-2 col-form-label">{{"EXAM_NAME_LABEL" | translate}}</label>
       <div class="col-10">
-        <input class="form-control" type="text" value="{{exam ? exam.title : ''}}" formControlName="name" id="example-text-input">
+        <input class="form-control" type="text" value="{{exam ? exam.title : ''}}" formControlName="title" id="example-text-input">
       </div>
     </div>
   </form>

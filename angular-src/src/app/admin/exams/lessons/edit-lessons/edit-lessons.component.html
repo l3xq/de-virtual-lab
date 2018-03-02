@@ -22,6 +22,7 @@
             {{( lesson && lesson.file === '' ? 'ADD_FILE' : 'CHANGE_FILE') | translate}}
             <input type="file" id="fileUrl" name="fileUrl" (change)="uploadFile($event)" hidden>
           </label>
+          <label  class="btn btn-sm btn-link text-muted" (click)="removeFile()" *ngIf="lesson && lesson.name"> {{'REMOVE_FILE' | translate}}</label>
         </div>
       </div>
   </form>

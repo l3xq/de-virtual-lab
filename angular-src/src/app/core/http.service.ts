@@ -31,27 +31,34 @@ export class HttpService {
     put(path: string, object: any) {
         const headers: any = this.getHeaders(sessionStorage.getItem('access_token'));
         return this.http.put(this.baseUrl + path, object, headers).map((res: any) => res).catch((error: any) =>
-        Observable.throw(this.catchError(error) || '401 Unauthorized'));
+            Observable.throw(this.catchError(error) || '401 Unauthorized'));
     }
 
     post(path: string, object: any) {
         const headers: any = this.getHeaders(sessionStorage.getItem('access_token'));
-        return this.http.post(this.baseUrl + path, object, headers).map((res: any) => res);
+        return this.http.post(this.baseUrl + path, object, headers).map((res: any) => res).catch((error: any) =>
+            Observable.throw(this.catchError(error) || '401 Unauthorized'));
     }
 
     delete(path: string) {
         const headers: any = this.getHeaders(sessionStorage.getItem('access_token'));
-        return this.http.delete(this.baseUrl + path, headers).map((res: any) => res);
+        return this.http.delete(this.baseUrl + path, headers).map((res: any) => res).catch((error: any) =>
+            Observable.throw(this.catchError(error) || '401 Unauthorized'));
     }
 
 
     catchError(error: any) {
         if (error.status === 401 || error.status === 403) {
-          sessionStorage.removeItem('access_token');
-          this.router.navigate(['/backoffice']);
-          this.alertService.error('UNAUTHORIZED');
-        //   location.reload();
+            sessionStorage.removeItem('access_token');
+            this.router.navigate(['/admins']);
+            if (error.error.error === 'invalid_credentials') {
+                this.alertService.error('INVALID_CREDENTIALS');
+            } else {
+                this.alertService.error('UNAUTHORIZED');
+            }
+        } else {
+            this.alertService.error(error.error);
         }
         return error.error;
-      }
+    }
 }

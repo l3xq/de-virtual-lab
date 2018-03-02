@@ -11,13 +11,14 @@
     <div *ngFor="let item of periods">
       <accordion-group #group>
         <div style="cursor: pointer;" accordion-heading>
-          {{item.name}}
+          {{item.title}}
           <i class="pull-right float-xs-right fa" [ngClass]="{'fa-chevron-down iconCorrection': group.isOpen, 'fa-chevron-right iconCorrection': !group.isOpen}"></i>
         </div>
         <div>
             <div *ngIf="item.students && item.students.length === 0" class="alert alert-danger" role="alert" style="text-align: center;">
                 {{"NO_STUDENTS" | translate}}
               </div>
+              <div class=""><button *ngIf="item.name.length" class="btn btn-link pull-right  mb-3" (click)="download(item)"> <i class="fa fa-file"></i> {{'DOWNLOAD_RESULTS' | translate}}</button></div>
           <table *ngIf="item.students && item.students.length > 0" class="table" style="margin: 0;">
             <tbody>
               <tr *ngFor="let student of item.students" [ngClass]="{'passed': student.mark > 5, 'unpassed': student.mark < 6}">

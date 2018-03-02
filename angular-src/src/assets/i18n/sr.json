@@ -45,6 +45,7 @@
     "EDIT_LESSON": "Izmeni lekciju - ",
     "CREATE_LESSON": "Kreiraj lekciju",
     "EDIT": "Izmeni",
+    "EDIT_STUDENT": "Izmeni studenta ",
     "LESSON_NAME": "Naziv lekcije: ",
     "FILE": "Datoteka: ",
     "ADD_NEW_PERIOD": "Dodaj novi ispitni rok",
@@ -65,6 +66,7 @@
     "INDEX_NUMBER": "Broj indeksa:",
     "MARK": "Ocena:",
     "UNIT": "Smer:",
+    "DOWNLOAD_RESULTS": "Preuzmi rezultate",
     "EXAM_LESSONS": "Lekcije",
     "BACKOFFICE": "Administratorski panel",
     "ADD_NOTIFICATION": "Dodaj obaveštenje",
@@ -87,6 +89,7 @@
     "FAX": "Faks",
     "EMAIL": "E-mail",
     "TEXT_ABOUT": "Evo nekoliko reci o Digitalnoj laboratoriji.",
+    "UNAUTHORIZED": "Sesija je istekla, prijavite se ponovo!",
 
     "LAB_UPDATED": "Laboratorija je ažurirana.",
     "LAB_CREATED": "Laboratorija je kreirana.",
@@ -110,5 +113,8 @@
 
     "STUDENT_UPDATED": "Student je ažuriran.",
     "STUDENT_CREATED": "Student je kreiran.",
-    "STUDENT_DELETED": "Student je obrisan."
+    "STUDENT_DELETED": "Student je obrisan.",
+    "REALLY_SURE_DELETE": "Želite da obrišete \"{{text}}\"?",
+    "REALLY_SURE_REMOVE": "Želite da uklonite \"{{text}}\"?",
+    "REMOVE_FILE": "Ukloni datoteku"
 }

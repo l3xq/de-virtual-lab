@@ -18,6 +18,7 @@ import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular
 import { ExamService } from '../../../../exams/shared/exam.service';
 import { AdminService } from '../../../shared/admin.service';
 import { AlertsService } from '../../../../notification/alerts.service';
+import { TranslateService } from '@ngx-translate/core';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -34,12 +35,14 @@ export class EditLessonsComponent implements OnInit {
   lesson: any;
   form: any;
   file: any;
+  fileChanged = false;
 
   constructor(private fb: FormBuilder,
     private examService: ExamService,
     private adminService: AdminService,
     private router: Router,
     private alertsService: AlertsService,
+    private translate: TranslateService,
     private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       title: ['', Validators.required]
@@ -71,24 +74,29 @@ export class EditLessonsComponent implements OnInit {
 
   getLesson() {
     this.examService.getLessonById(this.lessonId).subscribe(lesson => {
-      this.lesson = lesson.data[0];
+      this.lesson = lesson.data;
       this.form.patchValue(this.lesson);
     });
   }
 
   download() {
-    const byteCharacters = atob(this.lesson.file);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    if (this.lessonId !== 'new') {
+      this.examService.getFullLessonById(this.lessonId).subscribe(fullLesson => {
+        const byteCharacters = atob(fullLesson.data[0].file);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const file = new Blob([byteArray], { type: fullLesson.data[0].mime });
+        saveAs(file, fullLesson.data[0].name);
+      });
     }
-    const byteArray = new Uint8Array(byteNumbers);
-    const file = new Blob([byteArray], { type: this.lesson.mime });
-    saveAs(file, this.lesson.name);
   }
 
   // Upload file
   uploadFile(event) { // called each time file input changes
+    this.fileChanged = true;
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       this.lesson.name = file.name;
@@ -103,13 +111,37 @@ export class EditLessonsComponent implements OnInit {
     }
   }
 
+  removeFile() {
+    if (confirm(this.translate.instant('REALLY_SURE_REMOVE', { text: this.lesson.name }))) {
+      this.fileChanged = true;
+      this.lesson.file = '';
+      this.lesson.name = '';
+      this.lesson.mime = '';
+      this.lesson.size = 0;
+    }
+  }
+
   submit() {
     const lessonData = new Lesson(this.form.value);
     this.lesson.title = lessonData.title;
     this.lesson.exam_id = this.examId;
     if (this.lessonId !== 'new') {
-      this.examService.updateLessonById(this.lessonId, this.lesson).subscribe(lesson => { });
-      this.alertsService.success('LESSON_UPDATED');
+      if (!this.fileChanged) {
+        this.examService.getFullLessonById(this.lessonId).subscribe((lesson: any) => {
+          this.lesson.name = lesson.data[0].name;
+          this.lesson.file = lesson.data[0].file;
+          this.lesson.size = lesson.data[0].size;
+          this.lesson.mime = lesson.data[0].mime;
+          this.examService.updateLessonById(this.lessonId, this.lesson).subscribe(data => {
+            this.alertsService.success('LESSON_UPDATED');
+          });
+        });
+      } else {
+        this.examService.updateLessonById(this.lessonId, this.lesson).subscribe(data => {
+          this.alertsService.success('LESSON_UPDATED');
+        });
+      }
+
     } else {
       this.examService.createNewLesson(this.lesson).subscribe(lesson => {
         this.alertsService.success('LESSON_CREATED');

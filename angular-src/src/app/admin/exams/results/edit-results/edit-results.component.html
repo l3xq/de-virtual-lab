@@ -1,17 +1,35 @@
 <div style="padding: 16px;" *ngIf="showContent">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/backoffice">{{'BACKOFFICE' | translate}}</a></li>
-        <li class="breadcrumb-item"><a routerLink="/backoffice-exams">{{'EXAMS' | translate}}</a></li>
-        <li class="breadcrumb-item"><a routerLink="/backoffice-exams-results/{{examId}}">{{'EXAM_RESULTS' | translate}}</a></li>
-        <li class="breadcrumb-item active">{{period ? period.name : "ADD_PERIOD" | translate}}</li>
-      </ol>
-  <h5 class="col-md-12 titleHeader" *ngIf="periodId != 'new'">{{"EDIT_PERIOD" | translate}} {{period ? period.name : ""}}</h5>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a routerLink="/backoffice">{{'BACKOFFICE' | translate}}</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a routerLink="/backoffice-exams">{{'EXAMS' | translate}}</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a routerLink="/backoffice-exams-results/{{examId}}">{{'EXAM_RESULTS' | translate}}</a>
+    </li>
+    <li class="breadcrumb-item active">{{period ? period.title : "ADD_PERIOD" | translate}}</li>
+  </ol>
+  <h5 class="col-md-12 titleHeader" *ngIf="periodId != 'new'">{{"EDIT_PERIOD" | translate}} {{period ? period.title : ""}}</h5>
   <h5 class="col-md-12 titleHeader" *ngIf="periodId == 'new'">{{"CREATE_PERIOD" | translate}}</h5>
   <form [formGroup]="form">
     <div class="form-group row">
       <label for="example-text-input" class="col-2 col-form-label">{{"PERIOD_NAME_LABEL" | translate}}</label>
       <div class="col-10">
-        <input class="form-control" type="text" value="{{period ? period.name : ''}}" formControlName="title" id="example-text-input">
+        <input class="form-control" type="text" value="{{period ? period.title : ''}}" formControlName="title" id="example-text-input">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 control-label" for="textInput-markup">{{"FILE" | translate}}</label>
+      <div class="col-md-10">
+        <span *ngIf="period && period.name" (click)="download()" style="cursor: pointer;" title="{{ 'DOWNLOAD_FILE' | translate }}">
+          <i class="fa fa-file"></i> {{period.name}}</span>
+        <label class="btn btn-sm btn-link text-muted" for="fileUrl">
+          {{( !(period && period.name) ? 'ADD_FILE' : 'CHANGE_FILE') | translate}}
+          <input type="file" id="fileUrl" name="fileUrl" (change)="uploadFile($event)" hidden>
+        </label>
+        <label  class="btn btn-sm btn-link text-muted" (click)="removeFile()" *ngIf="period && period.name"> {{'REMOVE_FILE' | translate}}</label>
       </div>
     </div>
   </form>
@@ -25,7 +43,7 @@
   </div>
 
 
-  <table class="table" style="margin: 0;">
+  <table *ngIf="periodId !== 'new'" class="table" style="margin: 0;">
     <tbody>
       <tr *ngFor="let student of students" [ngClass]="{'passed': student.mark > 5, 'unpassed': student.mark < 6}">
         <td>{{student.firstName}}</td>
@@ -34,14 +52,14 @@
         <td>{{student.mark}}</td>
         <td>{{student.unit}}</td>
         <td class="pull-right">
-          <i class="fa fa-times" aria-hidden="true" (click)="deleteStudent(student.id)" style="cursor: pointer;"></i>
+          <i class="fa fa-times" aria-hidden="true" (click)="deleteStudent(student)" style="cursor: pointer;"></i>
           <i class="fa fa-pencil" aria-hidden="true" (click)="navigateToEditStudent(periodId, student.id)" style="cursor: pointer;"></i>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div>
+  <div *ngIf="periodId !== 'new'">
     <button class="btn btn-outline-success" style="cursor: pointer; margin-top: 16px;" (click)="navigateToEditStudent(periodId, 'new')">{{"ADD" | translate}}</button>
     <strong style="padding-left: 16px; margin-top: 28px;">{{"ADD_NEW_STUDENT" | translate}}</strong>
   </div>

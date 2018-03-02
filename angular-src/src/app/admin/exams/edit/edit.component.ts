@@ -1,3 +1,11 @@
+export class Exam {
+  id: Number;
+  name: string;
+
+  constructor(exam?: Partial<Exam>) {
+    Object.assign(this, exam);
+  }
+}
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
@@ -25,7 +33,7 @@ export class EditComponent implements OnInit {
     private alertsService: AlertsService,
     private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
-      name: ['', Validators.required]
+      title: ['', Validators.required]
     });
 
     this.activatedRoute.params.subscribe(params => {
@@ -45,21 +53,18 @@ export class EditComponent implements OnInit {
   getExam() {
     this.examService.getExamById(this.examId).subscribe(exam => {
       this.exam = exam.data[0];
-      this.form.value['name'] = exam.title;
+      this.form.patchValue(this.exam);
     });
   }
 
   submit() {
-    const name = this.form.value['name'];
-    const object = {
-      title: name
-    };
+    const examData = new Exam(this.form.value);
     if (this.examId !== 'new') {
-      this.examService.updateExamById(this.examId, object).subscribe(exam => {
+      this.examService.updateExamById(this.examId, examData).subscribe(exam => {
         this.alertsService.success('EXAM_UPDATED');
       });
     } else {
-      this.examService.createNewExam(object).subscribe(exam => {
+      this.examService.createNewExam(examData).subscribe(exam => {
         this.alertsService.success('EXAM_CREATED');
       });
     }

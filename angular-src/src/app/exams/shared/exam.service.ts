@@ -54,6 +54,14 @@ export class ExamService {
     return this.http.get('/lessons/' + lessonId);
   }
 
+  getFullLessonById(lessonId: string) {
+    return this.http.get('/lessons/' + lessonId + '/file');
+  }
+
+  getFullPeriodById(periodId: string) {
+    return this.http.get('/periods/' + periodId + '/file');
+  }
+
   getPeriodById(periodId: string) {
     return this.http.get('/periods/' + periodId);
   }

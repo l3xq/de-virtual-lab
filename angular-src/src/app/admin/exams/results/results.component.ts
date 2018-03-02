@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from '../../../exams/shared/exam.service';
 import { AdminService } from '../../shared/admin.service';
 import { AlertsService } from '../../../notification/alerts.service';
+import { TranslateService } from '@ngx-translate/core';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-results',
@@ -21,6 +23,7 @@ export class ResultsComponent implements OnInit {
     private adminService: AdminService,
     private router: Router,
     private alertsService: AlertsService,
+    private translate: TranslateService,
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
       this.examId = params['examId'];
@@ -64,30 +67,48 @@ export class ResultsComponent implements OnInit {
     }
   }
 
+  download(period: any) {
+    this.examService.getFullPeriodById(period.id).subscribe(fullPeriod => {
+      const byteCharacters = atob(fullPeriod.data[0].file);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const file = new Blob([byteArray], { type: fullPeriod.data[0].mime });
+      saveAs(file, fullPeriod.data[0].name);
+    });
+  }
+
   navigateToEditStudent(periodId, studentId) {
     this.router.navigate(['backoffice-exams-periods-students/', this.examId, periodId, studentId]);
   }
 
-  deletePeriod(periodId: string) {
-    this.showContent = false;
-    setTimeout(() => {
-      this.examService.deletePeriodById(periodId).subscribe(data => {
-        this.alertsService.success('PERIOD_DELETED');
-        this.fetchPeriods();
-        this.showContent = true;
-      });
-    }, 1000);
+  deletePeriod(period: any) {
+    if (confirm(this.translate.instant('REALLY_SURE_DELETE', { text: period.title }))) {
+      this.showContent = false;
+      setTimeout(() => {
+        this.examService.deletePeriodById(period.id).subscribe(data => {
+          this.alertsService.success('PERIOD_DELETED');
+          this.fetchPeriods();
+          this.showContent = true;
+        });
+      }, 1000);
+    }
   }
 
-  deleteStudent(studentId: string) {
-    this.showContent = false;
-    setTimeout(() => {
-      this.examService.deleteStudentById(studentId).subscribe(data => {
-        this.alertsService.success('STUDENT_DELETED');
-        this.fetchPeriods();
-        this.showContent = true;
-      });
-    }, 1000);
+
+  deleteStudent(student: any) {
+    if (confirm(this.translate.instant('REALLY_SURE_DELETE', { text: student.firstName + ' ' + student.lastName }))) {
+      this.showContent = false;
+      setTimeout(() => {
+        this.examService.deleteStudentById(student.id).subscribe(data => {
+          this.alertsService.success('STUDENT_DELETED');
+          this.fetchPeriods();
+          this.showContent = true;
+        });
+      }, 1000);
+    }
   }
 
 }

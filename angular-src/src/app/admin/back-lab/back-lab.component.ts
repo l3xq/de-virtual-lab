@@ -3,6 +3,7 @@ import { LabService } from '../../labs/shared/lab.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../admin/shared/admin.service';
 import { AlertsService } from '../../notification/alerts.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-back-lab',
@@ -22,6 +23,7 @@ export class BackLabComponent implements OnInit {
     private adminService: AdminService,
     private activatedRoute: ActivatedRoute,
     private notificationsService: AlertsService,
+    private translate: TranslateService,
     private router: Router) {
 
     this.activatedRoute.params.subscribe(params => {
@@ -49,14 +51,17 @@ export class BackLabComponent implements OnInit {
     }
   }
 
-  deleteLab(labId: string) {
+  deleteLab(lab: any) {
+    if (confirm(this.translate.instant('REALLY_SURE_DELETE', { text: lab.title }))) {
       this.showContent = false;
       setTimeout(() => {
-        this.labsService.deleteLabById(labId).subscribe(data => {
+        this.labsService.deleteLabById(lab.id).subscribe(data => {
           this.fetchLabs();
           this.notificationsService.success('LAB_DELETED');
           this.showContent = true;
         });
       }, 1000);
+    }
   }
+
 }

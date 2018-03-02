@@ -30,14 +30,16 @@ export class ExamLessonsComponent implements OnInit {
   }
 
   download(lesson: any) {
-    const byteCharacters = atob(lesson.file);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-    const file = new Blob([byteArray], { type: lesson.mime });
-    saveAs(file, lesson.name);
+    this.examService.getFullLessonById(lesson.id).subscribe(fullLesson => {
+      const byteCharacters = atob(fullLesson.data[0].file);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const file = new Blob([byteArray], { type: fullLesson.data[0].mime });
+      saveAs(file, fullLesson.data[0].name);
+    });
   }
 
   ngOnInit() {

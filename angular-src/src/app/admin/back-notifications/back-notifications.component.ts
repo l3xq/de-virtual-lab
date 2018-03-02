@@ -3,6 +3,7 @@ import { NotificationService } from '../../notifications/shared/notification.ser
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../admin/shared/admin.service';
 import { AlertsService } from '../../notification/alerts.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-back-notifications',
@@ -22,6 +23,7 @@ export class BackNotificationsComponent implements OnInit {
     private adminService: AdminService,
     private activatedRoute: ActivatedRoute,
     private alertService: AlertsService,
+    private translate: TranslateService,
     private router: Router) {
 
     this.activatedRoute.params.subscribe(params => {
@@ -58,15 +60,17 @@ export class BackNotificationsComponent implements OnInit {
     this.router.navigate(['backoffice-notifications/', notificationId]);
   }
 
-  deleteNotification(notificationId: string) {
-    this.showContent = false;
-    setTimeout(() => {
-      this.notificationService.deleteNotificationById(notificationId).subscribe(data => {
-        this.alertService.success('NOTIFICATION_DELETED');
-        this.fetchNotifications();
-        this.showContent = true;
-      });
-    }, 1000);
+  deleteNotification(notification: any) {
+    if (confirm(this.translate.instant('REALLY_SURE_DELETE', { text: notification.title }))) {
+      this.showContent = false;
+      setTimeout(() => {
+        this.notificationService.deleteNotificationById(notification.id).subscribe(data => {
+          this.alertService.success('NOTIFICATION_DELETED');
+          this.fetchNotifications();
+          this.showContent = true;
+        });
+      }, 1000);
+    }
   }
 
 }

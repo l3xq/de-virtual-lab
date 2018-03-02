@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Exam } from '../shared/exam.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from '../shared/exam.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-exam-results',
@@ -31,6 +32,19 @@ export class ExamResultsComponent implements OnInit {
           this.exam = exam.data[0];
         });
       }
+    });
+  }
+
+  download(period: any) {
+    this.examService.getFullPeriodById(period.id).subscribe(fullPeriod => {
+      const byteCharacters = atob(fullPeriod.data[0].file);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const file = new Blob([byteArray], { type: fullPeriod.data[0].mime });
+      saveAs(file, fullPeriod.data[0].name);
     });
   }
 

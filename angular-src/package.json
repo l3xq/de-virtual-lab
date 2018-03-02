@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "server": "json-server --watch db.json --port 5000",
     "start": "ng serve --host 91.187.132.22 --port 4200",
     "build": "ng build",
     "test": "ng test",

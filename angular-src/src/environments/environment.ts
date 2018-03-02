@@ -5,5 +5,6 @@
 
 export const environment = {
   production: true,
+  // serverUrl: 'http://localhost:8000/api',
   serverUrl: 'http://91.187.132.22:8000/api'
 };

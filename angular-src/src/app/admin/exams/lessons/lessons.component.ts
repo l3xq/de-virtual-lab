@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ExamService } from '../../../exams/shared/exam.service';
 import { AdminService } from '../../shared/admin.service';
 import { AlertsService } from '../../../notification/alerts.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-lessons',
@@ -20,6 +21,7 @@ export class LessonsComponent implements OnInit {
     private adminService: AdminService,
     private router: Router,
     private alertsService: AlertsService,
+    private translate: TranslateService,
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
 
@@ -53,15 +55,17 @@ export class LessonsComponent implements OnInit {
     }
   }
 
-  deleteLesson(lessonId: string) {
-    this.showContent = false;
-    setTimeout(() => {
-      this.examService.deleteLessonByExamAndId(lessonId).subscribe(data => {
-        this.alertsService.success('LESSON_DELETED');
-        this.fetchLessons();
-        this.showContent = true;
-      });
-    }, 1000);
+  deleteLesson(lesson: any) {
+    if (confirm(this.translate.instant('REALLY_SURE_DELETE', { text: lesson.title }))) {
+      this.showContent = false;
+      setTimeout(() => {
+        this.examService.deleteLessonByExamAndId(lesson.id).subscribe(data => {
+          this.alertsService.success('LESSON_DELETED');
+          this.fetchLessons();
+          this.showContent = true;
+        });
+      }, 1000);
+    }
   }
 
   ngOnInit() {
