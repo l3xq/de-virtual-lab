@@ -372,6 +372,18 @@ class ExamController extends Controller
 
             $period->title = $request['title'];
 
+            if($request['size'] !== 0) {
+                $period->name = $request['name'];
+                $period->file = $request['file'];
+                $period->mime = $request['mime'];
+                $period->size = $request['size'];
+            }else{
+                $period->name = '';
+                $period->file = '';
+                $period->mime = '';
+                $period->size = 0;
+            }
+
             $period->save();
 
             return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been updated.']);
@@ -389,10 +401,18 @@ class ExamController extends Controller
 
             $period->title = $request['title'];
             $period->exam_id = $request['exam_id'];
-            $period->name = $request['name'];
-            $period->file = $request['file'];
-            $period->mime = $request['mime'];
-            $period->size = $request['size'];
+
+            if($request['size'] !== 0) {
+                $period->name = $request['name'];
+                $period->file = $request['file'];
+                $period->mime = $request['mime'];
+                $period->size = $request['size'];
+            }else{
+                $period->name = '';
+                $period->file = '';
+                $period->mime = '';
+                $period->size = 0;
+            }
 
             $period->save();
 
