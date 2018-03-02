@@ -196,24 +196,7 @@ Route::group(['prefix' => 'api'], function () {
 
     // Notifications routes END
     /************************************************************************/
-    // Credentials & Authorization routes START
-
-    Route::put('/authorization', [
-        'uses' => 'AuthorizationController@updateToken',
-        'as' => 'auth.updateToken'
-    ])->middleware('jwt.auth');
-
-    Route::get('/authorization', [
-        'uses' => 'AuthorizationController@getToken',
-        'as' => 'auth.getToken'
-    ])->middleware('jwt.auth');
-
-    Route::get('/credentials', [
-        'uses' => 'CredentialsController@getCredentials',
-        'as' => 'auth.getCredentials'
-    ])->middleware('jwt.auth');
-
-    // Credentials & Authorization routes END
+    // Credentials & Authorization routes
 
     Route::resource('authenticate', 'AuthenticateController');
     Route::post('authenticate', 'AuthenticateController@authenticate');

@@ -22,9 +22,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $exams]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -35,9 +34,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $examById]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -60,9 +58,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $periodsStriped]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -76,9 +73,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $studentsByExamAndPeriod]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -103,9 +99,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $lessonsStriped]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -118,9 +113,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Exam by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -135,9 +129,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'New exam has been created.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -153,9 +146,7 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Exam has been updated.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            // TODO: Make all returns like this one
             return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
@@ -169,9 +160,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Lesson with ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -184,9 +174,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -209,9 +198,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $lessonTempArray]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -222,9 +210,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $getLesson]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -247,9 +234,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $periodTempArray]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -260,9 +246,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $getPeriod]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -273,9 +258,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => $getStudent]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -295,9 +279,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Lesson has been updated.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -318,7 +301,7 @@ class ExamController extends Controller
             return response()->json(['status' => 200, 'data' => 'Lesson has been created.']);
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -337,9 +320,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been updated.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -361,9 +343,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Student has been created.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -374,12 +355,12 @@ class ExamController extends Controller
 
             $period->title = $request['title'];
 
-            if($request['size'] !== 0) {
+            if ($request['size'] !== 0) {
                 $period->name = $request['name'];
                 $period->file = $request['file'];
                 $period->mime = $request['mime'];
                 $period->size = $request['size'];
-            }else{
+            } else {
                 $period->name = '';
                 $period->file = '';
                 $period->mime = '';
@@ -390,9 +371,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Period by ID[' . $id . '] has been updated.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -404,12 +384,12 @@ class ExamController extends Controller
             $period->title = $request['title'];
             $period->exam_id = $request['exam_id'];
 
-            if($request['size'] !== 0) {
+            if ($request['size'] !== 0) {
                 $period->name = $request['name'];
                 $period->file = $request['file'];
                 $period->mime = $request['mime'];
                 $period->size = $request['size'];
-            }else{
+            } else {
                 $period->name = '';
                 $period->file = '';
                 $period->mime = '';
@@ -420,9 +400,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Period has been created.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -435,9 +414,8 @@ class ExamController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Student by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 }

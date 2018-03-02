@@ -16,9 +16,8 @@ class NotificationController extends Controller
 
             return response()->json(['status' => 200, 'data' => $getNotifications]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -29,9 +28,8 @@ class NotificationController extends Controller
 
             return response()->json(['status' => 200, 'data' => $getNotification]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -48,9 +46,8 @@ class NotificationController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Notification has been updated.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -67,9 +64,8 @@ class NotificationController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'New Notification has been created.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -82,9 +78,8 @@ class NotificationController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Notification by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 }

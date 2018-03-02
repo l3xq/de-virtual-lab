@@ -17,9 +17,8 @@ class LabController extends Controller
 
             return response()->json(['status' => 200, 'data' => $getLabs]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -30,9 +29,8 @@ class LabController extends Controller
 
             return response()->json(['status' => 200, 'data' => $labById]);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -49,9 +47,8 @@ class LabController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Lab has been updated.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -67,9 +64,8 @@ class LabController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'New Lab has been created.']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 
@@ -82,9 +78,8 @@ class LabController extends Controller
 
             return response()->json(['status' => 200, 'data' => 'Lab by ID[' . $id . '] has been deleted!']);
         } catch (Exception $e) {
-            // Log errors
             Log::error($e->getMessage());
-            return false;
+            return response()->json(['status' => 400, 'data' => 'Request is invalid or cannot be served.', 'log' => 'Check log for more info!']);
         }
     }
 }

@@ -13,7 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
-        // TODO: Remove API when finished developing, and add aditional protection on it
+        // Security has been solved by JWT, to avoid CSRF miss-match token
         'api/*',
     ];
 }
