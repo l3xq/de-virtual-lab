@@ -8,7 +8,8 @@
 * Make cron task to backup DB on daily basis
 * ~~Remove old auth routes and methods; Remove unused classes~~
 * ~~Fix error responses~~
-* Make CI/CD automation (Jenkins mb?)
+* **Make CI/CD automation** (Jenkins mb?)
+    * Automated DB tests
 * ~~Add code notation, for future reference~~
 * ~~Test new services, test DB collation~~
 
