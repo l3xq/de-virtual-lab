@@ -6,6 +6,8 @@
 
 ## TODOs
 * Make cron task to backup DB on daily basis
+* Add 'ng build' and 'php artisan optimize' for reboot-script
+    * Find additional points that could be optimized; Is local cache possible in this scenario?
 * ~~Remove old auth routes and methods; Remove unused classes~~
 * ~~Fix error responses~~
 * **Make CI/CD automation** (Jenkins mb?)
