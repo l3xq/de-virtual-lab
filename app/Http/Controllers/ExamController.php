@@ -20,7 +20,7 @@ class ExamController extends Controller
     public function gitWebHook(Request $request){
             exec('git pull');
             
-            return response()->json(['status' => 200, 'data' => 'Success buidling! Server is up to date.']);
+            return response(200)->json(['status' => 200, 'data' => 'Success buidling! Server is up to date.']);
     }
 
     /**
