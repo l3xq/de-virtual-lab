@@ -21,7 +21,7 @@ class ExamController extends Controller
             $req_dump = print_r($request, true);
             $fp = file_put_contents('request.json', $req_dump);
 
-            dd($request['committer']);
+            $lp = file_put_contents('log.json', $request['committer']);
 
             return response(200);
     }
