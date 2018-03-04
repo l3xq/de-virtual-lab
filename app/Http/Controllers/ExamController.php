@@ -20,12 +20,14 @@ class ExamController extends Controller
     public function gitWebHook(Request $request){
             # Sometype of CD is working
             $req_dump = print_r($request, true);
-            $fp = file_put_contents('request.json', $req_dump);
-            #$testFile1 = file_put_contents('tf1-commits.json', $request->commits->author->email);
-            #$testFile1 = file_put_contents('tf3-commits-0.json', $request['commits'][0]);
-            #$testFile1 = file_put_contents('tf4-c-0-message', $request['commits'][0]['message']);
 
+            $test = $request->only(['commits', 'email']);
+
+            $fp = file_put_contents('request.json', $req_dump);
+            $fp2 = file_put_contents('onlyKEY.json', $test);
+            
             exec('git pull');
+            
             return response(200);
     }
 
