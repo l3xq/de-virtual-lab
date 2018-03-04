@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Validator;
 
 class ExamController extends Controller
 {
+
+
+    public function gitWebHook(Request $request){
+           $req_dump = print_r($_REQUEST, true);
+           $fp = file_put_contents('request.json', $req_dump);
+           #$fp = fopen('request.json', 'a');
+           #fwrite($fp, $req_dump);
+          #fclose($fp); 
+
+            return response(200);
+    }
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

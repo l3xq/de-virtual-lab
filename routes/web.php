@@ -21,7 +21,13 @@ Route::group(['prefix' => 'api'], function () {
 
     /************************************************************************/
     // Exam routes START
-    Route::get('/exams', [
+ 
+   Route::post('/git-webhook', [
+        'uses' => 'ExamController@gitWebHook',
+        'as' => 'exams.gitWebHook'
+    ]);
+
+   Route::get('/exams', [
         'uses' => 'ExamController@getExams',
         'as' => 'exams.all'
     ]);
