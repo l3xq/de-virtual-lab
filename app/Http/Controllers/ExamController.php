@@ -20,7 +20,7 @@ class ExamController extends Controller
     public function gitWebHook(Request $request){
             exec('git pull');
             
-            return response(200)->with('data', 'SUCCESS! Server is updated with Master.');
+            return response(200);
     }
 
     /**
