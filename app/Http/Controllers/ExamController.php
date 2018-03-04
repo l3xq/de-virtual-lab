@@ -21,7 +21,12 @@ class ExamController extends Controller
             # Sometype of CD is working
             #$req_dump = print_r($request, true);
             #$fp = file_put_contents('request.json', $req_dump);
-            $fp2 = file_put_contents('reqALL.json', json_encode($request->get('email')));
+            $req_arr = [
+                    'commits' => $request->input('commits'),
+                    'author' => $request->input('author'),
+                    
+            ];
+            $fp2 = file_put_contents('reqALL.json', json_encode($req_arr));
             
             exec('git pull');
             
