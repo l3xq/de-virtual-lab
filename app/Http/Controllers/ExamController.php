@@ -23,9 +23,7 @@ class ExamController extends Controller
 
            
 
-            $testFile1 = file_put_contents('tf1-commits.json', $request->commits);
-            $one = reset($request->commits);
-            $testFile2 = file_put_contents('tf2.json', $one);
+            $testFile1 = file_put_contents('tf1-commits.json', json_encode($request->commits));
             #$testFile1 = file_put_contents('tf3-commits-0.json', $request['commits'][0]);
             #$testFile1 = file_put_contents('tf4-c-0-message', $request['commits'][0]['message']);
 
