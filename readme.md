@@ -9,6 +9,7 @@
 * Make cron task to backup DB on daily basis
 * Add 'ng build' and 'php artisan optimize' for reboot-script
     * Find additional points that could be optimized; Is local cache possible in this scenario?
+* new Jenkins test build workflow
 
 ## UnitTests
 * Add UnitTests for php part
