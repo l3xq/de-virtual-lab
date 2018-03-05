@@ -3,11 +3,11 @@
 
 * Frontend: Angular 4
 * Backend: Laravel 5.4
-* Jenkins CI/CD
+* Jenkins Enabled & automated script for CI/CD
 
 ## UnitTests
-* Add UnitTests for php part
-* Test coverage should be min 95%
+* Add PHPUnit tests
+    + Test coverage should be min 95%
 
 
 [API Collection (Postman export)](https://github.com/l3xq/de-virtual-lab/blob/master/documentation/api_postman_collection/API_Postman_export.json)
