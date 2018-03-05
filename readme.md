@@ -1,6 +1,9 @@
 # Virtual laboratory for Digital Electronics
 
 
+[Digital Electronics Lab](http://www.elektronika.ftn.kg.ac.rs "Digitalna Elektronika")
+
+
 * Frontend: Angular 4
 * Backend: Laravel 5.4
 * Jenkins Enabled & automated script for CI/CD
