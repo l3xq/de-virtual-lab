@@ -13,7 +13,9 @@
     + Test coverage should be min 95%
 
 
-[API Collection (Postman export)](https://github.com/l3xq/de-virtual-lab/blob/master/documentation/api_postman_collection/API_Postman_export.json)
+[API Collection (Postman export)](https://github.com/l3xq/de-virtual-lab/blob/master/documentation/api_postman_collection/API_Postman_export.jsoni "Postman Collection")
+
+
 ![List of Routes][list-of-routes]
 
 
